@@ -1,0 +1,59 @@
+version: '3'
+services:
+  nginx:
+    #image: nginx:1.15.6
+    build: ./nginx/
+    container_name: web-server
+    ports:
+      - "8000:80"
+    depends_on: # 追加
+      - php
+    volumes:
+      - ./nginx/config/default.conf:/etc/nginx/conf.d/default.conf
+      - ./app:/var/www/html/laravel-project/
+  php:
+    container_name: php
+    build: ./php
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE: ${DB_NAME}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+     - ./php/config/php.ini:/usr/local/etc/php/php.ini
+     - ./app:/var/www/html/laravel-project/
+    depends_on:
+      - mariadb
+
+  mariadb:
+    image: mariadb:10.5
+    # build: ./mariadb/
+    container_name: run-php-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${ROOT_PASS}
+    ports:
+      - "3306:3306"
+    volumes:
+       - db_data:/var/lib/mysql
+      #  - ./mariadb/sql:/var/lib/mysql
+       - ./mariadb/config/my.cnf:/etc/mysql/conf.d/my.cnf
+       - ./mariadb/initdb.d:/docker-entrypoint-initdb.d
+    # command: bash c - "chmod 644 /etc/mysql/conf.d/my.cnf"
+  phpmyadmin:
+    container_name: fullstack-phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8001:80
+    environment:
+      - PMA_ARBITRARY=1
+      # - PMA_HOST=mariadb
+      # - PMA_ROOT_PASSWORD=root123
+    depends_on:
+      - mariadb
+volumes:
+  db_data:
