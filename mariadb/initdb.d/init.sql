@@ -22,3 +22,13 @@ INSERT INTO bookinfo VALUES('0002','c++',1002);
 INSERT INTO bookinfo VALUES('0003','ruby',1003);
 INSERT INTO bookinfo VALUES('0004','perl',1004);
 INSERT INTO bookinfo VALUES('0005','database',1005);
+
+CREATE TABLE accountinfo ( 
+    accountid VARCHAR(20) PRIMARY KEY,
+    password VARCHAR(20),
+    email VARCHAR(100),
+    phone VARCHAR(100),
+    authority INTEGER
+)ENGINE = InnoDB,DEFAULT CHARSET=utf8;
+
+INSERT INTO `accountinfo` (`accountid`, `password`, `email`, `phone`, `authority`) VALUES ('0001', 'test', ''youriyoshiike@gmail.com', '000-0000-0000', 0);
