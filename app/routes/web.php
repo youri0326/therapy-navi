@@ -27,3 +27,6 @@ Route::get('/', function () {
 Route::get('/list', [ListController::class,'index']);
 
 
+//login機能
+Route::get('/common/login', [LoginController::class,'performLogin']);
+
