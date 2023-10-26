@@ -23,6 +23,7 @@
     			<tr>
     				<td>
     					<a href="{{asset('/list')}}">【書籍一覧】</a>
+						<a href="{{asset('/common/login')}}">ログイン</a>
     				</td>
     			</tr>
     			<tr>
