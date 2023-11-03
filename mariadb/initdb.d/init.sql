@@ -31,4 +31,4 @@ CREATE TABLE accountinfo (
     authority INTEGER
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 
-INSERT INTO `accountinfo` (`accountid`, `password`, `email`, `phone`, `authority`) VALUES ('0001', 'test', ''youriyoshiike@gmail.com', '000-0000-0000', 0);
+INSERT INTO accountinfo (accountid,password,email,phone,authority) VALUES('0001','test','youriyoshiike@gmail.com','000-0000-0000',0);

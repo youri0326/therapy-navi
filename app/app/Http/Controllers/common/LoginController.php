@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+// namespace App\Http\Controllers;
+namespace App\Http\Controllers\common;
+use App\Http\Controllers\Controller;
 
 use App\Models\accountinfo;
+
 
 class LoginController extends Controller
 {

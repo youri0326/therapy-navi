@@ -11,13 +11,13 @@
 		<title>List</title>
 	</head>
 	<body>
-		<h1 align="center" style="margin-top: 21px;">顧客ログイン画面</h1>
+		<h1 align="center" style="margin-top: 21px;">管理者ログイン画面</h1>
 		<hr align="center" size="5" color="BLUE" width="950"></hr>
 			<!-- ログインのコンテンツ部分 -->
 			<div id="main" class="container">
 
 				<form action="{{asset('/common/login')}}" method="POST">
-				{{ csrf_field() }}
+                {{ csrf_field() }}
 					<table class="input-table">
 						<tr>
 							<th>ユーザー</th>
