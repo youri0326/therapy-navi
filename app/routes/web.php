@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListController;
+// use App\Http\Controllers\common\LoginController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\InsertController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\UpdateController;
@@ -26,7 +28,10 @@ Route::get('/', function () {
 // 一覧表示
 Route::get('/list', [ListController::class,'index']);
 
-
 //login機能
-Route::get('/common/login', [LoginController::class,'performLogin']);
+// Route::resource('common/login', 'common/LoginController@performLogin');
 
+Route::get('/common/login', [LoginController::class,'performLogin']);
+Route::post('/common/login', [LoginController::class,'performLogin']);
+Route::get('/customers/login', [LoginController::class,'customerLogin']);
+Route::get('/admins/login', [LoginController::class,'adminLogin']);
