@@ -32,6 +32,7 @@
 							</td>
 						</tr>
 					</table>
+					<input type="hidden" size="25" name="authority" value="admin">
 					<input type="submit" value="ログイン">
 				</form>
 			</div>

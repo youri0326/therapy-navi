@@ -32,5 +32,6 @@ Route::get('/list', [ListController::class,'index']);
 // Route::resource('common/login', 'common/LoginController@performLogin');
 
 Route::get('/common/login', [LoginController::class,'performLogin']);
+Route::post('/common/login', [LoginController::class,'performLogin']);
 Route::get('/customers/login', [LoginController::class,'customerLogin']);
 Route::get('/admins/login', [LoginController::class,'adminLogin']);
