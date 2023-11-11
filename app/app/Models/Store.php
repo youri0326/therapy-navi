@@ -18,17 +18,17 @@ class Store
     private $staffList;
 
     public function __construct($storeid,$accountid,$storename,$address,$budget,$comment,$payment,$storemenuList,$storephotoList,$stationList,$staffList) {
-        $this->$storeid = $storeid;
-        $this->$accountid = $accountid;
-        $this->$storename = $storename;
-        $this->$address = $address;
-        $this->$budget = $budget;
-        $this->$comment = $comment;
-        $this->$payment = $payment;
-        $this->$storemenuList = $storemenuList;
-        $this->$storephotoList = $storephotoList;
-        $this->$stationList = $stationList;
-        $this->$staffList = $staffList;
+        $this->storeid = $storeid;
+        $this->accountid = $accountid;
+        $this->storename = $storename;
+        $this->address = $address;
+        $this->budget = $budget;
+        $this->comment = $comment;
+        $this->payment = $payment;
+        $this->storemenuList = $storemenuList;
+        $this->storephotoList = $storephotoList;
+        $this->stationList = $stationList;
+        $this->staffList = $staffList;
     }
     //storeidゲッター
     public function getStoreId(){
