@@ -37,7 +37,7 @@ class Store
 
     //storeidセッター
     public function setStoreId($storeid){
-        //更新したい値を引数にとり、$this->priceに代入し、privateプロパティを更新
+        //更新したい値を引数にとり、$this->storeidに代入し、privateプロパティを更新
         $this->storeid = $storeid;
     }
 
@@ -48,8 +48,8 @@ class Store
 
     //accountidセッター
     public function setAccountId($accountid){
-        //更新したい値を引数にとり、$this->priceに代入し、privateプロパティを更新
-        $this->storeid = $accountid;
+        //更新したい値を引数にとり、$this->storeidに代入し、privateプロパティを更新
+        $this->accountid = $accountid;
     }
 
     //storenameゲッター
@@ -59,7 +59,7 @@ class Store
 
     //storenameセッター
     public function setStoreName($storename){
-        //更新したい値を引数にとり、$this->priceに代入し、privateプロパティを更新
+        //更新したい値を引数にとり、$this->storenameに代入し、privateプロパティを更新
         $this->storename = $storename;
     }
 
@@ -70,7 +70,7 @@ class Store
 
     //addressセッター
     public function setAdress($adress){
-        //更新したい値を引数にとり、$this->priceに代入し、privateプロパティを更新
+        //更新したい値を引数にとり、$this->addressに代入し、privateプロパティを更新
         $this->address = $address;
     }
 
@@ -81,7 +81,7 @@ class Store
 
     //accountidセッター
     public function setAccountId($budget){
-        //更新したい値を引数にとり、$this->priceに代入し、privateプロパティを更新
+        //更新したい値を引数にとり、$this->budgetに代入し、privateプロパティを更新
         $this->budget = $budget;
     }
 
@@ -92,8 +92,8 @@ class Store
 
     //commentセッター
     public function setComment($comment){
-        //更新したい値を引数にとり、$this->priceに代入し、privateプロパティを更新
-        $this->storeid = $comment;
+        //更新したい値を引数にとり、$this->commentに代入し、privateプロパティを更新
+        $this->comment = $comment;
     }
 
     //paymentゲッター
@@ -103,7 +103,7 @@ class Store
 
     //paymentセッター
     public function setPayment($payment){
-        //更新したい値を引数にとり、$this->priceに代入し、privateプロパティを更新
+        //更新したい値を引数にとり、$this->paymentに代入し、privateプロパティを更新
         $this->payment = $payment;
     }
 
@@ -114,7 +114,7 @@ class Store
 
     //storemenuListセッター
     public function setStoreMenuList($storemenuList){
-        //更新したい値を引数にとり、$this->priceに代入し、privateプロパティを更新
+        //更新したい値を引数にとり、$this->storemenuListに代入し、privateプロパティを更新
         $this->storemenuList = $storemenuList;
     }
 
@@ -125,7 +125,7 @@ class Store
 
     //storephotoListセッター
     public function setStorePhotoList($storephotoList){
-        //更新したい値を引数にとり、$this->priceに代入し、privateプロパティを更新
+        //更新したい値を引数にとり、$this->storephotoListに代入し、privateプロパティを更新
         $this->storephotoList = $storephotoList;
     }
 
@@ -136,7 +136,7 @@ class Store
 
     //stationListセッター
     public function setStationList($stationList){
-        //更新したい値を引数にとり、$this->priceに代入し、privateプロパティを更新
+        //更新したい値を引数にとり、$this->stationListに代入し、privateプロパティを更新
         $this->stationList = $stationList;
     }
 
@@ -147,7 +147,7 @@ class Store
 
     //staffListセッター
     public function setStaffList($staffList){
-        //更新したい値を引数にとり、$this->priceに代入し、privateプロパティを更新
-        $this->stationList = $staffList;
+        //更新したい値を引数にとり、$this->staffListに代入し、privateプロパティを更新
+        $this->staffList = $staffList;
     }
 }
