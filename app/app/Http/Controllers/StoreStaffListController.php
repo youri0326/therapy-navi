@@ -9,7 +9,7 @@ use App\Models\storemenuinfo;
 use App\Models\storephotoinfo;
 // use Request;
 
-class StoreSearchController extends Controller
+class StoreStaffListController extends Controller
 {
     public function index(Request $request) {
         
