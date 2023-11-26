@@ -28,14 +28,20 @@
     				@foreach($storeList as $store)
     				<tr>
         				<td align=center>
-        					{{$store->isbn}}</a>
+        					{{$store->storename}}</a>
     					</td>
-        				<td align=center>{{$store->title}}</td>
-        				<td align=center>{{$store->price}}円</td>
         				<td align=center>
-        					<a href=''>更新</a>　
-        					<a href=''>削除</a>
-    					</td>
+							@foreach ($store->storephotoinfo as $storephoto)
+							{{ $storephoto-> photopath}} ,
+							@endforeach
+						</td>
+        				<td align=center>
+							@foreach ($store->stationinfo as $station)
+							{{ $station-> stationname}} ,
+							@endforeach
+						</td>
+						<td align=center>{{$store->comment}}</td>
+						<td align=center>{{$store->storemenuinfo->find(1)->servicename}}円</td>
         			</tr>
         			@endforeach
     		</table>

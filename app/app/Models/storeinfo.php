@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Models\accountinfo;
+use App\Models\stationinfo;
+use App\Models\storemenuinfo;
+use App\Models\storephotoinfo;
 
 class storeinfo extends Model
 {
@@ -45,7 +48,12 @@ class storeinfo extends Model
 
     public function searchStore($address, $storename, $budget, $comment)
     {
-        $searchStore = DB::table('storeinfo');
+        $searchStore = new storeinfo();
+        // $searchStore = DB::table('storeinfo');
+        // $searchStore->join('stationinfo', 'storeinfo.storeid', '=', 'stationinfo.storeid')
+        // ->join('storemenuinfo', 'storeinfo.storeid', '=', 'storemenuinfo.storeid')
+        // ->join('storephotoinfo', 'storeinfo.storeid', '=', 'storephotoinfo.storeid');
+
         if ($address != "") {
             $searchStore->where('address', 'like', '%'.$address.'%');
         }

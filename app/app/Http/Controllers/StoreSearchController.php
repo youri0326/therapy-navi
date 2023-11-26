@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\accountinfo;
+use App\Models\store;
 use App\Models\storeinfo;
 use App\Models\stationinfo;
 use App\Models\storemenuinfo;
@@ -13,22 +14,35 @@ class StoreSearchController extends Controller
 {
     public function index(Request $request) {
         
+        //入力フォームの情報の受け取り
         $address = $request->input("address");
         $storename = $request->input("storename");
         $budget = $request->input("budget");
         $comment = $request->input("comment");
 
+        //storeinfoモデルのインスタンス化
         $objStore = new storeinfo();
-               
+        
+        // 【検索データの取得】
+        // 入力フォームの受け取り情報を検索値に、storeinfoテーブルから次のテーブルを結合(joinする形で)該当する行を取得        
         $storeList = $objStore->searchStore($address, $storename, $budget,$comment);
         
-        if (isset($storeList)) {
-            foreach ($storeList as $store) {
-                $stationinfo = new stationinfo();
-                $storemenu = new storemenuinfo();
-                $storephotoinfo = new storephotoinfo();
-            }
-        }
+        // $storeList = $objStore::where([
+        //     ['address', 'like', '%'.$address.'%'],
+        //     ['storename', 'like', '%'.$storename.'%'],
+        //     ['budget', 'like', '%'.$budget.'%'],
+        //     ['comment', 'like', '%'.$comment.'%'],
+        //   ])
+        // ->join('stationinfo', 'storeinfo.storeid', '=', 'stationinfo.storeid')
+        // ->join('storemenuinfo', 'storeinfo.storeid', '=', 'storemenuinfo.storeid')
+        // ->join('storephotoinfo', 'storeinfo.storeid', '=', 'storephotoinfo.storeid')
+        // ->select($address, $storename, $budget,$comment)
+        // ->get();
+
+        // //該当する行の有無を判定
+        // if (isset($storeList)) {
+
+        // }
 
         // 検索画面へ店舗情報と一緒に遷移
         return view('customers/storeSearch',[
