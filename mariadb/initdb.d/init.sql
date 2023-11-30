@@ -169,7 +169,6 @@ INSERT INTO stationinfo VALUES(2,1,'経堂駅','小田急線','徒歩10分');
 --   マッサージBの最寄り駅情報
 INSERT INTO stationinfo VALUES(3,2,'用賀駅','田園都市線','徒歩10分');
 INSERT INTO stationinfo VALUES(4,2,'二子玉川駅','田園都市線','バスで10分');
-
 --   整体Cの最寄り駅情報
 INSERT INTO stationinfo VALUES(5,3,'中目黒駅','東急東横線','徒歩10分');
 INSERT INTO stationinfo VALUES(6,3,'目黒駅','JR山手線','徒歩20分');
