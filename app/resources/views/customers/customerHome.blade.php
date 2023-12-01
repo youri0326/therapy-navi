@@ -25,6 +25,12 @@
 							</td>
 						</tr>
 						<tr>
+							<th>駅名</th>
+							<td>
+								<input type="text" size="25" name="station" >
+							</td>
+						</tr>
+						<tr>
 							<th>店名</th>
 							<td>
 								<input type="password" size="25" name="storename" >

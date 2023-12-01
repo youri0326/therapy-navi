@@ -16,6 +16,7 @@ class StoreSearchController extends Controller
         
         //入力フォームの情報の受け取り
         $address = $request->input("address");
+        $station = $request->input("station");
         $storename = $request->input("storename");
         $budget = $request->input("budget");
         $comment = $request->input("comment");
@@ -25,7 +26,7 @@ class StoreSearchController extends Controller
         
         // 【検索データの取得】
         // 入力フォームの受け取り情報を検索値に、storeinfoテーブルから次のテーブルを結合(joinする形で)該当する行を取得        
-        $storeList = $objStore->searchStore($address, $storename, $budget,$comment);
+        $storeList = $objStore->searchStore($address,$station, $storename, $budget,$comment);
         
         // $storeList = $objStore::where([
         //     ['address', 'like', '%'.$address.'%'],
