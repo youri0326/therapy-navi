@@ -20,15 +20,21 @@
 				{{ csrf_field() }}
 					<table class="input-table">
 						<tr>
-							<th>ユーザー</th>
+							<th>従業員ID</th>
 							<td>
-								<input type="text" size="25" name="accountid" value="修正時にセッション情報入れたい">
+								<input type="text" size="25" name="staffid" value="修正時にセッション情報入れたい">
 							</td>
 						</tr>
 						<tr>
-							<th>パスワード</th>
+							<th>氏名</th>
 							<td>
-								<input type="password" size="25" name="password" value="修正時にセッション情報入れたい">
+								<input type="password" size="25" name="staffname" value="修正時にセッション情報入れたい">
+							</td>
+						</tr>
+						<tr>
+							<th>フリガナ</th>
+							<td>
+								<input type="password" size="25" name="stafffurigana" value="修正時にセッション情報入れたい">
 							</td>
 						</tr>
 					</table>

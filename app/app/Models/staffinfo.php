@@ -7,24 +7,30 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class accountinfo extends Model
+// ファイル名とクラス名を同じにする
+class staffinfo extends Model
 {
     use HasFactory;
     
     // このモデルの対象のテーブル
-    protected $table = 'accountinfo';
+    protected $table = 'staffinfo';
     
     // プライマリキーを指定
     protected $primarykey = 'accountid';
     
-    // プライマリーキーがオートインクリメントではないため設定をオフ
-    public $incrementing = false;
+    // プライマリーキーはオートインクリメント
+    public $incrementing = true;
     
     // データの作成日時、更新日時がデフォルトで自動更新されるので、オフ
     public $timestamps = false;
 
-    public function storeinfo()
+    public function storeinfo() // 親テーブルの名前
     {
-        return $this->hasOne('App\Models\storeinfo', 'accountid', 'accountid');
+        return $this->belongsTo('App\Models\storeinfo'); //親テーブルのパスを引数に指定する
+    }
+
+    public function attendinfo() // 子テーブルの名前
+    {
+        return $this->hasOne('App\Models\attendinfo', 'attendid');
     }
 }
