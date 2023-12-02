@@ -12,10 +12,11 @@
 		<title>List</title>
 	</head>
 	<body>
-		<h1 align="center" style="margin-top: 21px;">店舗検索画面</h1>
+		<h1 align="center" style="margin-top: 21px;">店舗検索画面{{$station}}</h1>
 		<hr align="center" size="5" color="BLUE" width="950"></hr>
 		<hr align="center" size="2" color="black" width="950"></hr>
 		<br/>
+		<p>aa{{$address}}</p>
 		<div align="center">
     		<table  style="border:2;">
     			<tr >
@@ -30,20 +31,12 @@
         				<td align=center>
         					{{$store->storename}}</a>
     					</td>
-        				<td align=center>
-							@foreach ($store->storephotoinfo as $storephoto)
-							{{ $storephoto-> photopath}} ,
-							@endforeach
-						</td>
-        				<td align=center>
-							@foreach ($store->stationinfo as $station)
-							{{ $station-> stationname}} ,
-							@endforeach
-						</td>
+
 						<td align=center>{{$store->comment}}</td>
-						<td align=center>{{$store->storemenuinfo->find(1)->servicename}}円</td>
         			</tr>
-        			@endforeach
+
+
+					@endforeach
     		</table>
 		</div>
 		<br>

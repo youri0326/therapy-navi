@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 
 //顧客側のインポート
 use App\Http\Controllers\CustomerHomeController;
+use App\Http\Controllers\StoreSearchController;
 
 /*
 |--------------------------------------------------------------------------

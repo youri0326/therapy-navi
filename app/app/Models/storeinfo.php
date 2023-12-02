@@ -50,15 +50,15 @@ class storeinfo extends Model
     {
         // $searchStore = new storeinfo();
         $searchStore = DB::table('storeinfo');
-        $searchStore->join('stationinfo', 'storeinfo.storeid', '=', 'stationinfo.storeid')
-        ->join('storemenuinfo', 'storeinfo.storeid', '=', 'storemenuinfo.storeid')
-        ->join('storephotoinfo', 'storeinfo.storeid', '=', 'storephotoinfo.storeid');
+        // $searchStore->join('stationinfo', 'storeinfo.storeid', '=', 'stationinfo.storeid')
+        // ->join('storemenuinfo', 'storeinfo.storeid', '=', 'storemenuinfo.storeid')
+        // ->join('storephotoinfo', 'storeinfo.storeid', '=', 'storephotoinfo.storeid');
 
         if ($address != "") {
             $searchStore->where('address', 'like', '%'.$address.'%');
         }
         if ($station != "") {
-            $searchStore->where('station', 'like', '%'.$station.'%');
+             $searchStore->where('station', 'like', '%'.$station.'%');
         }        
         
         if ($storename != "") {

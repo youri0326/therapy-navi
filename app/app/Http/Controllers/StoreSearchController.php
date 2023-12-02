@@ -15,11 +15,11 @@ class StoreSearchController extends Controller
     public function index(Request $request) {
         
         //入力フォームの情報の受け取り
-        $address = $request->input("address");
-        $station = $request->input("station");
-        $storename = $request->input("storename");
-        $budget = $request->input("budget");
-        $comment = $request->input("comment");
+        $address = $request->query('address');
+        $station = $request->query('station');
+        $storename = $request->query("storename");
+        $budget = $request->query("budget");
+        $comment = $request->query("comment");
 
         //storeinfoモデルのインスタンス化
         $objStore = new storeinfo();
@@ -48,8 +48,9 @@ class StoreSearchController extends Controller
         // 検索画面へ店舗情報と一緒に遷移
         return view('customers/storeSearch',[
             'storeList' => $storeList,
+            'address' => $address,
+            'station' => $station,
         ]);
-
         
     }
     
