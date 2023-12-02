@@ -26,6 +26,7 @@
 							<th>性別</th>
 							<th>施術開始歴</th>
 							<th>年齢</th>
+							<th>写真</th>
 						</tr>
 						@foreach($storeinfo ?? '' as $store)
 						<tr>
