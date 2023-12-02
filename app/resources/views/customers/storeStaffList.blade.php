@@ -1,5 +1,5 @@
 {{--
-    プログラム名		：adminLogin.blade.php
+    プログラム名	：storeStaffList.blade.php
     プログラム説明	：従業員一覧画面
 
 --}}
