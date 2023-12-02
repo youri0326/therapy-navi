@@ -21,23 +21,35 @@
 					<table class="input-table">
 						<tr>
 							<th>従業員ID</th>
-							<td>
-								<input type="text" size="25" name="staffid" value="修正時にセッション情報入れたい">
-							</td>
-						</tr>
-						<tr>
 							<th>氏名</th>
-							<td>
-								<input type="password" size="25" name="staffname" value="修正時にセッション情報入れたい">
-							</td>
-						</tr>
-						<tr>
 							<th>フリガナ</th>
+							<th>性別</th>
+							<th>施術開始歴</th>
+							<th>年齢</th>
+						</tr>
+						@foreach($storeinfo as $store)
+						<tr>
 							<td>
-								<input type="password" size="25" name="stafffurigana" value="修正時にセッション情報入れたい">
+								<a>{{$store->staffid}}</a>
+							</td>
+							<td>
+								<a>{{$store->staffname}}</a>
+							</td>
+							<td>
+								<a>{{$store->stafffurigana}}</a>
+							</td>
+							<td>
+								<a>{{$store->gender}}</a>
+							</td>
+							<td>
+								<a>{{$store->treathistory}}</a>
+							</td>
+							<td>
+								<a>{{$store->staffbirthday}}</a>
 							</td>
 						</tr>
-					</table>
+						@endforeach
+						</table>
 					<input type="hidden" size="25" name="authority" value="customer">
 					<input type="submit" value="ログイン">
 				</form>

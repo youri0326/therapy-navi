@@ -36,3 +36,5 @@ Route::get('/admins/login', [LoginController::class,'adminLogin']);
 /*以下、顧客系 */
 // ホーム画面
 Route::get('/', [CustomerHomeController::class,'index']);
+
+Route::get('/customers/storeStaffList', [StoreStaffListController::class,'storeStaffList']);
