@@ -28,28 +28,28 @@
 							<th>年齢</th>
 							<th>写真</th>
 						</tr>
-						@foreach($storeinfo ?? '' as $store)
+						@foreach($staffList as $staff)
 						<tr>
 							<td>
-								<a>{{$store->staffid}}</a>
+								<a>{{$staff->staffid}}</a>
 							</td>
 							<td>
-								<a>{{$store->staffname}}</a>
+								<a>{{$staff->staffname}}</a>
 							</td>
 							<td>
-								<a>{{$store->stafffurigana}}</a>
+								<a>{{$staff->stafffurigana}}</a>
 							</td>
 							<td>
-								<a>{{$store->gender}}</a>
+								<a>{{$staff->gender}}</a>
 							</td>
 							<td>
-								<a>{{$store->treathistory}}</a>
+								<a>{{$staff->treathistory}}</a>
 							</td>
 							<td>
-								<a>{{$store->staffbirthday}}</a>
+								<a>{{$staff->staffbirthday}}</a>
 							</td>
 							<td>
-								<a>{{$store->photo}}</a>
+								<a>{{$staff->photo}}</a>
 							</td>
 						</tr>
 						@endforeach

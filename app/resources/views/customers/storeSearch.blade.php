@@ -25,7 +25,7 @@
     				<th bgcolor="#6666FF" width="250">コメント</th>
                     <th bgcolor="#6666FF" width="250">主なメニュー</th>
     			</tr>
-    				@foreach($storeList ?? '' as $store)
+    				@foreach($storeList as $store)
     				<tr>
         				<td align=center>
         					{{$store->isbn}}</a>
