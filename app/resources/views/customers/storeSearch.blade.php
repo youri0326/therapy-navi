@@ -25,7 +25,7 @@
     				<th bgcolor="#6666FF" width="250">コメント</th>
                     <th bgcolor="#6666FF" width="250">主なメニュー</th>
     			</tr>
-    				@foreach($storeList as $store)
+    				@foreach($storeList ?? '' as $store)
     				<tr>
         				<td align=center>
         					{{$store->isbn}}</a>
@@ -33,7 +33,7 @@
         				<td align=center>{{$store->title}}</td>
         				<td align=center>{{$store->price}}円</td>
         				<td align=center>
-        					<a href=''>更新</a>
+        					<a href=''>更新</a>　
         					<a href=''>削除</a>
     					</td>
         			</tr>
