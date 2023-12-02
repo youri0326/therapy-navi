@@ -33,7 +33,7 @@
         				<td align=center>{{$store->title}}</td>
         				<td align=center>{{$store->price}}円</td>
         				<td align=center>
-        					<a href=''>更新</a>　
+        					<a href=''>更新</a>
         					<a href=''>削除</a>
     					</td>
         			</tr>
