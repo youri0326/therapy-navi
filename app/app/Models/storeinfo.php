@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Models\accountinfo;
+use App\Models\stationinfo;
+use App\Models\storemenuinfo;
+use App\Models\storephotoinfo;
 
 class storeinfo extends Model
 {
@@ -30,39 +33,45 @@ class storeinfo extends Model
 
     public function storephotoinfo()
     {
-        return $this->hasOne('App\Models\storephotoinfo', 'storeid', 'storeid');
+        // return $this->hasMany('App\Models\storephotoinfo');
+        return $this->hasMany('App\Models\storephotoinfo', 'storeid', 'storeid');
+        // return $this->hasMany('App\Models\storephotoinfo', 'storeid');
     }
     public function storemenuinfo()
     {
-        return $this->hasOne('App\Models\storemenuinfo', 'storeid', 'storeid');
+        return $this->hasMany('App\Models\storemenuinfo', 'storeid', 'storeid');
     }
     public function stationinfo()
     {
-        return $this->hasOne('App\Models\stationinfo', 'storeid', 'storeid');
+        return $this->hasMany('App\Models\stationinfo', 'storeid', 'storeid');
     }
 
 
 
-    public function searchStore($address, $storename, $budget, $comment)
+    public function searchStore($address,$station, $storename, $comment)
     {
-        $searchStore = DB::table('storeinfo');
-        if ($address != "") {
-            $searchStore->where('address', 'like', '%'.$address.'%');
+        $searchStore = storeinfo::query();
+ 
+        if (!empty($address)) {
+            $searchStore = $searchStore->where('address', 'like', '%'.$address.'%');
+        }
+        if (!empty($station)) {
+            $searchStore->orWhereHas('stationinfo', function ($searchStore) use ($station) {
+                $searchStore->where('station', 'like', '%' . $station . '%');
+            });
         }
         
-        if ($storename != "") {
+        if (!empty($storename)) {
             $searchStore->where('storename', 'like', '%'.$storename.'%');
         }
-        
-        if ($budget != "") {
-            $searchStore->where('budget', 'like', '%'.$budget.'%');
-        }
 
-        if ($comment != "") {
+        if (!empty($comment)) {
             $searchStore->where('comment', 'like', '%'.$comment.'%');
         }
 
+        $searchStore = $searchStore->with(['stationinfo', 'storephotoinfo','storemenuinfo'])->get();
+
         // 値を取得しリターン
-        return $searchStore->get();
+        return $searchStore;
     }
 }
