@@ -37,12 +37,6 @@
 							</td>
 						</tr>
 						<tr>
-							<th>予算</th>
-							<td>
-								<input type="text" size="25" name="budget" >
-							</td>
-						</tr>
-						<tr>
 							<th>その他</th>
 							<td>
 								<input type="password" size="25" name="comment">

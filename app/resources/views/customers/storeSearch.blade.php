@@ -31,9 +31,35 @@
         				<td align=center>
         					{{$store->storename}}</a>
     					</td>
-
+        				<td align=center>
+							@if($store->storephotoinfo->count() > 0)
+								<ul>
+								@foreach($store->storephotoinfo as $photo)
+									<li>{{ $photo->photopath }}</li>
+								@endforeach
+								</ul>
+							@endif
+						</td>
+						<td align=center>
+							@if($store->stationinfo->count() > 0)
+								<ul>
+								@foreach($store->stationinfo as $station)
+									<li>{{ $station->stationname }}</li>
+								@endforeach
+								</ul>
+							@endif
+						</td>
 						<td align=center>{{$store->comment}}</td>
-        			</tr>
+						<td align=center>
+							@if($store->storemenuinfo->count() > 0)
+								<ul>
+								@foreach($store->storemenuinfo as $menu)
+									<li>{{ $menu->servicename }}</li>
+								@endforeach
+								</ul>
+							@endif
+						</td>
+					</tr>
 
 
 					@endforeach
