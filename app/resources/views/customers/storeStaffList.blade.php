@@ -27,7 +27,7 @@
 							<th>施術開始歴</th>
 							<th>年齢</th>
 						</tr>
-						@foreach($storeinfo as $store)
+						@foreach($storeinfo ?? '' as $store)
 						<tr>
 							<td>
 								<a>{{$store->staffid}}</a>
