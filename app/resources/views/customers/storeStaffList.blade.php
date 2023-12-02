@@ -48,6 +48,9 @@
 							<td>
 								<a>{{$store->staffbirthday}}</a>
 							</td>
+							<td>
+								<a>{{$store->photo}}</a>
+							</td>
 						</tr>
 						@endforeach
 						</table>
