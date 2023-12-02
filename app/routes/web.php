@@ -39,4 +39,4 @@ Route::get('/admins/login', [LoginController::class,'adminLogin']);
 // ホーム画面
 Route::get('/', [CustomerHomeController::class,'index']);
 
-Route::get('/customers/storeStaffList', [StoreStaffListController::class,'storeStaffList']);
+Route::get('/customers/storeStaffList', [StoreStaffListController::class,'index']);
