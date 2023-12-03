@@ -169,24 +169,24 @@ INSERT INTO stationinfo VALUES(7,4,'目白駅','JR山手線','徒歩10分');
 -- 従業員情報テーブル作成
 CREATE TABLE staffinfo (
 staffid INTEGER AUTO_INCREMENT PRIMARY KEY,
-storeid INTEGER,FOREIGN KEY (storeid) REFERENCES staffinfo (storeid),
+storeid INTEGER,FOREIGN KEY (storeid) REFERENCES storeinfo (storeid),
 staffname VARCHAR(20),
 stafffurigana VARCHAR(20),
 gender INTEGER,
 treathistory VARCHAR(20),
 staffbirthday date,
-photo VARCHAR(20)
+photo VARCHAR(100)
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 
 -- 店舗Aのスタッフ情報
-INSERT INTO staffinfo VALUES(1,1,'中村悠一','なかむらゆうち',1,20090701,19870606,'storage/img/A_YuiichiNakamura_01.jpg');
-INSERT INTO staffinfo VALUES(2,1,'吉田俊明','よしだとしあき',1,20150808,19811009'storage/img/B_YoshidaToshiaki_01.jpg');
+INSERT INTO staffinfo VALUES(1,1,'中村征宏','なかむらまさひろ',1,20090701,19870606,'storage/img/A_YuiichiNakamura_01.jpg');
+INSERT INTO staffinfo VALUES(2,1,'吉田俊明','よしだとしあき',1,20150808,19811009,'storage/img/B_YoshidaToshiaki_01.jpg');
 
 -- 店舗Bのスタッフ情報
-INSERT INTO staffinfo VALUES(3,2,'小山鋼太郎','こやまこうたろう',1,20130801,19880810'storage/img/B_KKoyama_01.jpg');
-INSERT INTO staffinfo VALUES(4,2,'金長','かねなが',1,20100701,19740825'storage/img/B_Kanenaga_01.jpg');
+INSERT INTO staffinfo VALUES(3,2,'小山鋼太郎','こやまこうたろう',1,20130801,19880810, 'storage/img/B_KKoyama_01.jpg');
+INSERT INTO staffinfo VALUES(4,2,'金長','かねなが',1,20100701,19740825, 'storage/img/B_Kanenaga_01.jpg');
 
 -- 店舗Cのスタッフ情報
-INSERT INTO staffinfo VALUES(5,3,'諏訪響','すわひびき',1,20190401,19940430'storage/img/C_HSuwa_01.jpg');
-INSERT INTO staffinfo VALUES(6,3,'水戸駿介','みとしゅんすけ',20160301,19950505'storage/img/C_ShunsukeMito_01.jpg');
+INSERT INTO staffinfo VALUES(5,3,'諏訪響','すわひびき',1,20190401,19940430, 'storage/img/C_HSuwa_01.jpg');
+INSERT INTO staffinfo VALUES(6,3,'水戸駿介','みとしゅんすけ',1,20160301,19950505, 'storage/img/C_ShunsukeMito_01.jpg');
 
