@@ -9,6 +9,7 @@ use App\Models\accountinfo;
 use App\Models\stationinfo;
 use App\Models\storemenuinfo;
 use App\Models\storephotoinfo;
+use App\Models\staffinfo;
 
 class storeinfo extends Model
 {
@@ -46,8 +47,12 @@ class storeinfo extends Model
         return $this->hasMany('App\Models\stationinfo', 'storeid', 'storeid');
     }
 
+    public function staffinfo()
+    {
+        return $this->hasMany('App\Models\staffinfo', 'storeid', 'storeid');
+    }
 
-
+    //店舗情報を検索する関数
     public function searchStore($address,$station, $storename, $comment)
     {
         $searchStore = storeinfo::query();
@@ -73,5 +78,15 @@ class storeinfo extends Model
 
         // 値を取得しリターン
         return $searchStore;
+    }
+
+    //該当月の店舗スタッフの勤怠情報を取得するための関数
+    public function getStaffAttendanceList($storeid,$selectedDate)
+    {
+        // スタッフ情報と勤怠情報を取得
+        $store = storeinfo::with(['staffinfo.attendinfo' => function ($query) use ($selectedDate) {
+            $query->whereYear('workingdate', $selectedDate->year)
+                ->whereMonth('workingdate', $selectedDate->month);
+        }])->find($storeid);
     }
 }
