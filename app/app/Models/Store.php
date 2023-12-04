@@ -3,7 +3,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Store
+class store
 {
     private $storeid;
     private $accountid;
@@ -17,19 +17,35 @@ class Store
     private $stationList;
     private $staffList;
 
-    public function __construct($storeid,$accountid,$storename,$address,$budget,$comment,$payment,$storemenuList,$storephotoList,$stationList,$staffList) {
-        $this->storeid = $storeid;
-        $this->accountid = $accountid;
-        $this->storename = $storename;
-        $this->address = $address;
-        $this->budget = $budget;
-        $this->comment = $comment;
-        $this->payment = $payment;
-        $this->storemenuList = $storemenuList;
-        $this->storephotoList = $storephotoList;
-        $this->stationList = $stationList;
-        $this->staffList = $staffList;
+
+    //コンストラクタ 引数なし
+    public function __construct() {
+        $this->storeid = 0;
+        $this->accountid = 0;
+        $this->storename = null;
+        $this->address = null;
+        $this->budget = 0;
+        $this->comment = null;
+        $this->payment = null;
+        $this->storemenuList = null;
+        $this->storephotoList = null;
+        $this->stationList = null;
+        $this->staffList = null;
     }
+    //コンストラクタ 引数あり
+    // public function __construct($storeid,$accountid,$storename,$address,$budget,$comment,$payment,$storemenuList,$storephotoList,$stationList,$staffList) {
+    //     $this->storeid = $storeid;
+    //     $this->accountid = $accountid;
+    //     $this->storename = $storename;
+    //     $this->address = $address;
+    //     $this->budget = $budget;
+    //     $this->comment = $comment;
+    //     $this->payment = $payment;
+    //     $this->storemenuList = $storemenuList;
+    //     $this->storephotoList = $storephotoList;
+    //     $this->stationList = $stationList;
+    //     $this->staffList = $staffList;
+    // }
     //storeidゲッター
     public function getStoreId(){
         return $this->storeid;
@@ -65,22 +81,22 @@ class Store
 
     //adressゲッター
     public function getAdress(){
-        return $this->adress;
+        return $this->address;
     }
 
     //addressセッター
-    public function setAdress($adress){
+    public function setAdress($address){
         //更新したい値を引数にとり、$this->addressに代入し、privateプロパティを更新
         $this->address = $address;
     }
 
-    //accountidゲッター
+    //budgetゲッター
     public function getBudget(){
         return $this->budget;
     }
 
-    //accountidセッター
-    public function setAccountId($budget){
+    //budgetセッター
+    public function setBudget($budget){
         //更新したい値を引数にとり、$this->budgetに代入し、privateプロパティを更新
         $this->budget = $budget;
     }
@@ -109,7 +125,7 @@ class Store
 
     //storemenuListゲッター
     public function getStoreMenuList(){
-        return $this->getStoreMenuList;
+        return $this->storemenuList;
     }
 
     //storemenuListセッター

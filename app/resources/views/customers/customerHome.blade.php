@@ -25,15 +25,15 @@
 							</td>
 						</tr>
 						<tr>
-							<th>店名</th>
+							<th>駅名</th>
 							<td>
-								<input type="password" size="25" name="storename" >
+								<input type="text" size="25" name="station" >
 							</td>
 						</tr>
 						<tr>
-							<th>予算</th>
+							<th>店名</th>
 							<td>
-								<input type="text" size="25" name="budget" >
+								<input type="password" size="25" name="storename" >
 							</td>
 						</tr>
 						<tr>

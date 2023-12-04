@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 
 //顧客側のインポート
 use App\Http\Controllers\CustomerHomeController;
+use App\Http\Controllers\StoreSearchController;
 
 use App\Http\Controllers\StoreStaffListController;
 
@@ -19,6 +20,7 @@ use App\Http\Controllers\StoreStaffListController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 //　トップページ
 Route::get('/', function () {
     return view('menu');
@@ -35,8 +37,16 @@ Route::post('/common/login', [LoginController::class,'performLogin']);
 Route::get('/customers/login', [LoginController::class,'customerLogin']);
 Route::get('/admins/login', [LoginController::class,'adminLogin']);
 
-/*以下、顧客系 */
+/*
+顧客機能系
+*/
 // ホーム画面
 Route::get('/', [CustomerHomeController::class,'index']);
 
 Route::get('/customers/storeStaffList', [StoreStaffListController::class,'index']);
+//検索機能
+Route::get('/customers/storeSearch', [StoreSearchController::class,'index']);
+
+/*
+管理者機能
+*/
