@@ -8,6 +8,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CustomerHomeController;
 use App\Http\Controllers\StoreSearchController;
 
+use App\Http\Controllers\StoreStaffListController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,6 +43,7 @@ Route::get('/admins/login', [LoginController::class,'adminLogin']);
 // ホーム画面
 Route::get('/', [CustomerHomeController::class,'index']);
 
+Route::get('/customers/storeStaffList', [StoreStaffListController::class,'index']);
 //検索機能
 Route::get('/customers/storeSearch', [StoreSearchController::class,'index']);
 
