@@ -12,17 +12,45 @@
 		<title>List</title>
 	</head>
 	<body>
-		<h1 align="center" style="margin-top: 21px;">{{ $shop->name }}の勤怠情報の表示画面</h1>
-
-
-
-
-
-
+		<h1 align="center" style="margin-top: 21px;">{{ $store->storename }}の勤怠情報の表示画面</h1>
 		<hr align="center" size="5" color="BLUE" width="950"></hr>
 		<hr align="center" size="2" color="black" width="950"></hr>
 		<br/>
+		<div>
+		<a href="{{asset('/admins/attendanceList/')}}?month=lastmonth">前月</a>
+		<a href="{{asset('/admins/attendanceList/')}}">当月</a>
+		<a href="{{asset('/admins/attendanceList/')}}?month=nextmonth">翌月</a>
+
+		</div>
 		<div align="center">
+		<table>
+			<thead>
+				<tr>
+					<th>スタッフ名</th>
+					@for($day = 1; $day <= $selectedDate->daysInMonth; $day++)
+						<th>{{ $selectedDate->copy()->day($day)->format('Y-m-d') }}</th>
+					@endfor
+				</tr>
+			</thead>
+			<tbody>
+				@foreach($store->staffinfo as $staff)
+					<tr>
+						<td>{{ $staff->staffname }}</td>
+						@for($day = 1; $day <= $selectedDate->daysInMonth; $day++)
+							<td>
+								@php
+									$date = $selectedDate->copy()->day($day)->format('Y-m-d');
+									$attendance = $staff->attendinfo->firstWhere('workingdate', $date);
+									$status = $attendance ? $attendance->attendance_status : '-';
+								@endphp
+								{{ $status }}
+							</td>
+						@endfor
+					</tr>
+				@endforeach
+			</tbody>
+	</table>
+
     		<table  style="border:2;">
     			<tr >
     				<th bgcolor="#6666FF" width="200">スタッフ名</th>
@@ -31,7 +59,7 @@
     				<th bgcolor="#6666FF" width="250">コメント</th>
                     <th bgcolor="#6666FF" width="250">主なメニュー</th>
     			</tr>
-                @if($shop->staff->count() > 0)
+                @if($store->staffinfo->count() > 0)
     				@foreach($store->staffinfo as $staff)
                 <tr>
                     <td>{{ $staff->staffname }}</td>

@@ -17,13 +17,15 @@ class AttendanceListController extends Controller
         // $storeid = セッションget的なものを記載するが、ログイン処理が終わってからにする
         //一旦仮でstoreid=3でテストする
         $storeid = 3;
-        $year = $request->query('year');
         $month = $request->query('month');
+        
         $selectedDate = null;
 
         // 選択された年月をCarbonインスタンスに変換
-        if (!empty($month)) {
-            $selectedDate = Carbon::create($year, $month, 1);
+        if ($month == "lastmonth") {
+            $selectedDate = Carbon::now()->addMonths(-1);
+        }else if($month == "nextmonth"){
+            $selectedDate = Carbon::now()->addMonths(1);
         }else{
             $selectedDate = Carbon::now();
         }
@@ -38,6 +40,7 @@ class AttendanceListController extends Controller
 
         // 勤怠情報と一緒に遷移
         return view('/admins/attendanceList',[
+            'month' => $month,
             'store' => $store,
             'selectedDate' => $selectedDate,
         ]);
