@@ -15,12 +15,12 @@
 		<hr align="center" size="5" color="BLUE" width="950"></hr>
 			<!-- 店舗の詳細情報 -->
 			<div id="main" class="container">
+                <p>{{$store->storeid}}</p>
                 <p>{{$store->storename}}</p>
-                <p>{{$storename}}</p>
-				<p>{{$address}}</p>
-				<p>{{$budget}}</p>
-				<p>{{$comment}}</p>
-				<p>{{$payment}}</p>
+				<p>{{$store->address}}</p>
+				<p>{{$store->budget}}</p>
+				<p>{{$store->comment}}</p>
+				<p>{{$store->payment}}</p>
 			</div>
 	</body>
 </html>
