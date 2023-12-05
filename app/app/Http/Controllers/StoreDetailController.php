@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\storeinfo;
 // ユーザーが各店舗の詳細をクリック後表示
 class StoreDetailController extends Controller
@@ -15,7 +16,7 @@ class StoreDetailController extends Controller
         $store = storeinfo::where('storeid', '=', $storeid)->get();// 変数に代入
         
         // 
-        return view('customer/storeDetail',[ // ひな形を指定
+        return view('customers/storeDetail',[ // ひな形を指定
             'store' => $store
         ]);
     }
