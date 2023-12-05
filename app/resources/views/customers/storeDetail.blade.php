@@ -1,49 +1,26 @@
-@extends('layouts.laravel3')
+{{--
+    プログラム名		：storeDetail.blade.php
+    プログラム説明	：店舗詳細画面
 
-@section('title', '書籍詳細')
-
-@section('content')
-	@if($userInfo['auth'] == 2)
-		<div align="center">
-    		<table class="table-detail">
-    			<tr>
-    				@foreach($detailBook as $book)
-        				<td>
-        					<form action="{{asset('/update')}}" method="get">
-        						@csrf
-        						<input type="submit" value="&nbsp;変更&nbsp;">
-        						<input type="hidden" name="isbn" value="{{$book->isbn}}">
-        					</form>
-        				</td>
-        				<td>
-        					<form action="{{asset('/delete')}}" method="get">
-        						@csrf
-        						<input type="submit" value="&nbsp;削除&nbsp;">
-        						<input type="hidden" name="isbn" value="{{$book->isbn}}">
-        					</form>
-        				</td>
-    				@endforeach
-    			</tr>
-    		</table>
-		</div>
-		<br>
-	@endif
-		<div class="content">
-    		<table class="detail-border">
-    			@foreach($detailBook as $book)
-        			<tr>
-        				<th>ISBN</th>
-        				<td>{{$book->isbn}}</td>
-        			</tr>
-        			<tr>
-        				<th>TITLE</th>
-        				<td>{{$book->title}}</td>
-        			</tr>
-        			<tr>
-        				<th>価格</th>
-        				<td>{{number_format($book->price)}}円</td>
-        			</tr>
-    			@endforeach
-    		</table>
-    	</div>
-@endsection
+--}}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<title>List</title>
+	</head>
+	<body>
+		<h1 align="center" style="margin-top: 21px;">店舗詳細画面</h1>
+		<hr align="center" size="5" color="BLUE" width="950"></hr>
+			<!-- 店舗の詳細情報 -->
+			<div id="main" class="container">
+                <p>{{$store->storeid}}</p>
+                <p>{{$store->storename}}</p>
+				<p>{{$store->address}}</p>
+				<p>{{$store->budget}}</p>
+				<p>{{$store->comment}}</p>
+				<p>{{$store->payment}}</p>
+			</div>
+	</body>
+</html>

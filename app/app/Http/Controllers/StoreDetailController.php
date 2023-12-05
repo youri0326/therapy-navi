@@ -9,14 +9,14 @@ class StoreDetailController extends Controller
     public function index() {
         
         // storeidを取得仮で3
-        $storeid=3;
+        $storeid = 3;
         // 上記のstoreidの時の店舗情報をstoreinfoのテーブルから該当行を持ってくる
         // モデル名：where('列名', '=', 検索値)->get();
-        storeinfo::where('storeid', '=', $storeid)->get();
+        $store = storeinfo::where('storeid', '=', $storeid)->get();// 変数に代入
         
         // 
-        return view('store',[
-            'store' => $storeid
+        return view('customer/storeDetail',[ // ひな形を指定
+            'store' => $store
         ]);
     }
     
