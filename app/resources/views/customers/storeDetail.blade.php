@@ -15,7 +15,7 @@
 		<hr align="center" size="5" color="BLUE" width="950"></hr>
 			<!-- 店舗の詳細情報 -->
 			<div id="main" class="container">
-                <p>{{$storeid}}</p>
+                <p>{{$store->storename}}</p>
                 <p>{{$storename}}</p>
 				<p>{{$address}}</p>
 				<p>{{$budget}}</p>
