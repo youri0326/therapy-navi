@@ -50,70 +50,7 @@
 				@endforeach
 			</tbody>
 	</table>
-
-    		<table  style="border:2;">
-    			<tr >
-    				<th bgcolor="#6666FF" width="200">スタッフ名</th>
-    				<th bgcolor="#6666FF" width="200">勤務シフト</th>
-    				<th bgcolor="#6666FF" width="200">最寄り駅</th>
-    				<th bgcolor="#6666FF" width="250">コメント</th>
-                    <th bgcolor="#6666FF" width="250">主なメニュー</th>
-    			</tr>
-                @if($store->staffinfo->count() > 0)
-    				@foreach($store->staffinfo as $staff)
-                <tr>
-                    <td>{{ $staff->staffname }}</td>
-                    <td>{{ $staff->work_shift }}</td>
-                </tr>
-    				<tr>
-        				<td align=center>
-        					{{$store->storename}}</a>
-    					</td>
-        				<td align=center>
-							@if($store->storephotoinfo->count() > 0)
-								<ul>
-								@foreach($store->storephotoinfo as $photo)
-									<li>{{ $photo->photopath }}</li>
-								@endforeach
-								</ul>
-							@endif
-						</td>
-						<td align=center>
-							@if($store->stationinfo->count() > 0)
-								<ul>
-								@foreach($store->stationinfo as $station)
-									<li>{{ $station->stationname }}</li>
-								@endforeach
-								</ul>
-							@endif
-						</td>
-						<td align=center>{{$store->comment}}</td>
-						<td align=center>
-							@if($store->storemenuinfo->count() > 0)
-								<ul>
-								@foreach($store->storemenuinfo as $menu)
-									<li>{{ $menu->servicename }}</li>
-								@endforeach
-								</ul>
-							@endif
-						</td>
-					</tr>
-
-
-					@endforeach
-                @endif
-    		</table>
 		</div>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
 		<hr align="center" size="5" color="blue" width="950"></hr>
 		<div  align="center">
     		<table style="width:950px;">
