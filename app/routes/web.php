@@ -9,6 +9,7 @@ use App\Http\Controllers\CustomerHomeController;
 use App\Http\Controllers\StoreSearchController;
 
 use App\Http\Controllers\StoreStaffListController;
+use App\Http\Controllers\StoreDetailController;
 
 /*
 |--------------------------------------------------------------------------
