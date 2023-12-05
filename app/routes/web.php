@@ -10,6 +10,10 @@ use App\Http\Controllers\StoreSearchController;
 
 use App\Http\Controllers\StoreStaffListController;
 
+//管理者側のインポート
+use App\Http\Controllers\AttendanceListController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

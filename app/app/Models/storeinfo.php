@@ -87,6 +87,8 @@ class storeinfo extends Model
         $store = storeinfo::with(['staffinfo.attendinfo' => function ($query) use ($selectedDate) {
             $query->whereYear('workingdate', $selectedDate->year)
                 ->whereMonth('workingdate', $selectedDate->month);
-        }])->find($storeid);
+        }])->where('storeid',$storeid)->first();
+
+        return $store;
     }
 }
