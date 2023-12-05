@@ -50,3 +50,6 @@ Route::get('/customers/storeSearch', [StoreSearchController::class,'index']);
 /*
 管理者機能
 */
+
+//勤怠情報一覧表示
+Route::get('/admins/attendanceList', [AttendanceListController::class,'index']);
