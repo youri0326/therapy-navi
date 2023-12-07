@@ -15,7 +15,7 @@
 		<hr align="center" size="5" color="BLUE" width="950"></hr>
 			<!-- 店舗の詳細情報 -->
 			<div id="main" class="container">
-				@foreach($store)
+				@foreach($store as $store)
                 <p>{{$store->storeid}}</p>
                 <p>{{$store->storename}}</p>
 				<p>{{$store->address}}</p>
