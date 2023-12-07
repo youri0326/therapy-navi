@@ -16,6 +16,7 @@
 			<!-- 店舗の詳細情報 -->
 			<div id="main" class="container">
 				<table class="input-table">
+					<tbody>
 					@foreach($store as $store)
 					<tr>
                			<th>店舗ID</th><td>{{$store->storeid}}<td>
@@ -36,6 +37,7 @@
 						<th>支払方法</th><td>{{$store->payment}}</td>
 					</tr>
 					@endforeach
+					</tbody>
 				</table>
 			</div>
 	</body>
