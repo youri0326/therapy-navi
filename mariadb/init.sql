@@ -165,12 +165,6 @@ INSERT INTO stationinfo VALUES(6,3,'目黒駅','JR山手線','徒歩20分');
 --   マッサージDの最寄り駅情報
 INSERT INTO stationinfo VALUES(7,4,'目白駅','JR山手線','徒歩10分');
 
-/*  
-
-従業員情報 テーブル関連
-
-*/
-
 -- 従業員情報テーブル作成
 CREATE TABLE staffinfo (
 staffid INTEGER AUTO_INCREMENT PRIMARY KEY,
@@ -183,62 +177,15 @@ staffbirthday date,
 photo VARCHAR(100)
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 
--- 従業員情報テーブルのデータ登録
---  店舗Aのスタッフ情報
+-- 店舗Aのスタッフ情報
 INSERT INTO staffinfo VALUES(1,1,'中村征宏','なかむらまさひろ',1,20090701,19870606,'storage/img/A_YuiichiNakamura_01.jpg');
 INSERT INTO staffinfo VALUES(2,1,'吉田俊明','よしだとしあき',1,20150808,19811009,'storage/img/B_YoshidaToshiaki_01.jpg');
 
---  店舗Bのスタッフ情報
+-- 店舗Bのスタッフ情報
 INSERT INTO staffinfo VALUES(3,2,'小山鋼太郎','こやまこうたろう',1,20130801,19880810, 'storage/img/B_KKoyama_01.jpg');
 INSERT INTO staffinfo VALUES(4,2,'金長','かねなが',1,20100701,19740825, 'storage/img/B_Kanenaga_01.jpg');
 
---  店舗Cのスタッフ情報
+-- 店舗Cのスタッフ情報
 INSERT INTO staffinfo VALUES(5,3,'諏訪響','すわひびき',1,20190401,19940430, 'storage/img/C_HSuwa_01.jpg');
 INSERT INTO staffinfo VALUES(6,3,'水戸駿介','みとしゅんすけ',1,20160301,19950505, 'storage/img/C_ShunsukeMito_01.jpg');
 
-
-/* 
-
-勤怠情報 テーブル関連
-
-*/
-
--- 勤怠情報 テーブル作成
-
-CREATE TABLE attendinfo ( 
-    attendid INTEGER AUTO_INCREMENT PRIMARY KEY,
-    staffid INTEGER,FOREIGN KEY (staffid) REFERENCES staffinfo (staffid),
-    attendance_status VARCHAR(20),
-    workingdate DATE,
-    starttime TIME,
-    endtime TIME,
-    breaktime INTEGER
-)ENGINE = InnoDB,DEFAULT CHARSET=utf8;
-
--- 勤怠情報情報テーブルのデータ登録
---  店舗Aの勤怠情報
---   中村征宏
-INSERT INTO attendinfo VALUES(1,1,'〇','2023-12-15','10:00','19:00',60);
-INSERT INTO attendinfo VALUES(2,1,'〇','2023-12-16','11:00','20:00',60);
-
---   吉田俊明
-INSERT INTO attendinfo VALUES(3,2,'〇','2023-12-15','10:00','19:00',60);
-INSERT INTO attendinfo VALUES(4,2,'〇','2023-12-16','11:00','20:00',60);
-
---  店舗Bの勤怠情報
---   小山鋼太郎
-INSERT INTO attendinfo VALUES(5,3,'〇','2023-12-15','14:00','22:00',60);
-INSERT INTO attendinfo VALUES(6,3,'〇','2023-12-16','8:00','22:00',60);
-
---   金長
-INSERT INTO attendinfo VALUES(7,4,'〇','2023-12-15','10:00','19:00',60);
-INSERT INTO attendinfo VALUES(8,4,'〇','2023-12-16','11:00','20:00',60);
-
---  店舗Cの勤怠情報
---   諏訪響
-INSERT INTO attendinfo VALUES(9,5,'〇','2023-12-15','10:00','19:00',60);
-INSERT INTO attendinfo VALUES(10,5,'〇','2023-12-16','11:00','20:00',60);
-
---   水戸駿介
-INSERT INTO attendinfo VALUES(11,6,'〇','2023-12-15','10:00','19:00',60);
-INSERT INTO attendinfo VALUES(12,6,'〇','2023-12-16','11:00','20:00',60);

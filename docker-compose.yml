@@ -40,9 +40,9 @@ services:
       - "3306:3306"
     volumes:
        - db_data:/var/lib/mysql
-      #  - ./mariadb/sql:/var/lib/mysql
        - ./mariadb/config/my.cnf:/etc/mysql/conf.d/my.cnf
-       - ./mariadb/initdb.d:/docker-entrypoint-initdb.d
+       - ./mariadb/initdb.d/init.sql:/docker-entrypoint-initdb.d/init.sql
+      #  - ./mariadb/:/docker-entrypoint-initdb.d
     # command: bash c - "chmod 644 /etc/mysql/conf.d/my.cnf"
   phpmyadmin:
     container_name: fullstack-phpmyadmin
