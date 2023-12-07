@@ -29,7 +29,7 @@
     				@foreach($storeList as $store)
     				<tr>
         				<td align=center>
-        					{{$store->storename}}</a>
+        					<a href ="{{asset('/customers/storeDetail')}}?storeid={{$store->storeid}}">{{$store->storename}}</a>
     					</td>
         				<td align=center>
 							@if($store->storephotoinfo->count() > 0)
