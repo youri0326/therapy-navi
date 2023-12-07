@@ -16,12 +16,14 @@
 			<!-- 店舗の詳細情報 -->
 			<div id="main" class="container">
 				@foreach($store as $store)
-                <p>{{$store->storeid}}</p>
-                <p>{{$store->storename}}</p>
-				<p>{{$store->address}}</p>
-				<p>{{$store->budget}}</p>
-				<p>{{$store->comment}}</p>
-				<p>{{$store->payment}}</p>
+				<tr>
+                	<td>{{$store->storeid}}</td>
+                	<td>{{$store->storename}}</td>
+					<td>{{$store->address}}</td>
+					<td>{{$store->budget}}</td>
+					<td>{{$store->comment}}</td>
+					<td>{{$store->payment}}</td>
+				</tr>
 				@endforeach
 			</div>
 	</body>
