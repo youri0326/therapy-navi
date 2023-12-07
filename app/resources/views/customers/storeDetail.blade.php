@@ -15,18 +15,14 @@
 		<hr align="center" size="5" color="BLUE" width="950"></hr>
 			<!-- 店舗の詳細情報 -->
 			<div id="main" class="container">
-				<table class="input-table">
-					@foreach($store as $store)
-					<tr>
-                		<td>{{$store->storeid}}</td>
-                		<td>{{$store->storename}}</td>
-						<td>{{$store->address}}</td>
-						<td>{{$store->budget}}</td>
-						<td>{{$store->comment}}</td>
-						<td>{{$store->payment}}</td>
-					</tr>
-					@endforeach
-				</table>
+				@foreach($store as $store)
+                <p>店舗ID{{$store->storeid}}</p>
+                <p>店舗名{{$store->storename}}</p>
+				<p>住所{{$store->address}}</p>
+				<p>予算{{$store->budget}}</p>
+				<p>備考欄{{$store->comment}}</p>
+				<p>支払方法{{$store->payment}}</p>
+				@endforeach
 			</div>
 	</body>
 </html>
