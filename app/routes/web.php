@@ -9,6 +9,7 @@ use App\Http\Controllers\CustomerHomeController;
 use App\Http\Controllers\StoreSearchController;
 
 use App\Http\Controllers\StoreStaffListController;
+use App\Http\Controllers\StoreDetailController;
 
 //管理者側のインポート
 use App\Http\Controllers\AttendanceListController;
@@ -46,11 +47,12 @@ Route::get('/admins/login', [LoginController::class,'adminLogin']);
 */
 // ホーム画面
 Route::get('/', [CustomerHomeController::class,'index']);
-
+//店舗スタッフ一覧
 Route::get('/customers/storeStaffList', [StoreStaffListController::class,'index']);
 //検索機能
 Route::get('/customers/storeSearch', [StoreSearchController::class,'index']);
-
+//店舗詳細機能
+Route::get('/customers/storeDetail', [StoreDetailController::class,'index']);
 /*
 管理者機能
 */
