@@ -28,7 +28,7 @@
 					</tr>
 					<tr>
 						<th>予算</th><td>{{$store->budget}}</td>
-					<\tr>
+					</tr>
 					<tr>
 						<th>備考欄</th><td>{{$store->comment}}</td>
 					</tr>
