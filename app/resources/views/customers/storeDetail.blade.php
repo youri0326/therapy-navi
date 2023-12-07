@@ -17,24 +17,23 @@
 			<div id="main" class="container">
 				<table class="input-table">
 					@foreach($store as $store)
-						<tr>
-                			<th>店舗ID</th><td>{{$store->storeid}}<td>
-						</tr>
-                		<tr>
-							<td>店舗名</th>{{</th>$store->storename}}</td>
-						</tr>
-						<tr>
-							<td>住所</th>{{$store->address}}</td>
-						</tr>
-						<tr>
-							<td>予算</th>{{$store->budget}}</td>
-						<\tr>
-						<tr>
-							<td>備考欄</th>{{$store->comment}}</td>
-						</tr>
-						<tr>
-							<td>支払方法</th>{{$store->payment}}</td>
-						</tr>
+					<tr>
+               			<th>店舗ID</th><td>{{$store->storeid}}<td>
+					</tr>
+               		<tr>
+						<td>店舗名</th>{{</th>$store->storename}}</td>
+					</tr>
+					<tr>
+						<td>住所</th>{{$store->address}}</td>
+					</tr>
+					<tr>
+						<td>予算</th>{{$store->budget}}</td>
+					<\tr>
+					<tr>
+						<td>備考欄</th>{{$store->comment}}</td>
+					</tr>
+					<tr>
+						<td>支払方法</th>{{$store->payment}}</td>
 					</tr>
 					@endforeach
 				</table>
