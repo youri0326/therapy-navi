@@ -21,19 +21,19 @@
                			<th>店舗ID</th><td>{{$store->storeid}}<td>
 					</tr>
                		<tr>
-						<td>店舗名</th>{{</th>$store->storename}}</td>
+						<th>店舗名</th><td>{{$store->storename}}</td>
 					</tr>
 					<tr>
-						<td>住所</th>{{$store->address}}</td>
+						<th>住所</th><td>{{$store->address}}</td>
 					</tr>
 					<tr>
-						<td>予算</th>{{$store->budget}}</td>
+						<th>予算</th><td>{{$store->budget}}</td>
 					<\tr>
 					<tr>
-						<td>備考欄</th>{{$store->comment}}</td>
+						<th>備考欄</th><td>{{$store->comment}}</td>
 					</tr>
 					<tr>
-						<td>支払方法</th>{{$store->payment}}</td>
+						<th>支払方法</th><td>{{$store->payment}}</td>
 					</tr>
 					@endforeach
 				</table>
