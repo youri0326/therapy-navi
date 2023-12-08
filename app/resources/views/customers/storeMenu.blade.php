@@ -21,6 +21,11 @@
 				<table  style="border:2;">
     				@foreach($store->storemenuinfo as $menu)
     				<tr>
+						<th>サービス名</th>
+						<th>説明</th>
+						<th>金額</th>
+						<th>サービス時間</th>
+					</tr>
         				<td>{{$menu->servicename}}</td>
         				<td>{{$menu->description}}</td>
         				<td>{{$menu->amount}}</td>
