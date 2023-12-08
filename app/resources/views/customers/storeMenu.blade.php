@@ -9,7 +9,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="Content-Style-Type" content="text/css" />
-		<title>List</title>
+		<title>店舗メニュー一覧</title>
 	</head>
 	<body>
 		<h1 align="center" style="margin-top: 21px;">店舗メニュー一覧</h1>
@@ -17,72 +17,19 @@
 		<hr align="center" size="2" color="black" width="950"></hr>
 		<br/>
 		<div align="center">
-    		<table  style="border:2;">
-    			<tr >
-    				<th bgcolor="#6666FF" width="200"></th>
-    				<th bgcolor="#6666FF" width="200"></th>
-    				<th bgcolor="#6666FF" width="200"></th>
-    				<th bgcolor="#6666FF" width="250"></th>
-                    <th bgcolor="#6666FF" width="250"></th>
-    			</tr>
-    				@foreach($stormenuid as $menu)
+			@foreach($store as $store)
+				<table  style="border:2;">
+    				@foreach($store->storemenuinfo as $menu)
     				<tr>
-        				<td align=center>
-        					{{$menu->servicename}}
-    					</td>
-						td align=center>
-        					{{$menu->description}}
-    					</td>
-						td align=center>
-        					{{$menu->amount}}
-    					</td>
-						td align=center>
-        					{{$menu->servicetime}}
-    					</td>
-        				<td align=center>
-							@if($store->storephotoinfo->count() > 0)
-								<ul>
-								@foreach($store->storephotoinfo as $photo)
-									<li>{{ $photo->photopath }}</li>
-								@endforeach
-								</ul>
-							@endif
-						</td>
-						<td align=center>
-							@if($store->stationinfo->count() > 0)
-								<ul>
-								@foreach($store->stationinfo as $station)
-									<li>{{ $station->stationname }}</li>
-								@endforeach
-								</ul>
-							@endif
-						</td>
-						<td align=center>{{$store->comment}}</td>
-						<td align=center>
-							@if($store->storemenuinfo->count() > 0)
-								<ul>
-								@foreach($store->storemenuinfo as $menu)
-									<li>{{ $menu->servicename }}</li>
-								@endforeach
-								</ul>
-							@endif
-						</td>
+        				<td>{{$menu->servicename}}</td>
+        				<td>{{$menu->description}}</td>
+        				<td>{{$menu->amount}}</td>
+        				<td>{{$menu->servicetime}}</td>
 					</tr>
-
-
-					@endforeach
-    		</table>
+					@rendforeach
+    			</table>
+			@endforeach
 		</div>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
 		<hr align="center" size="5" color="blue" width="950"></hr>
 		<div  align="center">
     		<table style="width:950px;">
