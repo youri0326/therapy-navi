@@ -21,15 +21,13 @@
 				<table  style="border:2;">
     				@foreach($store->storemenuinfo as $menu)
     				<tr>
-						<th>サービス名</th>
-						<th>説明</th>
-						<th>金額</th>
-						<th>サービス時間</th>
-					</tr>
-        				<td>{{$menu->servicename}}</td>
-        				<td>{{$menu->description}}</td>
-        				<td>{{$menu->amount}}</td>
-        				<td>{{$menu->servicetime}}</td>
+						<th>サービス名</th><td>{{$menu->servicename}}</td>
+					</tr><tr>
+						<th>説明</th><td>{{$menu->description}}</td>
+					</tr><tr>
+						<th>金額</th><td>{{$menu->amount}}</td>
+					</tr><tr>
+						<th>サービス時間</th><td>{{$menu->servicetime}}</td>
 					</tr>
 					@endforeach
     			</table>
