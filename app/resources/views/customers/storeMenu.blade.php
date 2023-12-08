@@ -16,7 +16,6 @@
 		<hr align="center" size="5" color="BLUE" width="950"></hr>
 		<hr align="center" size="2" color="black" width="950"></hr>
 		<br/>
-		<p>aa{{$address}}</p>
 		<div align="center">
     		<table  style="border:2;">
     			<tr >
