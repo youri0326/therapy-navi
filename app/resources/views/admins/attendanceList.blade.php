@@ -35,13 +35,17 @@
 			<tbody>
 				@foreach($store->staffinfo as $staff)
 					<tr>
-						<td>{{ $staff->staffname }}</td>
+						<td>
+						{{ $staff->staffname }}
+						</td>
+
+
 						@for($day = 1; $day <= $selectedDate->daysInMonth; $day++)
 							<td>
 								@php
 									$date = $selectedDate->copy()->day($day)->format('Y-m-d');
 									$attendance = $staff->attendinfo->firstWhere('workingdate', $date);
-									$status = $attendance ? $attendance->attendance_status : '-';
+									$status = (!empty($attendance)) ? $attendance->attendance_status : '-';
 								@endphp
 								{{ $status }}
 							</td>
