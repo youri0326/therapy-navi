@@ -190,3 +190,12 @@ INSERT INTO staffinfo VALUES(4,2,'金長','かねなが',1,20100701,19740825, 's
 INSERT INTO staffinfo VALUES(5,3,'諏訪響','すわひびき',1,20190401,19940430, 'storage/img/C_HSuwa_01.jpg');
 INSERT INTO staffinfo VALUES(6,3,'水戸駿介','みとしゅんすけ',1,20160301,19950505, 'storage/img/C_ShunsukeMito_01.jpg');
 
+-- 店舗メニューのテーブル作成
+CREATE TABLE storemenuinfo ( 
+customerid INTEGER AUTO_INCREMENT PRIMARY KEY,
+accountid VARCHAR(20),FOREIGN KEY (storeid) REFERENCES accountinfo (storeid),
+servicename VARCHAR(20),
+description VARCHAR(100),
+amount INTEGER,
+servicetime TIME,
+)ENGINE = InnoDB,DEFAULT CHARSET=utf8;

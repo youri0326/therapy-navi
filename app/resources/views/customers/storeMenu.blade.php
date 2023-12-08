@@ -26,7 +26,7 @@
         				<td>{{$menu->amount}}</td>
         				<td>{{$menu->servicetime}}</td>
 					</tr>
-					@rendforeach
+					@endforeach
     			</table>
 			@endforeach
 		</div>
