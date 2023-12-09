@@ -19,15 +19,18 @@
 		<div align="center">
 			@foreach($store as $store)
 				<table  style="border:2;">
-    				@foreach($store->storemenuinfo as $menu)
     				<tr>
-						<th>サービス名</th><td>{{$menu->servicename}}</td>
-					</tr><tr>
-						<th>説明</th><td>{{$menu->description}}</td>
-					</tr><tr>
-						<th>金額</th><td>{{$menu->amount}}</td>
-					</tr><tr>
-						<th>サービス時間</th><td>{{$menu->servicetime}}</td>
+						<th bgcolor="#6666FF" width="200">サービス名</th>
+						<th bgcolor="#6666FF" width="100">サービス時間</th>
+						<th bgcolor="#6666FF" width="250">説明</th>
+						<th bgcolor="#6666FF" width="200">金額</th>
+					</tr>
+					@foreach($store->storemenuinfo as $menu)
+					<tr>
+						<td>{{$menu->servicetime}}分</td>
+						<td>{{$menu->servicename}}</td>
+						<td>{{$menu->description}}</td>
+						<td>{{$menu->amount}}</td>
 					</tr>
 					@endforeach
     			</table>
