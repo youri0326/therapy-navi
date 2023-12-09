@@ -11,6 +11,10 @@ use App\Http\Controllers\StoreSearchController;
 use App\Http\Controllers\StoreStaffListController;
 use App\Http\Controllers\StoreDetailController;
 
+//管理者側のインポート
+use App\Http\Controllers\AttendanceListController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,3 +56,7 @@ Route::get('/customers/storeDetail', [StoreDetailController::class,'index']);
 /*
 管理者機能
 */
+
+//勤怠情報一覧表示
+Route::get('/admins/attendanceList', [AttendanceListController::class,'index']);
+Route::get('/admins/attendanceDetail', [AttendanceDetailController::class,'index']);
