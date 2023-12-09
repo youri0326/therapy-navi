@@ -10,8 +10,8 @@ class StoreDetailController extends Controller
 {
     public function index(Request $request) {
         
-        // storeidを取得仮で3
-        $storeid = 3;//$request->query('storeid');
+        // URLからstoreidを取得
+        $storeid = $request->query('storeid');
         // 上記のstoreidの時の店舗情報をstoreinfoのテーブルから該当行を持ってくる
         // モデル名：where('列名', '=', 検索値)->get();
         $store = storeinfo::where('storeid', '=', $storeid)->get();// 変数に代入
