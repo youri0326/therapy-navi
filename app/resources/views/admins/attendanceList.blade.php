@@ -23,12 +23,13 @@
 
 		</div>
 		<div align="center">
+			<p>{{ $selectedDate->year }}年{{ $selectedDate->month }}月分</p>
 		<table>
 			<thead>
 				<tr>
 					<th>スタッフ名</th>
 					@for($day = 1; $day <= $selectedDate->daysInMonth; $day++)
-						<th>{{ $selectedDate->copy()->day($day)->format('Y-m-d') }}</th>
+						<th>{{ $selectedDate->copy()->day($day)->format('d') }}日</th>
 					@endfor
 				</tr>
 			</thead>
@@ -36,7 +37,7 @@
 				@foreach($store->staffinfo as $staff)
 					<tr>
 						<td>
-						{{ $staff->staffname }}
+						<a href="{{asset('/admins/attendanceDetail')}}?staffid={{$staff->staffid}}&year={{ $selectedDate->year }}&month={{ $selectedDate->month }}">{{ $staff->staffname }}</a>
 						</td>
 
 
