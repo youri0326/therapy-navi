@@ -34,4 +34,16 @@ class staffinfo extends Model
     {
         return $this->hasMany('App\Models\attendinfo', 'staffid', 'staffid');
     }
+
+    //対象の店舗スタッフの該当月の日付別の勤怠詳細(勤務時間)を取得するための関数
+    public function getAttendanceDetailByStaff($staffid,$selectedDate)
+    {
+        // スタッフ情報と勤怠情報を取得
+        $staff = staffinfo::with(['attendinfo' => function ($query) use ($selectedDate) {
+            $query->whereYear('workingdate', $selectedDate->year)
+                ->whereMonth('workingdate', $selectedDate->month);
+        }])->find($staffid);
+
+        return $staff;
+    }
 }

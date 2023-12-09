@@ -80,8 +80,8 @@ class storeinfo extends Model
         return $searchStore;
     }
 
-    //該当月の店舗スタッフの勤怠情報を取得するための関数
-    public function getStaffAttendanceList($storeid,$selectedDate)
+    //対象の店舗の該当月の各スタッフの日付別の勤怠情報(勤怠の可否)を取得するための関数
+    public function getAttendanceList($storeid,$selectedDate)
     {
         // スタッフ情報と勤怠情報を取得
         $store = storeinfo::with(['staffinfo.attendinfo' => function ($query) use ($selectedDate) {
