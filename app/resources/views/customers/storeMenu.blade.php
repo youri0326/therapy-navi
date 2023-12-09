@@ -18,6 +18,7 @@
 		<br/>
 		<div align="center">
 			@foreach($store as $store)
+				<h2>{{$store->storename}}</h2>
 				<table  style="border:2;">
     				<tr>
 						<th bgcolor="#6666FF" width="200">サービス名</th>
