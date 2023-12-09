@@ -14,7 +14,7 @@
 		<h1 align="center" style="margin-top: 21px;">店舗詳細画面</h1>
 		<hr align="center" size="5" color="BLUE" width="950"></hr>
 			<!-- メニュー -->
-			<a href="http://localhost:8000/customers/storeMenu?storeid=3/">メニュー</a>
+			<a href="{{asset('/customers/storeDetail')}}?storeid={{$store->storeid}}">メニュー</a>
 			<!-- 店舗の詳細情報 -->
 			<div id="main" class="container">
 				<table class="input-table">
