@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\attendinfo;
 
 // ファイル名とクラス名を同じにする
 class staffinfo extends Model
@@ -16,7 +17,7 @@ class staffinfo extends Model
     protected $table = 'staffinfo';
     
     // プライマリキーを指定
-    protected $primarykey = 'accountid';
+    protected $primarykey = 'staffid';
     
     // プライマリーキーはオートインクリメント
     public $incrementing = true;
@@ -31,6 +32,6 @@ class staffinfo extends Model
 
     public function attendinfo() // 子テーブルの名前
     {
-        return $this->hasOne('App\Models\attendinfo', 'attendid');
+        return $this->hasMany('App\Models\attendinfo', 'staffid', 'staffid');
     }
 }
