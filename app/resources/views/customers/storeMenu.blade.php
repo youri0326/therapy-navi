@@ -27,10 +27,11 @@
 					</tr>
 					@foreach($store->storemenuinfo as $menu)
 					<tr>
-						<td>{{$menu->servicetime}}分</td>
 						<td>{{$menu->servicename}}</td>
+						<td>{{$menu->servicetime}}分</td>
+						
 						<td>{{$menu->description}}</td>
-						<td>{{$menu->amount}}</td>
+						<td>{{number_format($menu->amount)}}円</td>
 					</tr>
 					@endforeach
     			</table>
