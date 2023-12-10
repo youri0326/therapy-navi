@@ -9,9 +9,13 @@
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="Content-Style-Type" content="text/css" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 		<title>スタッフの勤怠詳細情報</title>
 	</head>
+
 <body>
+
     <h2>{{ $staff->staffname }}の{{ $selectedDate->format('Y年m月') }}の勤怠情報</h2>
 
     <table>
@@ -20,6 +24,7 @@
                 <th>日付</th>
                 <th>出勤時間</th>
                 <th>退勤時間</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -28,24 +33,101 @@
                 $date = $selectedDate->copy()->day($day)->format('Y-m-d');
                 $attendance = $staff->attendinfo->firstWhere('workingdate', $date);
             @endphp
-            <tr>
-                <td>{{$day}}日</td>
-                @if (!empty($attendance))
-					<td>
-                        {{substr($attendance->starttime, 0, 5)}}
-					</td>
-					<td>
-                        {{substr($attendance->endtime, 0, 5)}}
-					</td>
-                @else
-                    <td>
-    				</td>
-					<td>
-    				</td>
-                @endif
-            </tr>
+            
+                <tr>
+                    <div class="calendar-day"><td><div class="calendar-day"><span class="date">{{$day}}</span>日</div></td>
+                    @if (!empty($attendance))
+                        <td>
+                            {{substr($attendance->starttime, 0, 5)}}
+                        </td>
+                        <td>
+                            {{substr($attendance->endtime, 0, 5)}}
+                        </td>
+                    @else
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    @endif
+                        <td>編集</td>
+                </tr>
         @endfor
         </tbody>
     </table>
+    <!-- ポップアップ用のモーダル -->
+    <div id="attendanceModal" class="modal">
+        <div class="modal-content">
+            <span>{{ $selectedDate->month }}/<span id="selectedDate"></span>勤怠登録・更新</span>
+            <button id="closeBtn">Close</button>
+            <!-- 登録・更新用のフォーム -->
+            <form id="attendanceForm">
+                <input type="text" id="workHours" placeholder="Work Hours">
+                <input type="text" id="attendanceStatus" placeholder="Attendance Status">
+                <!-- 他のフォーム要素も追加 -->
+                <button onclick="closeAndSave()">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            // ポップアップを非表示にする
+            $('#attendanceModal').hide();
+
+            // 勤務日をマウスオーバーしたらカーソルをポインターに変更
+            $('.calendar-day').hover(function() {
+                $(this).css('cursor', 'pointer');
+            });
+
+            // 勤務日をクリックしたらポップアップを表示
+            $('.calendar-day').click(function() {
+                var date = $(this).find('.date').text();
+                openModal(date);
+            });
+
+            // ×ボタンをクリックしたらポップアップを非表示
+            $('#closeBtn').click(function() {
+                closeAndSave();
+            });
+        });
+
+        function openModal(date) {
+            var modal = document.getElementById('attendanceModal');
+            modal.style.display = 'block';
+
+            // モーダル内に日付を表示
+            document.getElementById('selectedDate').innerText = date;
+        }
+
+        function closeAndSave() {
+            var modal = document.getElementById('attendanceModal');
+            modal.style.display = 'none';
+            // ... (以前のデータ送信処理)
+        }
+
+        function saveAttendance() {
+            var selectedDate = document.getElementById('selectedDate').innerText;
+            var workHours = document.getElementById('workHours').value;
+            var attendanceStatus = document.getElementById('attendanceStatus').value;
+
+            // Ajaxを使用してサーバーにデータを送信
+            $.ajax({
+                url: '/save_attendance', // データを送信するエンドポイント
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    date: selectedDate,
+                    workHours: workHours,
+                    attendanceStatus: attendanceStatus
+                    // 他のフォームデータを追加
+                }),
+                success: function(response) {
+                    // 成功時の処理を記述
+                },
+                error: function(xhr, status, error) {
+                    // エラーハンドリングを記述
+                }
+            });
+        }
+    </script>
 </body>
 </html>
