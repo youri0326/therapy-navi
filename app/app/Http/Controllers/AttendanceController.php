@@ -9,9 +9,9 @@ use Carbon\Carbon;
 
 // use Request;
 
-class AttendanceListController extends Controller
+class AttendanceController extends Controller
 {
-    public function index(Request $request)
+    public function list(Request $request)
     {
          //セッション・クッキーからログイン情報を元に、accountid⇒storeidを取得する
         // $storeid = セッションget的なものを記載するが、ログイン処理が終わってからにする
@@ -45,7 +45,7 @@ class AttendanceListController extends Controller
             'selectedDate' => $selectedDate,
         ]);
     }
-    public function attendanceDetail(Request $request)
+    public function detail(Request $request)
     {
          //セッション・クッキーからログイン情報を元に、accountid⇒storeidを取得する
         // $storeid = セッションget的なものを記載するが、ログイン処理が終わってからにする

@@ -49,7 +49,7 @@
                         <td>
                         </td>
                     @endif
-                        <td>編集</td>
+                        <td><button class="editBtn">編集</button></td>
                 </tr>
         @endfor
         </tbody>
@@ -61,8 +61,9 @@
             <button id="closeBtn">Close</button>
             <!-- 登録・更新用のフォーム -->
             <form id="attendanceForm">
-                <input type="text" id="workHours" placeholder="Work Hours">
-                <input type="text" id="attendanceStatus" placeholder="Attendance Status">
+                <input type="text" id="starttime" placeholder="開始時間">
+                <input type="text" id="endtime" placeholder="終了時間">
+                <input type="hidden" id="endtime" placeholder="勤務日" value~"{{$date}}">
                 <!-- 他のフォーム要素も追加 -->
                 <button onclick="closeAndSave()">Submit</button>
             </form>
@@ -78,9 +79,10 @@
                 $(this).css('cursor', 'pointer');
             });
 
-            // 勤務日をクリックしたらポップアップを表示
-            $('.calendar-day').click(function() {
-                var date = $(this).find('.date').text();
+
+            // 編集ボタンをクリックしたら登録画面を表示
+            $(document).on('click', '.editBtn', function() {
+                var date = $(this).closest('tr').find('.date').text();
                 openModal(date);
             });
 
@@ -111,7 +113,7 @@
 
             // Ajaxを使用してサーバーにデータを送信
             $.ajax({
-                url: '/save_attendance', // データを送信するエンドポイント
+                url: '/admins/attendanceInsert', // データを送信するエンドポイント
                 method: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
