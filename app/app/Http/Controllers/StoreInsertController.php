@@ -8,5 +8,7 @@ use App\Models\storeinfo;
 class StoreDetailController extends Controller
 {
     public function index() {
+        // storeinfoテーブルに登録
+        
     }
 }
