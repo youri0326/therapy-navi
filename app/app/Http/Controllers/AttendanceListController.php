@@ -61,7 +61,7 @@ class AttendanceListController extends Controller
         $staff = $objStaff->getAttendanceDetailByStaff($staffid,$selectedDate);
         
         // 勤怠情報と一緒に遷移
-        return view('/admins/attendanceDetail',[
+        return view('/admins/attendanceDetailByStaff',[
             'staff' => $staff,
             'selectedDate' => $selectedDate,
         ]);

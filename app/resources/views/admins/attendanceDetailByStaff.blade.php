@@ -20,17 +20,31 @@
                 <th>日付</th>
                 <th>出勤時間</th>
                 <th>退勤時間</th>
-                <th>休憩時間</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($staff->attendanceinfo as $attendance)
-                <tr>
-                    <td>{{ $attendance->workingdate }}</td>
-                    <td>{{ $attendance->starttime }}</td>
-                    <td>{{ $attendance->endtime }}</td>
-                </tr>
-            @endforeach
+        @for($day = 1; $day <= $selectedDate->daysInMonth; $day++)
+            @php
+                $date = $selectedDate->copy()->day($day)->format('Y-m-d');
+                $attendance = $staff->attendinfo->firstWhere('workingdate', $date);
+            @endphp
+            <tr>
+                <td>{{$day}}日</td>
+                @if (!empty($attendance))
+					<td>
+                        {{substr($attendance->starttime, 0, 5)}}
+					</td>
+					<td>
+                        {{substr($attendance->endtime, 0, 5)}}
+					</td>
+                @else
+                    <td>
+    				</td>
+					<td>
+    				</td>
+                @endif
+            </tr>
+        @endfor
         </tbody>
     </table>
 </body>

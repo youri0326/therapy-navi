@@ -59,4 +59,4 @@ Route::get('/customers/storeDetail', [StoreDetailController::class,'index']);
 
 //勤怠情報一覧表示
 Route::get('/admins/attendanceList', [AttendanceListController::class,'index']);
-Route::get('/admins/attendanceDetail', [AttendanceDetailController::class,'index']);
+Route::get('/admins/attendanceDetail', [AttendanceListController::class,'attendanceDetail']);

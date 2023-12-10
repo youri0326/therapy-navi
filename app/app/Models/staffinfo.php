@@ -42,7 +42,7 @@ class staffinfo extends Model
         $staff = staffinfo::with(['attendinfo' => function ($query) use ($selectedDate) {
             $query->whereYear('workingdate', $selectedDate->year)
                 ->whereMonth('workingdate', $selectedDate->month);
-        }])->find($staffid);
+        }])->where('staffid',$staffid)->first();
 
         return $staff;
     }
