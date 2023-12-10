@@ -14,7 +14,9 @@
 		<h1 align="center" style="margin-top: 21px;">店舗詳細画面</h1>
 		<hr align="center" size="5" color="BLUE" width="950"></hr>
 			<!-- メニュー -->
-			<a>メニュー</a>
+			@foreach($store as $store)
+				<a href ="{{asset('/customers/storeDetail')}}?storeid={{$store->storeid}}">メニュー</a>
+			@endforeach
 			<!-- 店舗の詳細情報 -->
 			<div id="main" class="container">
 				<table class="input-table">
