@@ -21,7 +21,7 @@ class attendinfo extends Model
     // プライマリキーを指定
     protected $primarykey = 'attendid';
     
-    protected $fillable = ['workingdate', 'attendance_status','starttime','endtime','breaktime']; // 可変項目
+    protected $fillable = ['workingdate', 'attendance_status','starttime','endtime','breakstart','breakend']; // 可変項目
 
     // プライマリーキーがオートインクリメントのため 設定をオン
     public $incrementing = true;

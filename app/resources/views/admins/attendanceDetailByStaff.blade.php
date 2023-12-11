@@ -21,10 +21,16 @@
     <table>
         <thead>
             <tr>
-                <th>日付</th>
-                <th>出勤時間</th>
-                <th>退勤時間</th>
-                <th></th>
+                <th rowspan="2">日付</th>
+                <th colspan="2">勤務時間</th>
+                <th colspan="2">休憩時間</th>
+                <th rowspan="2"></th>
+            </tr>
+            <tr>
+                <th>出勤</th>
+                <th>退勤</th>
+                <th>開始</th>
+                <th>終了</th>
             </tr>
         </thead>
         <tbody>
@@ -43,11 +49,21 @@
                         <td>
                             {{substr($attendance->endtime, 0, 5)}}
                         </td>
+                        <td>
+                            {{substr($attendance->breakstart, 0, 5)}}
+                        </td>
+                        <td>
+                            {{substr($attendance->breakend, 0, 5)}}
+                        </td>                        
                     @else
                         <td>
                         </td>
                         <td>
                         </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>                        
                     @endif
                         <td><button class="editBtn">編集</button></td>
                 </tr>
@@ -61,9 +77,12 @@
             <button id="closeBtn">Close</button>
             <!-- 登録・更新用のフォーム -->
             <form id="attendanceForm">
-                <input type="text" id="starttime" placeholder="開始時間">
-                <input type="text" id="endtime" placeholder="終了時間">
-                <input type="hidden" id="endtime" placeholder="勤務日" value~"{{$date}}">
+                <input type="time" id="starttime" placeholder="開始時間">
+                <input type="time" id="endtime" placeholder="終了時間">
+                <input type="time" id="breakstart" placeholder="休憩開始時間">
+                <input type="time" id="breakend" placeholder="休憩終了時間">
+                <input type="hidden" id="workingdate" placeholder="勤務日" value~"{{$date}}">
+                <input type="hidden" id="sttafid" placeholder="スタッフ" value~"{{$staff->staffid}}">
                 <!-- 他のフォーム要素も追加 -->
                 <button onclick="closeAndSave()">Submit</button>
             </form>
@@ -107,9 +126,12 @@
         }
 
         function saveAttendance() {
-            var selectedDate = document.getElementById('selectedDate').innerText;
-            var workHours = document.getElementById('workHours').value;
-            var attendanceStatus = document.getElementById('attendanceStatus').value;
+            var starttime = document.getElementById('starttime').value;
+            var endtime = document.getElementById('endtime').value;
+            var breakstart = document.getElementById('breakstart').value;
+            var breakend = document.getElementById('breakend').value;
+            var workingdate = document.getElementById('workingdate').value;
+            var sttafid = document.getElementById('sttafid').value;
 
             // Ajaxを使用してサーバーにデータを送信
             $.ajax({
@@ -117,9 +139,12 @@
                 method: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
-                    date: selectedDate,
-                    workHours: workHours,
-                    attendanceStatus: attendanceStatus
+                    starttime: starttime,
+                    endtime: endtime,
+                    breakstart: breakstart,
+                    breakend: breakend,
+                    workingdate: workingdate,
+                    sttafid: sttafid
                     // 他のフォームデータを追加
                 }),
                 success: function(response) {
