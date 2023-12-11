@@ -135,7 +135,7 @@
 
             // Ajaxを使用してサーバーにデータを送信
             $.ajax({
-                url: '/admins/attendanceInsert', // データを送信するエンドポイント
+                url: '/admins/update', // データを送信するエンドポイント
                 method: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({

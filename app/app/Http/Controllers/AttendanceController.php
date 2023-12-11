@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\accountinfo;
 use App\Models\storeinfo;
 use App\Models\staffinfo;
+use App\Models\attendinfo;
 use Carbon\Carbon;
 
 // use Request;
@@ -65,5 +66,28 @@ class AttendanceController extends Controller
             'staff' => $staff,
             'selectedDate' => $selectedDate,
         ]);
+    }
+    public function update(Request $request)
+    {
+        // リクエストからデータを取得する
+        $starttime = $request->input('starttime');
+        $endtime = $request->input('endtime');
+        $breakstart = $request->input('breakstart');
+        $breakend = $request->input('breakend');
+        $workingdate = $request->input('workingdate');
+        $sttafid = $request->input('sttafid');
+
+        // 取得したデータをデータベースに保存する
+        $attendance = new attendinfo();
+        $attendance->starttime = $starttime;
+        $attendance->endtime = $endtime;
+        $attendance->breakstart = $breakstart;
+        $attendance->breakend = $breakend;
+        $attendance->workingdate = $workingdate;
+        $attendance->sttafid = $sttafid;
+        $attendance->save();
+
+        // 成功した場合、レスポンスを返す
+        return response()->json(['message' => 'Attendance saved successfully']);
     }
 }

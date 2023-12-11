@@ -63,3 +63,4 @@ Route::get('/customers/storeMenu', [StoreMenuController::class,'index']);
 //勤怠情報一覧表示
 Route::get('/admins/attendanceList', [AttendanceController::class,'list']);
 Route::get('/admins/attendanceDetail', [AttendanceController::class,'detail']);
+Route::post('/admins/update', [AttendanceController::class,'update']);
