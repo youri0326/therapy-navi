@@ -42,11 +42,7 @@
             ],
             "program": "",
             "cwd": "${workspaceRoot}",
-<<<<<<< Updated upstream
             "port": 9001,
-=======
-            "port": 9003,
->>>>>>> Stashed changes
             "serverReadyAction": {
                 "pattern": "Development Server \\(http://localhost:([0-9]+)\\) started",
                 "uriFormat": "http://localhost:%s",
