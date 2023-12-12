@@ -11,10 +11,10 @@ class reserveinfo extends Model
     use HasFactory;
     
     // このモデルの対象のテーブル
-    protected $table = 'reserveinfo';
+    protected $table = 'customerinfo';
     
     // プライマリキーを指定
-    protected $primarykey = 'reserveid';
+    protected $primarykey = 'customerid';
 
     // プライマリーキーがオートインクリメントのため 設定をオン
     public $incrementing = true;
