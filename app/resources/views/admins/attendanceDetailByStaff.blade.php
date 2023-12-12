@@ -84,7 +84,7 @@
                 <input type="hidden" id="workingdate" placeholder="勤務日" value~"{{$date}}">
                 <input type="hidden" id="sttafid" placeholder="スタッフ" value~"{{$staff->staffid}}">
                 <!-- 他のフォーム要素も追加 -->
-                <button onclick="closeAndSave()">Submit</button>
+                <button type="button" onclick="saveAttendance()">Submit</button>
             </form>
         </div>
     </div>
@@ -135,7 +135,7 @@
 
             // Ajaxを使用してサーバーにデータを送信
             $.ajax({
-                url: '/admins/update', // データを送信するエンドポイント
+                url: '{{ route("admins.update") }}', // ルーティング名を指定
                 method: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
@@ -149,9 +149,12 @@
                 }),
                 success: function(response) {
                     // 成功時の処理を記述
+                    alert(response.message);
+                    location.reload(); // 成功時にページをリロード（任意）
                 },
                 error: function(xhr, status, error) {
                     // エラーハンドリングを記述
+                    alert("登録に失敗しました。もう一度試してください。");
                 }
             });
         }
