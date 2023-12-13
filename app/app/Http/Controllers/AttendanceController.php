@@ -55,17 +55,33 @@ class AttendanceController extends Controller
         $staffid = $request->query('staffid');
         $month = $request->query('month');
         $year = $request->query('year');
-        $selectedDate = Carbon::create($year, $month, 1);
+        $day = $request->query('day');
 
+        $carbonObj = new Carbon();
         $objStaff = new staffinfo();
-        // 該当スタッフの勤怠情報を取得
-        $staff = $objStaff->getAttendanceDetailByStaff($staffid,$selectedDate);
-        
-        // 勤怠情報と一緒に遷移
-        return view('/admins/attendanceDetailByStaff',[
-            'staff' => $staff,
-            'selectedDate' => $selectedDate,
-        ]);
+        $objStore = new storeinfo();
+        $selectedDate = null;
+
+        if(!empty($staffid)){
+            $selectedDate = $carbonObj::create($year, $month, 1); 
+            // 該当スタッフの勤怠情報を取得
+            $staff = $objStaff->getAttendanceDetailByStaff($staffid,$selectedDate);
+            
+            // 勤怠情報と一緒に遷移
+            return view('/admins/attendanceDetailByStaff',[
+                'staff' => $staff,
+                'selectedDate' => $selectedDate,
+            ]);            
+        }elseif(!empty($day)){
+            $selectedDate = $carbonObj::create($year, $month, $day); 
+            $store = $objStore->getStaffWorkingtimeByDate($storeid,$selectedDate);
+            // 勤怠情報と一緒に遷移
+            return view('/admins/attendanceDetailByDate',[
+                'selectedDate' => $selectedDate,
+                'staffList' => $store,
+            ]);     
+        }
+
     }
     public function update(Request $request)
     {
