@@ -75,9 +75,9 @@ class AttendanceController extends Controller
         $breakstart = $request->input('breakstart');
         $breakend = $request->input('breakend');
         $workingdate = $request->input('workingdate');
-        $sttafid = $request->input('sttafid');
+        $staffid = $request->input('staffid');
 
-        $updateAttendance = attendinfo::where('workingdate', $workingdate)->first();
+        $updateAttendance = attendinfo::where('workingdate', $workingdate)->where('staffid', $staffid)->first();
         
         if ($updateAttendance) {
             // 既存情報がある場合、更新処理を行う
@@ -86,13 +86,14 @@ class AttendanceController extends Controller
             $updateAttendance->breakstart = $breakstart;
             $updateAttendance->breakend = $breakend;
             $updateAttendance->save();
+            $message = "更新:". $staffid.":".$workingdate.":".$starttime.":".":".$endtime.":".$breakstart;
             // 成功した場合、レスポンスを返す
-            return response()->json(['message' => '勤怠情報を更新しました。']);
+            return response()->json(['message' => $message]);
 
         }else{
             // 取得したデータをデータベースに保存する
             $insertAttendance = new attendinfo();
-            $insertAttendance->sttafid = $sttafid;
+            $insertAttendance->staffid = $staffid;
             $insertAttendance->attendance_status = '〇';
             $insertAttendance->workingdate = $workingdate;
             $insertAttendance->starttime = $starttime;
@@ -101,7 +102,8 @@ class AttendanceController extends Controller
             $insertAttendance->breakend = $breakend;
             $insertAttendance->save();
             // 成功した場合、レスポンスを返す
-            return response()->json(['message' => '新しい勤怠情報を登録しました。']);
-        }
+            $message = "登録:". $staffid.":".$workingdate.":".$starttime.":".":".$endtime.":".$breakstart;
+            // 成功した場合、レスポンスを返す
+            return response()->json(['message' => $message]);        }
     }
 }

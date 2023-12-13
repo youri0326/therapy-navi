@@ -9,6 +9,7 @@
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="Content-Style-Type" content="text/css" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 		<title>スタッフの勤怠詳細情報</title>
@@ -41,7 +42,7 @@
             @endphp
             
                 <tr>
-                    <div class="calendar-day"><td><div class="calendar-day"><span class="date">{{$day}}</span>日</div></td>
+                    <div class="calendar-day"><td><div class="calendar-day"><span class="day">{{$day}}</span>日</div></td>
                     @if (!empty($attendance))
                         <td>
                             {{substr($attendance->starttime, 0, 5)}}
@@ -77,12 +78,12 @@
             <button id="closeBtn">Close</button>
             <!-- 登録・更新用のフォーム -->
             <form id="attendanceForm">
-                <input type="time" id="starttime" placeholder="開始時間">
-                <input type="time" id="endtime" placeholder="終了時間">
-                <input type="time" id="breakstart" placeholder="休憩開始時間">
-                <input type="time" id="breakend" placeholder="休憩終了時間">
-                <input type="hidden" id="workingdate" placeholder="勤務日" value~"{{$date}}">
-                <input type="hidden" id="sttafid" placeholder="スタッフ" value~"{{$staff->staffid}}">
+                <input type="time" id="starttime" placeholder="開始時間" value="9:00:00">
+                <input type="time" id="endtime" placeholder="終了時間" value="21:00:00">
+                <input type="time" id="breakstart" placeholder="休憩開始時間" value="13:00:00">
+                <input type="time" id="breakend" placeholder="休憩終了時間" value="14:00:00">
+                <input type="hidden" id="workingday" placeholder="勤務日" value="">
+                <input type="hidden" id="staffid" placeholder="スタッフ" value="{{$staff->staffid}}">
                 <!-- 他のフォーム要素も追加 -->
                 <button type="button" onclick="saveAttendance()">Submit</button>
             </form>
@@ -101,8 +102,8 @@
 
             // 編集ボタンをクリックしたら登録画面を表示
             $(document).on('click', '.editBtn', function() {
-                var date = $(this).closest('tr').find('.date').text();
-                openModal(date);
+                var day = $(this).closest('tr').find('.day').text();
+                openModal(day);
             });
 
             // ×ボタンをクリックしたらポップアップを非表示
@@ -111,12 +112,13 @@
             });
         });
 
-        function openModal(date) {
+        function openModal(day) {
             var modal = document.getElementById('attendanceModal');
             modal.style.display = 'block';
 
             // モーダル内に日付を表示
-            document.getElementById('selectedDate').innerText = date;
+            document.getElementById('selectedDate').innerText = day;
+            document.getElementById('workingday').value = day;
         }
 
         function closeAndSave() {
@@ -130,13 +132,19 @@
             var endtime = document.getElementById('endtime').value;
             var breakstart = document.getElementById('breakstart').value;
             var breakend = document.getElementById('breakend').value;
-            var workingdate = document.getElementById('workingdate').value;
-            var sttafid = document.getElementById('sttafid').value;
+            var staffid = document.getElementById('staffid').value;
+            var day = document.getElementById('workingday').value;
+            var year = "{{ $selectedDate->year }}";
+            var month = "{{ $selectedDate->month }}";
+            var workingdate = year + '-' + ('0' + month).slice(-2) + '-' + ('0' + day).slice(-2);
 
             // Ajaxを使用してサーバーにデータを送信
             $.ajax({
-                url: '{{asset("/admins/update")}}',// ルーティング名を指定
+                url: '{{ route("admins.update") }}',// ルーティング名を指定
                 method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 contentType: 'application/json',
                 data: JSON.stringify({
                     starttime: starttime,
@@ -144,7 +152,7 @@
                     breakstart: breakstart,
                     breakend: breakend,
                     workingdate: workingdate,
-                    sttafid: sttafid
+                    staffid: staffid
                     // 他のフォームデータを追加
                 }),
                 success: function(response) {

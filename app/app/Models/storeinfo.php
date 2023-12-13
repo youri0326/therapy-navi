@@ -19,7 +19,7 @@ class storeinfo extends Model
     protected $table = 'storeinfo';
     
     // プライマリキーを指定
-    protected $primarykey = 'storeid';
+    protected $primaryKey = 'storeid';
     
     // プライマリーキーがオートインクリメントのため 設定をオン
     public $incrementing = true;

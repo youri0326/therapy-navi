@@ -17,7 +17,7 @@ class staffinfo extends Model
     protected $table = 'staffinfo';
     
     // プライマリキーを指定
-    protected $primarykey = 'staffid';
+    protected $primaryKey = 'staffid';
     
     // プライマリーキーはオートインクリメント
     public $incrementing = true;

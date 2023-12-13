@@ -19,7 +19,7 @@ class attendinfo extends Model
     protected $table = 'attendinfo';
     
     // プライマリキーを指定
-    protected $primarykey = 'attendid';
+    protected $primaryKey = 'attendid';
     
     protected $fillable = ['workingdate', 'attendance_status','starttime','endtime','breakstart','breakend']; // 可変項目
 

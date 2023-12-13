@@ -14,7 +14,7 @@ class accountinfo extends Model
     protected $table = 'accountinfo';
     
     // プライマリキーを指定
-    protected $primarykey = 'accountid';
+    protected $primaryKey = 'accountid';
     
     // プライマリーキーがオートインクリメントではないため設定をオフ
     public $incrementing = false;
