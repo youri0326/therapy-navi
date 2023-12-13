@@ -135,7 +135,7 @@
 
             // Ajaxを使用してサーバーにデータを送信
             $.ajax({
-                url: '{{ route("admins.update") }}', // ルーティング名を指定
+                url: '{{asset("/admins/update")}}',// ルーティング名を指定
                 method: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
