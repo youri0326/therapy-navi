@@ -9,9 +9,13 @@ use App\Models\reserveinfo;
 // 
 class StoreDetailController extends Controller
 {
-    public function storeReserveInfo() {
-        // 店舗ごとの予約情報一覧の表示
-        $reservationList = reserveinfo::all();
+    public function storeReserveInfo(Request $request) {
+        // 顧客ごとの予約情報一覧の表示
+        // customeridを取得
+        $customerid = $request->query('customerid');
+        // 上記のcustomeridの時の予約情報をstoreinfoのテーブルから該当行を持ってくる
+        // モデル名：where('列名', '=', 検索値)->get();
+        $reservationList = storeinfo::where('customerid', '=', $customerid)->get();
         
         return view('customers/reservationList',[
             'reservationList' => $reservationList
