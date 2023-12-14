@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\storeinfo;
+use App\Models\customerinfo;
 use App\Models\reserveinfo;
 
 // 
-class StoreDetailController extends Controller
+class ReservationController extends Controller
 {
     public function storeReserveInfo(Request $request) {
         // 顧客ごとの予約情報一覧の表示

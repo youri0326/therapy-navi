@@ -11,6 +11,8 @@ use App\Http\Controllers\StoreSearchController;
 use App\Http\Controllers\StoreStaffListController;
 use App\Http\Controllers\StoreDetailController;
 use App\Http\Controllers\StoreMenuController;
+use App\Http\Controllers\ReservationListController;
+
 
 //管理者側のインポート
 use App\Http\Controllers\AttendanceListController;
@@ -56,6 +58,8 @@ Route::get('/customers/storeSearch', [StoreSearchController::class,'index']);
 Route::get('/customers/storeDetail', [StoreDetailController::class,'index']);
 //店舗メニュー一覧機能
 Route::get('/customers/storeMenu', [StoreMenuController::class,'index']);
+//予約情報機能
+Route::get('/customers/reservationList', [ReservationController::class,'index']);
 /*
 管理者機能
 */
