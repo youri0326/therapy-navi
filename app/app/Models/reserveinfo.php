@@ -40,6 +40,4 @@ class reserveinfo extends Model
         // belongsTo('モデル', '外部キー', 'カスタムキー');
         return $this->belongsTo('App\Models\accountinfo', 'accountid', 'accountid');
     }
-
-
 }
