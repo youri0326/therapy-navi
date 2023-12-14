@@ -7,7 +7,7 @@ use App\Models\storeinfo;
 use App\Models\staffinfo;
 use App\Models\attendinfo;
 use Carbon\Carbon;
-
+use DateTime;
 // use Request;
 
 class AttendanceController extends Controller
@@ -76,9 +76,25 @@ class AttendanceController extends Controller
             $selectedDate = $carbonObj::create($year, $month, $day); 
             $store = $objStore->getStaffWorkingtimeByDate($storeid,$selectedDate);
             // 勤怠情報と一緒に遷移
+            $hour =15;
+
+            $attendance = $store->staffinfo->first()->attendinfo->first();
+            $attDate = new DateTime($attendance->workingdate);
+
+            $starttime = DateTime::createFromFormat('H:i:s', $attendance->starttime)->format('H');
+            $endtime = DateTime::createFromFormat('H:i:s', $attendance->endtime)->format('H');
+            $breakstart = DateTime::createFromFormat('H:i:s', $attendance->breakstart)->format('H');
+            $breakend = DateTime::createFromFormat('H:i:s', $attendance->breakend)->format('H');
+
+            $exisistence = $attDate->format('Y-m-d') == $selectedDate->format('Y-m-d') &&
+                     (int)$starttime <= $hour &&
+                     (int)$endtime > $hour &&
+                     ((int)$breakstart > $hour || (int)$breakend <= $hour);
+
             return view('/admins/attendanceDetailByDate',[
                 'selectedDate' => $selectedDate,
-                'staffList' => $store,
+                'store' => $store,
+                'attendance' => $exisistence,
             ]);     
         }
 

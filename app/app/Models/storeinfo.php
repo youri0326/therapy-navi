@@ -91,4 +91,15 @@ class storeinfo extends Model
 
         return $store;
     }
+    public function getStaffWorkingtimeByDate($storeid,$selectedDate)
+    {
+        // スタッフ情報と勤怠情報を取得
+        $store = storeinfo::with(['staffinfo.attendinfo' => function ($query) use ($selectedDate) {
+            $query->whereYear('workingdate', $selectedDate->year)
+                ->whereMonth('workingdate', $selectedDate->month)
+                ->whereDay('workingdate', $selectedDate->day);
+        }])->where('storeid', $storeid)->first();
+
+        return $store;
+    }
 }
