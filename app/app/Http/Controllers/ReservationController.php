@@ -10,7 +10,7 @@ use App\Models\reserveinfo;
 // 
 class ReservationController extends Controller
 {
-    public function storeReserveInfo(Request $request) {
+    public function index(Request $request) {
         // 顧客ごとの予約情報一覧の表示
         // customeridを取得
         $customerid = $request->query('customerid');
