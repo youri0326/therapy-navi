@@ -8,5 +8,14 @@ use App\Models\storeinfo;
 class StoreDetailController extends Controller
 {
     public function index() {
+        // storeinfoテーブルに登録
+
     }
+
+    // 登録画面
+    public function create(Request $request) {
+        return view('');
+    }
+    // 登録処理
+    public function store()
 }
