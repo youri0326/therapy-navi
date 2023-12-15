@@ -15,7 +15,7 @@ class storephotoinfo extends Model
     protected $table = 'storephotoinfo';
     
     // プライマリキーを指定
-    protected $primarykey = 'storephotoid';
+    protected $primaryKey = 'storephotoid';
     
     // プライマリーキーがオートインクリメントのため 設定をオン
     public $incrementing = true;

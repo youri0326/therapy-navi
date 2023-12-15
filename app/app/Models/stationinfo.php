@@ -15,7 +15,7 @@ class stationinfo extends Model
     protected $table = 'stationinfo';
     
     // プライマリキーを指定
-    protected $primarykey = 'stationid';
+    protected $primaryKey = 'stationid';
     
     // プライマリーキーがオートインクリメントのため 設定をオン
     public $incrementing = true;

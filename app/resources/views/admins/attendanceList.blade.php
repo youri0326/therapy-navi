@@ -29,7 +29,7 @@
 				<tr>
 					<th>スタッフ名</th>
 					@for($day = 1; $day <= $selectedDate->daysInMonth; $day++)
-						<th>{{ $selectedDate->copy()->day($day)->format('d') }}日</th>
+						<th><a href="{{asset('/admins/attendanceDetail')}}?year={{ $selectedDate->year }}&month={{ $selectedDate->month }}&day={{ $day }}">{{ $selectedDate->copy()->day($day)->format('d') }}日</a></th>
 					@endfor
 				</tr>
 			</thead>

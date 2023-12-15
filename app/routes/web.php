@@ -15,7 +15,7 @@ use App\Http\Controllers\ReservationListController;
 
 
 //管理者側のインポート
-use App\Http\Controllers\AttendanceListController;
+use App\Http\Controllers\AttendanceController;
 
 
 /*
@@ -65,5 +65,6 @@ Route::get('/customers/reservationList', [ReservationController::class,'index'])
 */
 
 //勤怠情報一覧表示
-Route::get('/admins/attendanceList', [AttendanceListController::class,'index']);
-Route::get('/admins/attendanceDetail', [AttendanceDetailController::class,'index']);
+Route::get('/admins/attendanceList', [AttendanceController::class,'list']);
+Route::get('/admins/attendanceDetail', [AttendanceController::class,'detail']);
+Route::post('/admins/update', [AttendanceController::class,'update'])->name('admins.update');;

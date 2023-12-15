@@ -212,36 +212,37 @@ CREATE TABLE attendinfo (
     workingdate DATE,
     starttime TIME,
     endtime TIME,
-    breaktime INTEGER
+    breakstart TIME,
+    breakend TIME
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 
 -- 勤怠情報情報テーブルのデータ登録
 --  店舗Aの勤怠情報
 --   中村征宏
-INSERT INTO attendinfo VALUES(1,1,'〇','2023-12-15','10:00','19:00',60);
-INSERT INTO attendinfo VALUES(2,1,'〇','2023-12-16','11:00','20:00',60);
+INSERT INTO attendinfo VALUES(1,1,'〇','2023-12-15','10:00','19:00','12:00','13:00');
+INSERT INTO attendinfo VALUES(2,1,'〇','2023-12-16','11:00','20:00','12:00','13:00');
 
 --   吉田俊明
-INSERT INTO attendinfo VALUES(3,2,'〇','2023-12-15','10:00','19:00',60);
-INSERT INTO attendinfo VALUES(4,2,'〇','2023-12-16','11:00','20:00',60);
+INSERT INTO attendinfo VALUES(3,2,'〇','2023-12-15','10:00','19:00','12:00','13:00');
+INSERT INTO attendinfo VALUES(4,2,'〇','2023-12-16','11:00','20:00','12:00','13:00');
 
 --  店舗Bの勤怠情報
 --   小山鋼太郎
-INSERT INTO attendinfo VALUES(5,3,'〇','2023-12-15','14:00','22:00',60);
-INSERT INTO attendinfo VALUES(6,3,'〇','2023-12-16','8:00','22:00',60);
+INSERT INTO attendinfo VALUES(5,3,'〇','2023-12-15','14:00','22:00','12:00','13:00');
+INSERT INTO attendinfo VALUES(6,3,'〇','2023-12-16','8:00','22:00','12:00','13:00');
 
 --   金長
-INSERT INTO attendinfo VALUES(7,4,'〇','2023-12-15','10:00','19:00',60);
-INSERT INTO attendinfo VALUES(8,4,'〇','2023-12-16','11:00','20:00',60);
+INSERT INTO attendinfo VALUES(7,4,'〇','2023-12-15','10:00','19:00','13:00','14:00');
+INSERT INTO attendinfo VALUES(8,4,'〇','2023-12-16','11:00','20:00','13:00','14:00');
 
 --  店舗Cの勤怠情報
 --   諏訪響
-INSERT INTO attendinfo VALUES(9,5,'〇','2023-12-15','10:00','19:00',60);
-INSERT INTO attendinfo VALUES(10,5,'〇','2023-12-16','11:00','20:00',60);
+INSERT INTO attendinfo VALUES(9,5,'〇','2023-12-15','10:00','19:00','13:00','14:00');
+INSERT INTO attendinfo VALUES(10,5,'〇','2023-12-16','11:00','20:00','13:00','14:00');
 
 --   水戸駿介
-INSERT INTO attendinfo VALUES(11,6,'〇','2023-12-15','10:00','19:00',60);
-INSERT INTO attendinfo VALUES(12,6,'〇','2023-12-16','11:00','20:00',60);
+INSERT INTO attendinfo VALUES(11,6,'〇','2023-12-15','10:00','19:00','12:00','13:00');
+INSERT INTO attendinfo VALUES(12,6,'〇','2023-12-16','11:00','20:00','12:00','13:00');
 
 CREATE TABLE reserveinfo ( 
 reserveid INTEGER AUTO_INCREMENT PRIMARY KEY,
@@ -265,3 +266,4 @@ INSERT INTO reserveinfo VALUES(8,4,3,'2023-12-23','15:00','16:00','クレジッ�
 INSERT INTO reserveinfo VALUES(9,5,1,'2023-12-23','16:00','17:00','クレジットカード','未納','');
 INSERT INTO reserveinfo VALUES(10,5,2,'2023-12-23','17:00','18:00','クレジットカード','支払済み','');
 INSERT INTO reserveinfo VALUES(11,5,4,'2023-12-23','18:00','20:00','クレジットカード','支払済み','');
+
