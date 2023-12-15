@@ -20,10 +20,10 @@
                     <tbody>
                         @foreach($reservationList as $reserve)
                             <tr>
-                                <th>予約日時</th><td>{{$reserve->reservedatetime}}<td>
+                                <th>予約日</th><td>{{$reserve->reservedate}}<td>
                             </tr>
                             <tr>
-                                <th>予約日時</th><td>{{$reserve->reservedatetime}}<td>
+                                <th>予約時間</th><td>{{$reserve->reservetime}}<td>
                             </tr>
                             <tr>
                                 <th>支払方法</th><td>{{$reserve->payment}}</td>
