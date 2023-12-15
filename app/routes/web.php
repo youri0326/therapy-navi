@@ -11,7 +11,7 @@ use App\Http\Controllers\StoreSearchController;
 use App\Http\Controllers\StoreStaffListController;
 use App\Http\Controllers\StoreDetailController;
 use App\Http\Controllers\StoreMenuController;
-use App\Http\Controllers\ReservationListController;
+use App\Http\Controllers\ReservationController;
 
 
 //管理者側のインポート
