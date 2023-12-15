@@ -7,7 +7,7 @@ use App\Models\storeinfo;
 use App\Models\customerinfo;
 use App\Models\reserveinfo;
 
-// 
+// 顧客IDをurlで指定
 class ReservationController extends Controller
 {
     public function index(Request $request) {
