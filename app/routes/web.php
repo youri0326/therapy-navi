@@ -59,7 +59,7 @@ Route::get('/customers/storeDetail', [StoreDetailController::class,'index']);
 //店舗メニュー一覧機能
 Route::get('/customers/storeMenu', [StoreMenuController::class,'index']);
 //予約情報機能
-Route::get('/customers/reservationList', [ReservationController::class,'index']);
+Route::get('/customers/reservationList', [ReservationController::class,'reservationList']);
 /*
 管理者機能
 */
