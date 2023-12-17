@@ -20,7 +20,7 @@ class reserveinfo extends Model
     protected $table = 'reserveinfo';
     
     // プライマリキーを指定
-    protected $primarykey = 'reserveid';
+    protected $primaryKey = 'reserveid';
 
     // プライマリーキーがオートインクリメントのため 設定をオン
     public $incrementing = true;

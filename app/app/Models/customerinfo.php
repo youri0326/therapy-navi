@@ -14,7 +14,7 @@ class customerinfo extends Model
     protected $table = 'customerinfo';
     
     // プライマリキーを指定
-    protected $primarykey = 'customerid';
+    protected $primaryKey = 'customerid';
 
     // プライマリーキーがオートインクリメントのため 設定をオン
     public $incrementing = true;
