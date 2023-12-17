@@ -13,7 +13,7 @@
 	<body>
 		<h1 align="center" style="margin-top: 21px;">予約一覧画面</h1>
 		<hr align="center" size="5" color="BLUE" width="950"></hr>
-            <a>{{cutomerList->name}}</a>
+            <a>{{$cutomerList->name}}</a>
 			<!-- 予約一覧 -->
 			<div id="main" class="container">
 
