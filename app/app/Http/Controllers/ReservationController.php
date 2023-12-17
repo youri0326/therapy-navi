@@ -20,9 +20,12 @@ class ReservationController extends Controller
         // 上記のcustomeridの時の予約情報をreserveinfoのテーブルから該当行を持ってくる
         // モデル名：where('列名', '=', 検索値)->get();
         $reservationList = reserveinfo::where('customerid', '=', $customerid)->get();
-        
+        $customerList = customerinfo::find($customerid);
+        // storeNameを取得
+        // $storeName = 
         return view('customers/reservationList',[
-            'reservationList' => $reservationList
+            'reservationList' => $reservationList,
+            'customerList' => $customerList
         ]);
     }
 }

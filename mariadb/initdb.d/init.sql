@@ -275,6 +275,7 @@ INSERT INTO customerinfo VALUES(5,5, '鈴木健太', 'すずきけんた', '1988
 CREATE TABLE reserveinfo ( 
 reserveid INTEGER AUTO_INCREMENT PRIMARY KEY,
 customerid INTEGER,FOREIGN KEY (customerid) REFERENCES customerinfo (customerid),
+customerid INTEGER,FOREIGN KEY (storeid) REFERENCES storeinfo (storeid),
 storemenuid INTEGER,FOREIGN KEY (storemenuid) REFERENCES storemenuinfo (storemenuid),
 reservedate date,
 reservetime time,

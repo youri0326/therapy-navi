@@ -35,6 +35,12 @@ class reserveinfo extends Model
         return $this->belongsTo('App\Models\customerinfo', 'customerid', 'customerid');
     }
 
+    public function customerinfo() // 親テーブル(customerinfo)
+    {
+        // belongsTo('モデル', '外部キー', 'カスタムキー');
+        return $this->belongsTo('App\Models\storeinfo', 'storeid', 'storeid');
+    }
+
     public function storemenuinfo() // 親テーブル(storemenuinfo)
     {
         // belongsTo('モデル', '外部キー', 'カスタムキー');
