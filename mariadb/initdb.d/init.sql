@@ -290,17 +290,17 @@ INSERT INTO reserveinfo VALUES(2,1,2,'2023-12-23','11:00', 1, 1, '');
 INSERT INTO reserveinfo VALUES(3,1,3,'2023-12-23','12:00', 1, 0, '');
 
 -- 顧客2の勤怠情報
-INSERT INTO reserveinfo VALUES(4,2,2,'2023-12-23','09:00', 0, 0, 4000, '');
-INSERT INTO reserveinfo VALUES(5,2,4,'2023-12-23','11:00', 0, 0, 4000, '');
+INSERT INTO reserveinfo VALUES(4,2,2,'2023-12-23','09:00', 0, 0, '');
+INSERT INTO reserveinfo VALUES(5,2,4,'2023-12-23','11:00', 0, 0, '');
 
 -- 顧客3の勤怠情報
-INSERT INTO reserveinfo VALUES(6,3,1,'2023-12-23','15:00', 2, 0, 5000, '');
+INSERT INTO reserveinfo VALUES(6,3,1,'2023-12-23','15:00', 2, 0, '');
 
 -- 顧客4の勤怠情報
-INSERT INTO reserveinfo VALUES(7,4,1,'2023-12-23','14:00', 1, 1, 3000, '');
-INSERT INTO reserveinfo VALUES(8,4,3,'2023-12-23','15:00', 1, 1, 6000, '');
+INSERT INTO reserveinfo VALUES(7,4,1,'2023-12-23','14:00', 1, 1, '');
+INSERT INTO reserveinfo VALUES(8,4,3,'2023-12-23','15:00', 1, 1, '');
 
 -- 顧客5の勤怠情報
-INSERT INTO reserveinfo VALUES(9,5,1,'2023-12-23','16:00', 2, 0, 5000, '');
-INSERT INTO reserveinfo VALUES(10,5,2,'2023-12-23','17:00', 2, 0, 4000'');
-INSERT INTO reserveinfo VALUES(11,5,4,'2023-12-23','18:00', 2, 0, 2000'');
+INSERT INTO reserveinfo VALUES(9,5,1,'2023-12-23','16:00', 2, 0, '');
+INSERT INTO reserveinfo VALUES(10,5,2,'2023-12-23','17:00', 2, 0,'');
+INSERT INTO reserveinfo VALUES(11,5,4,'2023-12-23','18:00', 2, 0, '');
