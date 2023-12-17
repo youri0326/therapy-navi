@@ -276,32 +276,31 @@ CREATE TABLE reserveinfo (
 reserveid INTEGER AUTO_INCREMENT PRIMARY KEY,
 customerid INTEGER,FOREIGN KEY (customerid) REFERENCES customerinfo (customerid),
 storemenuid INTEGER,FOREIGN KEY (storemenuid) REFERENCES storemenuinfo (storemenuid),
-reservedate VARCHAR(10),
-reservetime VARCHAR(10),
-payment VARCHAR(20),
-status VARCHAR(20),
+reservedate date,
+reservetime time,
+payment INTEGER,
+status INTEGER,
 addcomment VARCHAR(20)
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 
 -- 予約情報テーブルのデータ登録
 -- 顧客1の勤怠情報
-INSERT INTO reserveinfo VALUES(1,1,1,'2023-12-23','10:00','クレジットカード','支払済み','');
-INSERT INTO reserveinfo VALUES(2,1,2,'2023-12-23','11:00','クレジットカード','支払済み','');
-INSERT INTO reserveinfo VALUES(3,1,3,'2023-12-23','12:00','クレジットカード','未納','');
+INSERT INTO reserveinfo VALUES(1,1,1,'2023-12-23','10:00', 1, 1, '');
+INSERT INTO reserveinfo VALUES(2,1,2,'2023-12-23','11:00', 1, 1, '');
+INSERT INTO reserveinfo VALUES(3,1,3,'2023-12-23','12:00', 1, 0, '');
 
 -- 顧客2の勤怠情報
-INSERT INTO reserveinfo VALUES(4,2,2,'2023-12-23','09:00','クレジットカード','支払済み','');
-INSERT INTO reserveinfo VALUES(5,2,4,'2023-12-23','11:00','クレジットカード','支払済み','');
+INSERT INTO reserveinfo VALUES(4,2,2,'2023-12-23','09:00', 0, 0, 4000, '');
+INSERT INTO reserveinfo VALUES(5,2,4,'2023-12-23','11:00', 0, 0, 4000, '');
 
 -- 顧客3の勤怠情報
-INSERT INTO reserveinfo VALUES(6,3,1,'2023-12-23','15:00','クレジットカード','未納','');
+INSERT INTO reserveinfo VALUES(6,3,1,'2023-12-23','15:00', 2, 0, 5000, '');
 
 -- 顧客4の勤怠情報
-INSERT INTO reserveinfo VALUES(7,4,1,'2023-12-23','14:00','クレジットカード','支払済み','');
-INSERT INTO reserveinfo VALUES(8,4,3,'2023-12-23','15:00','クレジットカード','支払済み','');
+INSERT INTO reserveinfo VALUES(7,4,1,'2023-12-23','14:00', 1, 1, 3000, '');
+INSERT INTO reserveinfo VALUES(8,4,3,'2023-12-23','15:00', 1, 1, 6000, '');
 
 -- 顧客5の勤怠情報
-INSERT INTO reserveinfo VALUES(9,5,1,'2023-12-23','16:00','クレジットカード','未納','');
-INSERT INTO reserveinfo VALUES(10,5,2,'2023-12-23','17:00','クレジットカード','支払済み','');
-INSERT INTO reserveinfo VALUES(11,5,4,'2023-12-23','18:00','クレジットカード','支払済み','');
-
+INSERT INTO reserveinfo VALUES(9,5,1,'2023-12-23','16:00', 2, 0, 5000, '');
+INSERT INTO reserveinfo VALUES(10,5,2,'2023-12-23','17:00', 2, 0, 4000'');
+INSERT INTO reserveinfo VALUES(11,5,4,'2023-12-23','18:00', 2, 0, 2000'');

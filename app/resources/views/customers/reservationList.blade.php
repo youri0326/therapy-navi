@@ -13,11 +13,10 @@
 	<body>
 		<h1 align="center" style="margin-top: 21px;">予約一覧画面</h1>
 		<hr align="center" size="5" color="BLUE" width="950"></hr>
-            @foreach($customer as customer)
-                <a>{{$customer->name}}</a>
-            @endforeach
+            <a>〇〇さん</a>
 			<!-- 予約一覧 -->
 			<div id="main" class="container">
+
 				<table class="input-table">
                     <tbody>
                         @foreach($reservationList as $reserve)
