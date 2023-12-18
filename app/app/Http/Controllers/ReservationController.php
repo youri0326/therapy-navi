@@ -20,15 +20,13 @@ class ReservationController extends Controller
         $reservationList = reserveinfo::where('customerid', '=', $customerid)->get();
         // 顧客のレコードを取得
         $customerList = customerinfo::find($customerid);
-        // 予約情報から対応する店舗のstoreidを取得
-        $storeList = storemenuinfo::find($reservationList->pluck('storemenuinfo.storeinfo.storeid')->unique());
-        // 対応する店舗の情報を取得
-        $storesList = storeinfo::whereIn('storeid', $storeIds)->get();
+        // 店舗リストを取得
+        $storeList = storeinfo::all();
 
         return view('customers/reservationList',[
             'reservationList' => $reservationList,
             'customerList' => $customerList,
-            'storeList' => $storesList
+            'storeList' => $storeList
         ]);
     }
 }
