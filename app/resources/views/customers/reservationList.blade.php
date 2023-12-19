@@ -30,6 +30,8 @@
                         @php
                             // 予約に関連する店舗情報を取得
                             $store = $storeList->where('storeid', $reserve->storemenuinfo->storeid)->first();
+                            // 予約に関連するメニュー情報を取得
+                            $menu = $storemenuList->where('storemenuid', $reserve->storemenuid)->first();
                         @endphp
                         <tr>
                             <th>予約店舗</th>
@@ -37,8 +39,8 @@
                                 @if($store) <!-- $storeが存在する場合 -->
                                     {{ $store->storename }}
                                 @else <!-- $storeが存在しない場合 -->
-                                店舗が存在しません
-                            @endif
+                                    店舗が存在しません
+                                @endif
                             </td>
                         </tr>
                         <tr>
@@ -48,10 +50,34 @@
                             <th>予約時間</th><td>{{$reserve->reservetime}}<td>
                         </tr>
                         <tr>
-                            <th>支払方法</th><td>{{$reserve->payment}}</td>
+                            <th>メニュー</th><td>{{$menu->servicename}}</td>
                         </tr>
                         <tr>
-                            <th>支払い状況</th><td>{{$reserve->status}}</td>
+                            <th>支払方法</th>
+                            <!-- paymentに基づいて表示を切り替え -->
+                            <td>
+                                @if($reserve->payment == 0)
+                                    現金
+                                @elseif($reserve->payment == 1)
+                                    クレジットカード
+                                @elseif($reserve->payment == 2)
+                                    バーコード決済
+                                @else
+                                    その他
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>支払い状況</th>
+                            <td>
+                                @if($reserve->status == 0)
+                                    店舗でお支払い
+                                @elseif($reserve->status == 1)
+                                    お支払済み
+                                @else
+                                    
+                                @endif
+                            </td>
                         </tr>
                         <tr>
                             <th>追記事項</th><td>{{$reserve->addcomment}}</td>
