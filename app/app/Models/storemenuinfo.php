@@ -30,7 +30,7 @@ class storemenuinfo extends Model
 
     public function reserveinfo()
     {
-        return $this->HasMany('App\Models\reserveinfo', 'storemenuid', 'storemenuid')
+        return $this->HasMany('App\Models\reserveinfo', 'storemenuid', 'storemenuid');
     }
 
     public function storeMenuById($storeid)

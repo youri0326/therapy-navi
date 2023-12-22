@@ -9,7 +9,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="Content-Style-Type" content="text/css" />
-		<title>List</title>
+		<title>予約一覧</title>
 	</head>
 	<body>
 		<h1 align="center" style="margin-top: 21px;">予約一覧画面</h1>
@@ -75,7 +75,7 @@
                                 @elseif($reserve->status == 1)
                                     お支払済み
                                 @else
-                                    
+
                                 @endif
                             </td>
                         </tr>
