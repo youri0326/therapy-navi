@@ -22,11 +22,15 @@ class customerinfo extends Model
     // データの作成日時、更新日時がデフォルトで自動更新されるので、オフ
     public $timestamps = false;
 
-    public function accountinfo() // 子テーブル(accountinfo)
+    public function accountinfo() // 親テーブル(accountinfo)
     {
         // belongsTo('モデル', '外部キー', 'カスタムキー');
         return $this->belongsTo('App\Models\accountinfo', 'accountid', 'accountid');
     }
 
-
+    public function reservation() // 子テーブル
+    {
+        
+        return $this->HasMany('App\Models\reserveinfo', 'customerid', 'customerid');
+    }
 }
