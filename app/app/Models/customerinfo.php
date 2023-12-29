@@ -5,36 +5,32 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use App\Models\storeinfo;
 
-class storemenuinfo extends Model
+class customerinfo extends Model
 {
     use HasFactory;
     
     // このモデルの対象のテーブル
-    protected $table = 'storemenuinfo';
+    protected $table = 'customerinfo';
     
     // プライマリキーを指定
-    protected $primaryKey = 'storemenuid';
-    
+    protected $primaryKey = 'customerid';
+
     // プライマリーキーがオートインクリメントのため 設定をオン
     public $incrementing = true;
     
     // データの作成日時、更新日時がデフォルトで自動更新されるので、オフ
     public $timestamps = false;
 
-    public function storeinfo()
+    public function accountinfo() // 親テーブル(accountinfo)
     {
-        return $this->belongsTo('App\Models\storeinfo', '', '');
+        // belongsTo('モデル', '外部キー', 'カスタムキー');
+        return $this->belongsTo('App\Models\accountinfo', 'accountid', 'accountid');
     }
 
-    public function reserveinfo()
+    public function reservation() // 子テーブル
     {
-        return $this->HasMany('App\Models\reserveinfo', 'storemenuid', 'storemenuid');
-    }
-
-    public function storeMenuById($storeid)
-    {
-        return storemenuinfo::where('storeid', '=', $storeid)->get();
+        
+        return $this->HasMany('App\Models\reserveinfo', 'customerid', 'customerid');
     }
 }
