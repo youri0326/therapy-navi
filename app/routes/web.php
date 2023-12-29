@@ -16,7 +16,7 @@ use App\Http\Controllers\ReservationController;
 
 //管理者側のインポート
 use App\Http\Controllers\AttendanceController;
-
+use App\Http\Controllers\StoreInsertController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,4 +67,7 @@ Route::get('/customers/reservationList', [ReservationController::class,'reservat
 //勤怠情報一覧表示
 Route::get('/admins/attendanceList', [AttendanceController::class,'list']);
 Route::get('/admins/attendanceDetail', [AttendanceController::class,'detail']);
-Route::post('/admins/update', [AttendanceController::class,'update'])->name('admins.update');;
+Route::post('/admins/update', [AttendanceController::class,'update'])->name('admins.update');
+
+//店舗登録機能
+Route::get('/admin/storeInsert', [StoreInsertController::class, 'insert']);
