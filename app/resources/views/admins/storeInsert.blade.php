@@ -12,12 +12,30 @@
 		<title>List</title>
 	</head>
 	<body>
-        <!-- データ入力フォーム -->
-        <form action="StoreInsert.php" method="post">
-            <input type="text" name="value1" placeholder="値1">
-            <input type="text" name="value2" placeholder="値2">
-            <input type="text" name="value3" placeholder="値3">
-            <button type="submit">データを送信</button>
-        </form>
-    </body>
+		<h1 align="center" style="margin-top: 21px;">店舗登録画面</h1>
+		<hr align="center" size="5" color="BLUE" width="950"></hr>
+			<!-- ログインのコンテンツ部分 -->
+			<div id="main" class="container">
+
+				<form action="{{asset('/common/login')}}" method="POST">
+                {{ csrf_field() }}
+					<table class="input-table">
+						<tr>
+							<th>ユーザー</th>
+							<td>
+								<input type="text" size="25" name="accountid" value="修正時にセッション情報入れたい">
+							</td>
+						</tr>
+						<tr>
+							<th>パスワード</th>
+							<td>
+								<input type="password" size="25" name="password" value="修正時にセッション情報入れたい">
+							</td>
+						</tr>
+					</table>
+					<input type="hidden" size="25" name="authority" value="admin">
+					<input type="submit" value="">
+				</form>
+			</div>
+	</body>
 </html>
