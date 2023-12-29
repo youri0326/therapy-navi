@@ -15,7 +15,7 @@ class storemenuinfo extends Model
     protected $table = 'storemenuinfo';
     
     // プライマリキーを指定
-    protected $primarykey = 'storemenuid';
+    protected $primaryKey = 'storemenuid';
     
     // プライマリーキーがオートインクリメントのため 設定をオン
     public $incrementing = true;
