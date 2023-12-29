@@ -14,13 +14,13 @@
 	<body>
         <div class="container">
             <h2>予約画面</h2>
-            <form method="post" action="{{ route('reservation.confirm') }}">
+            <form method="post" action="{{asset('/customers/reservation/confrim')}}">
                 @csrf
                 <p>店舗名: {{ $storeinfo->storename }}</p>
 
                 <input type="hidden" name="reservation_datetime" id="reservationDatetime">
                 <input type="hidden" name="staffid" id="staffid">
-                <input type="hidden" name="staffid" value="{{ $storeinfo->storename }}">
+                <input type="hidden" name="staffid" value="{{ $storeinfo->first()}}">
 
 
                 <table class="table">

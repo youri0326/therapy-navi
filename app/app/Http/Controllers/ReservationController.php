@@ -44,14 +44,20 @@ class ReservationController extends Controller
         // $storeid = セッションget的なものを記載するが、ログイン処理が終わってからにする
         //一旦仮でstoreid=3でテストする
         $customerid = 3;
-        $storemenuid = 8;
+        $storemenuid = 2;
         $storeid = 3;
 
         // // 予約フォーム表示のロジック
-        // $storeinfo = storeinfo::with('staffinfo', 'staffinfo.attendinfo', 'staffinfo.reservationinfo')->findOrFail($storeid);
+        // $storeinfo = storeinfo::with('staffinfo', 'staffinfo.attendinfo', 'staffinfo.reserveinfo')->findOrFail($storeid);
+        //店舗情報の取得
         $storemenuinfo = storemenuinfo::with('storeinfo')->findOrFail($storemenuid);
-        $storeinfo = $storemenuinfo->storeinfo;
+        // $storemenuinfo = storemenuinfo::with('storeinfo')->where('storemenuid','=',$storemenuid);
+        $storeinfo = $storemenuinfo->storeinfo->first();
 
+        // //test
+        // // $store = storemenuinfo::with('storeinfo','storeinfo.staffinfo')->where('storemenuid','=',2)->storeinfo;
+        // $store = storemenuinfo::with('storeinfo','storeinfo.staffinfo')->where('storemenuid','=',2);
+        // $store = $storemenu->storeinfo;        
 
         $dates = collect();
         for ($i = 0; $i < 7; $i++) {
@@ -66,8 +72,10 @@ class ReservationController extends Controller
 
                 if ($request->has('staffid')) {
                     // 特定のスタッフが選択されている場合
-                    $staff = $storeinfo->staffinfo->firstWhere('staffid', $request->input('staffid'));
+                    // $staff = $storeinfo->staffinfo->firstWhere('staffid', $request->input('staffid'));
+                    $staff = staffinfo::firstWhere('staffid', $request->input('staffid'));
                     $isAvailable = $this->checkAvailabilityForStaff($staff, $timeSlot);
+
                 } else {
                     // スタッフが選択されていない場合
                     $isAvailable = $this->checkAvailability($storeinfo, $timeSlot);
@@ -111,6 +119,7 @@ class ReservationController extends Controller
         return redirect()->route('reservation.success');
     }
 
+    //$storeinfo 各スタッフの情報が必要 または選択されたスタッフの情報
     private function checkAvailability($storeinfo, $timeSlot)
     {
         foreach ($storeinfo->staffinfo as $staff) {
@@ -124,7 +133,7 @@ class ReservationController extends Controller
             });
 
             // 予約情報を確認
-            $reserved = $staff->reservationinfo->any(function ($reservation) use ($timeSlot) {
+            $reserved = $staff->reserveinfo->contains(function ($reservation) use ($timeSlot) {
                 $reservedTime = Carbon::parse($reservation->reservedate . ' ' . $reservation->reservetime);
                 $serviceDuration = storemenuinfo::find($reservation->storemenuid)->servicetime;
                 $serviceEnd = $reservedTime->copy()->addMinutes($serviceDuration);
@@ -138,6 +147,34 @@ class ReservationController extends Controller
                 // 勤務していて、かつ予約がない場合は予約可能
                 return true;
             }
+        }
+        return false; // すべてのスタッフが予約できない場合は予約不可
+    }
+
+    //$storeinfo 各スタッフの情報が必要 または選択されたスタッフの情報
+    private function checkAvailabilityForStaff($staff, $timeSlot)
+    {
+        // スタッフの勤怠情報を確認
+        $attend = $staff->attendinfo->first(function ($attend) use ($timeSlot) {
+            return $attend->workingdate == $timeSlot->format('Y-m-d') &&
+                    $timeSlot->between(
+                        Carbon::parse($attend->starttime),
+                        Carbon::parse($attend->endtime)
+                    );
+        });
+
+        // 予約情報を確認
+        $reserved = $staff->reserveinfo->contains(function ($reservation) use ($timeSlot) {
+            $reservedTime = Carbon::parse($reservation->reservedate . ' ' . $reservation->reservetime);
+            $serviceDuration = storemenuinfo::find($reservation->storemenuid)->servicetime;
+            $serviceEnd = $reservedTime->copy()->addMinutes($serviceDuration);
+
+            return $reservedTime->lte($timeSlot) && $serviceEnd->gt($timeSlot);
+         });
+        
+        if ($attend && !$reserved) {
+            // 勤務していて、かつ予約がない場合は予約可能
+            return true;
         }
         return false; // すべてのスタッフが予約できない場合は予約不可
     }

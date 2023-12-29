@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Models\attendinfo;
+use App\Models\storeinfo;
 
 // ファイル名とクラス名を同じにする
 class staffinfo extends Model
@@ -33,6 +34,10 @@ class staffinfo extends Model
     public function attendinfo() // 子テーブルの名前
     {
         return $this->hasMany('App\Models\attendinfo', 'staffid', 'staffid');
+    }
+    public function reserveinfo()
+    {
+        return $this->hasMany('App\Models\reserveinfo', 'storemenuid', 'storemenuid');
     }
 
     //対象の店舗スタッフの該当月の日付別の勤怠詳細(勤務時間)を取得するための関数

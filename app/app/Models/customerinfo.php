@@ -31,6 +31,6 @@ class customerinfo extends Model
     public function reservation() // 子テーブル
     {
         
-        return $this->HasMany('App\Models\reserveinfo', 'customerid', 'customerid');
+        return $this->hasMany('App\Models\reserveinfo', 'customerid', 'customerid');
     }
 }
