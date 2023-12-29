@@ -243,3 +243,64 @@ INSERT INTO attendinfo VALUES(10,5,'〇','2023-12-16','11:00','20:00','13:00','1
 --   水戸駿介
 INSERT INTO attendinfo VALUES(11,6,'〇','2023-12-15','10:00','19:00','12:00','13:00');
 INSERT INTO attendinfo VALUES(12,6,'〇','2023-12-16','11:00','20:00','12:00','13:00');
+
+/*
+
+顧客情報テーブル
+
+*/
+
+CREATE TABLE customerinfo ( 
+customerid INTEGER AUTO_INCREMENT PRIMARY KEY,
+accountid INTEGER,FOREIGN KEY (accountid) REFERENCES accountinfo (accountid),
+name VARCHAR(20),
+furigana VARCHAR(20),
+birthday date,
+address VARCHAR(20),
+point INTEGER
+)ENGINE = InnoDB,DEFAULT CHARSET=utf8;
+
+INSERT INTO customerinfo VALUES(1,1, '田中太郎', 'たなかたろう', '1990-05-20', '東京都', 100);
+INSERT INTO customerinfo VALUES(2,2, '山田花子', 'やまだはなこ', '1985-12-10', '大阪府', 75);
+INSERT INTO customerinfo VALUES(3,3, '佐藤次郎', 'さとうじろう', '1995-08-15', '京都府', 120);
+INSERT INTO customerinfo VALUES(4,4, '伊藤美咲', 'いとうみさき', '1993-04-25', '神奈川県', 90);
+INSERT INTO customerinfo VALUES(5,5, '鈴木健太', 'すずきけんた', '1988-10-18', '愛知県', 110);
+
+/*
+
+予約情報テーブル
+
+*/
+
+CREATE TABLE reserveinfo ( 
+reserveid INTEGER AUTO_INCREMENT PRIMARY KEY,
+customerid INTEGER,FOREIGN KEY (customerid) REFERENCES customerinfo (customerid),
+storemenuid INTEGER,FOREIGN KEY (storemenuid) REFERENCES storemenuinfo (storemenuid),
+reservedate date,
+reservetime time,
+payment INTEGER,
+status INTEGER,
+addcomment VARCHAR(20)
+)ENGINE = InnoDB,DEFAULT CHARSET=utf8;
+
+-- 予約情報テーブルのデータ登録
+-- 顧客1の勤怠情報
+INSERT INTO reserveinfo VALUES(1,1,1,'2023-12-23','10:00', 1, 1, '');
+INSERT INTO reserveinfo VALUES(2,1,2,'2023-12-23','11:00', 1, 1, '');
+INSERT INTO reserveinfo VALUES(3,1,3,'2023-12-23','12:00', 1, 0, '');
+
+-- 顧客2の勤怠情報
+INSERT INTO reserveinfo VALUES(4,2,2,'2023-12-23','09:00', 0, 0, '');
+INSERT INTO reserveinfo VALUES(5,2,4,'2023-12-23','11:00', 0, 0, '');
+
+-- 顧客3の勤怠情報
+INSERT INTO reserveinfo VALUES(6,3,1,'2023-12-23','15:00', 2, 0, '');
+
+-- 顧客4の勤怠情報
+INSERT INTO reserveinfo VALUES(7,4,1,'2023-12-23','14:00', 1, 1, '');
+INSERT INTO reserveinfo VALUES(8,4,3,'2023-12-23','15:00', 1, 1, '');
+
+-- 顧客5の勤怠情報
+INSERT INTO reserveinfo VALUES(9,5,1,'2023-12-23','16:00', 2, 0, '');
+INSERT INTO reserveinfo VALUES(10,5,2,'2023-12-23','17:00', 2, 0,'');
+INSERT INTO reserveinfo VALUES(11,5,4,'2023-12-23','18:00', 2, 0, '');
