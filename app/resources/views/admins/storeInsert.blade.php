@@ -14,28 +14,21 @@
 	<body>
 		<h1 align="center" style="margin-top: 21px;">店舗登録画面</h1>
 		<hr align="center" size="5" color="BLUE" width="950"></hr>
-			<!-- ログインのコンテンツ部分 -->
-			<div id="main" class="container">
+		<!-- ログインのコンテンツ部分 -->
+		<div id="main" class="container">
 
-				<form action="{{asset('/common/login')}}" method="POST">
-                {{ csrf_field() }}
-					<table class="input-table">
-						<tr>
-							<th>ユーザー</th>
-							<td>
-								<input type="text" size="25" name="accountid" value="修正時にセッション情報入れたい">
-							</td>
-						</tr>
-						<tr>
-							<th>パスワード</th>
-							<td>
-								<input type="password" size="25" name="password" value="修正時にセッション情報入れたい">
-							</td>
-						</tr>
-					</table>
-					<input type="hidden" size="25" name="authority" value="admin">
-					<input type="submit" value="">
-				</form>
-			</div>
+			<!-- storeInsert.blade.php -->
+
+            <form action="{{ route('store.confirm') }}" method="post">
+                @csrf
+                <input type="text" name="storename" placeholder="店舗名">
+                <input type="text" name="address" placeholder="住所">
+                <input type="text" name="budget" placeholder="予算">
+                <input type="text" name="comment" placeholder="コメント">
+                <input type="text" name="payment" placeholder="支払い方法">
+                <!-- 他のフォームフィールドもここに追加 -->
+                <button type="submit">確認</button>
+            </form>
+		</div>
 	</body>
 </html>
