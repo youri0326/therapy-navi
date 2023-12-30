@@ -69,7 +69,7 @@ Route::get('/customers/reservationList', [ReservationController::class,'reservat
 Route::get('/customers/reservation/showForm', [ReservationController::class,'showReservationForm']);
 
 //予約機能：予約情報確認
-Route::get('/customers/reservation/confrim', [ReservationController::class,'confirmReservation']);
+Route::post('/customers/reservation/confrim', [ReservationController::class,'confirmReservation']);
 
 //予約機能：予約登録完了
 Route::post('/customers/reservation/insert', [ReservationController::class,'storeReservation']);

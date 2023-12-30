@@ -98,8 +98,18 @@ class ReservationController extends Controller
     public function confirmReservation(Request $request)
     {
         // 予約確認のロジック
-        $reservationData = $request->all();
-        return view('customers.reservationConfirmation', compact('reservationData'));
+        $storemenuid = $request->input('storemenuid');
+        $storeid = $request->input('storeid');
+        $reservation_datetime = $request->input('reservation_datetime');
+        $storeinfo = storeinfo::firstWhere('storeid',$storeid);
+        $storemenuinfo = storemenuinfo::firstWhere('storemenuid',$storemenuid);
+        $staff = null;
+        if ($request->has('staffid')) {
+            // 特定のスタッフが選択されている場合
+            $staff = staffinfo::firstWhere('staffid', $request->input('staffid'));
+        }
+
+        return view('customers.reservationConfirmation', compact('storeinfo', 'reservation_datetime','storemenuinfo','staff'));
     }
 
     public function storeReservation(Request $request)
@@ -118,7 +128,7 @@ class ReservationController extends Controller
             $staff = $storeinfo->staffinfo->random();
             $reservationData['staffid'] = $staff->staffid;
         }
-
+        
         $reservation = new reserveinfo($reservationData);
         $reservation->save();
 
