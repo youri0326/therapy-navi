@@ -14,15 +14,16 @@
 	<body>
         <div class="container">
             <h2>予約画面</h2>
-            <form method="post" action="{{asset('/customers/reservation/confrim')}}">
+            <form method="post" action="{{asset('/customers/reservation/confrim')}}" id="reservationForm">
                 @csrf
                 <p>店舗名: {{ $storeinfo->storename }}</p>
-
+                @if ($staff !== null)
+                    <p>スタッフ名: {{ $staff->staffname }}</p>
+                    <input type="hidden" name="staffid" value="{{$staff->staffid}}">
+                @endif
                 <input type="hidden" name="reservation_datetime" id="reservationDatetime">
-                <input type="hidden" name="staffid" id="staffid">
-                <input type="hidden" name="staffid" value="{{ $storeinfo->first()}}">
-
-                {{$availability}}
+                <input type="hidden" name="storeid" value="{{ $storeinfo->storeid}}">
+                <input type="hidden" name="storemenuid" value="{{ $storemenuinfo->storemenuid}}">
                 <table class="table">
                     <thead>
                         <tr>
@@ -39,7 +40,7 @@
                                 @foreach ($dates as $date)
                                     <td>
                                         @if ($availability[$date->format('Y-m-d')][$hour])
-                                            〇
+                                            <span class="available-slot" data-datetime="{{ $date->format('Y-m-d') }} {{ $hour }}:00" >〇</span>
                                         @else
                                             ×
                                         @endif
@@ -50,18 +51,15 @@
                     </tbody>
                 </table>
 
-                <button type="submit" class="btn btn-primary">予約確認</button>
             </form>
             <script>
-                document.querySelectorAll('td').forEach(function(td) {
-                    td.addEventListener('click', function() {
-                        if (this.textContent === '〇') {
-                            var dateTime = this.getAttribute('data-datetime');
-                            var staffId = this.getAttribute('data-staffid');
-                            document.getElementById('reservationDatetime').value = dateTime;
-                            document.getElementById('staffid').value = staffId;
-                            document.getElementById('reservationForm').submit();
-                        }
+
+                // クリック可能なスロットのイベントリスナーを設定
+                document.querySelectorAll('.available-slot').forEach(function(slot) {
+                    slot.addEventListener('click', function() {
+                        var dateTime = this.getAttribute('data-datetime');
+                        document.getElementById('reservationDatetime').value = dateTime;
+                        document.getElementById('reservationForm').submit();
                     });
                 });
             </script>

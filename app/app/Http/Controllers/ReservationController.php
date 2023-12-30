@@ -46,7 +46,13 @@ class ReservationController extends Controller
         $customerid = 3;
         $storemenuid = 2;
         $storeid = 3;
+        $staff = null;
+        if ($request->has('staffid')) {
+            // 特定のスタッフが選択されている場合
+            // $staff = $storeinfo->staffinfo->firstWhere('staffid', $request->input('staffid'));
+            $staff = staffinfo::firstWhere('staffid', $request->input('staffid'));
 
+        }
         // // 予約フォーム表示のロジック
         // $storeinfo = storeinfo::with('staffinfo', 'staffinfo.attendinfo', 'staffinfo.reserveinfo')->findOrFail($storeid);
         //店舗情報の取得
@@ -86,7 +92,7 @@ class ReservationController extends Controller
             $availability->put($date->format('Y-m-d'), $dailyAvailability);
         }
 
-        return view('customers.reservation', compact('storeinfo', 'availability', 'dates','storemenuinfo'));
+        return view('customers.reservation', compact('storeinfo', 'availability', 'dates','storemenuinfo','staff'));
     }
 
     public function confirmReservation(Request $request)
@@ -123,20 +129,35 @@ class ReservationController extends Controller
     private function checkAvailability($storeinfo, $timeSlot)
     {
         foreach ($storeinfo->staffinfo as $staff) {
+            // $attend = $staff->attendinfo->first(function ($attend) use ($timeSlot) {
+            //     // 休憩時間を考慮した勤務時間の判定
+            //     $workStart = Carbon::parse($attend->starttime);
+            //     $workEnd = Carbon::parse($attend->endtime);
+            //     $breakStart = Carbon::parse($attend->breakstart);
+            //     $breakEnd = Carbon::parse($attend->breakend);
+
+            //     return $attend->workingdate == $timeSlot->format('Y-m-d') &&
+            //            $timeSlot->between($workStart, $workEnd) &&
+            //            (!$timeSlot->between($breakStart, $breakEnd));
+            // });
             // スタッフの勤怠情報を確認
-
-            $attend = $staff->attendinfo->first(function ($attend) use ($timeSlot) {
+            $attendList = $staff->attendinfo;
+            $attendJudge = function ($attendList) use ($timeSlot) {
+                $attend = $attendList->where('workingdate',$timeSlot->format('Y-m-d'))->first();
+                if($attend === null){
+                    return false;
+                }
                 // 休憩時間を考慮した勤務時間の判定
-                $workStart = Carbon::parse($attend->starttime);
-                $workEnd = Carbon::parse($attend->endtime);
-                $breakStart = Carbon::parse($attend->breakstart);
-                $breakEnd = Carbon::parse($attend->breakend);
+                $workStart = Carbon::parse($attend->workingdate . ' ' . $attend->starttime);
+                $workEnd = Carbon::parse($attend->workingdate . ' ' . $attend->endtime);
+                $breakStart = Carbon::parse($attend->workingdate . ' ' . $attend->breakstart);
+                // $breakEnd = Carbon::parse($attend->workingdate . ' ' . $attend->breakend);
 
-                return $attend->workingdate == $timeSlot->format('Y-m-d') &&
-                       $timeSlot->between($workStart, $workEnd) &&
-                       (!$timeSlot->between($breakStart, $breakEnd));
-            });
-            
+                return $timeSlot->between($workStart, $workEnd) &&
+                        (!$timeSlot->eq($breakStart));
+            };
+            $attend = $attendJudge($attendList);
+                
             // 予約情報を確認
             //timeslot 日時＋ 時間
             //各予約時間が、timeslotが含まれていないか
@@ -152,7 +173,21 @@ class ReservationController extends Controller
             //     //        Carbon::parse($reservation->reservetime)->equalTo($timeSlot);
             // });
 
-            $reserved = $staff->reserveinfo(function ($reservations) use ($timeSlot) {
+            // $reserved = $staff->reserveinfo(function ($reservations) use ($timeSlot) {
+            //     $reserveJudge = false;
+            //     foreach ($reservations as $reservation){
+            //         $reservedTime = Carbon::parse($reservation->reservedate . ' ' . $reservation->reservetime);
+            //         $serviceDuration = storemenuinfo::find($reservation->storemenuid)->servicetime;
+            //         $serviceEnd = $reservedTime->copy()->addMinutes($serviceDuration);
+            //         $reserveJudge = $reservedTime->lte($timeSlot) && $serviceEnd->gt($timeSlot);
+            //         if($reserveJudge){
+            //             return $reserveJudge;
+            //         } 
+            //     }
+            //     return $reserveJudge;
+            // });
+            $reservations = $staff->reserveinfo;
+            $reserveJudge = function ($reservations) use ($timeSlot) {
                 $reserveJudge = false;
                 foreach ($reservations as $reservation){
                     $reservedTime = Carbon::parse($reservation->reservedate . ' ' . $reservation->reservetime);
@@ -164,8 +199,9 @@ class ReservationController extends Controller
                     } 
                 }
                 return $reserveJudge;
-            });
-
+            };
+            $reserved = $reserveJudge($reservations);
+    
             if ($attend && !$reserved) {
                 // 勤務していて、かつ予約がない場合は予約可能
                 return true;
@@ -202,10 +238,10 @@ class ReservationController extends Controller
             $workStart = Carbon::parse($attend->workingdate . ' ' . $attend->starttime);
             $workEnd = Carbon::parse($attend->workingdate . ' ' . $attend->endtime);
             $breakStart = Carbon::parse($attend->workingdate . ' ' . $attend->breakstart);
-            $breakEnd = Carbon::parse($attend->workingdate . ' ' . $attend->breakend);
+            // $breakEnd = Carbon::parse($attend->workingdate . ' ' . $attend->breakend);
 
             return $timeSlot->between($workStart, $workEnd) &&
-                    (!$timeSlot->between($breakStart, $breakEnd));
+                    (!$timeSlot->eq($breakStart));
         };
         $attend = $attendJudge($attendList);
         // 予約情報を確認
@@ -217,27 +253,20 @@ class ReservationController extends Controller
         //     return $reservedTime->lte($timeSlot) && $serviceEnd->gt($timeSlot);
         //  });
         $reservations = $staff->reserveinfo;
-        // var_dump($reservations);
         $reserveJudge = function ($reservations) use ($timeSlot) {
             $reserveJudge = false;
             foreach ($reservations as $reservation){
-                var_dump($reservation);
                 $reservedTime = Carbon::parse($reservation->reservedate . ' ' . $reservation->reservetime);
-                echo('<br>$reservedTime:'.$reservedTime);
                 $serviceDuration = storemenuinfo::find($reservation->storemenuid)->servicetime;
                 $serviceEnd = $reservedTime->copy()->addMinutes($serviceDuration);
                 $reserveJudge = $reservedTime->lte($timeSlot) && $serviceEnd->gt($timeSlot);
                 if($reserveJudge){
-                    echo('<br>$reserveJudg:'.$reserveJudge);
                     return $reserveJudge;
                 } 
             }
             return $reserveJudge;
         };
         $reserved = $reserveJudge($reservations);
-        if($reserved===false){
-            echo('<br>falseだ！');
-        }
         if ($attend && !$reserved) {        
         // if ($attend) {
             // 勤務していて、かつ予約がない場合は予約可能
