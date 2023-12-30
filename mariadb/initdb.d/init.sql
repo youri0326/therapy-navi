@@ -219,31 +219,60 @@ CREATE TABLE attendinfo (
 -- 勤怠情報情報テーブルのデータ登録
 --  店舗Aの勤怠情報
 --   中村征宏
-INSERT INTO attendinfo VALUES(1,1,'〇','2023-12-15','10:00','19:00','12:00','13:00');
-INSERT INTO attendinfo VALUES(2,1,'〇','2023-12-16','11:00','20:00','12:00','13:00');
+INSERT INTO attendinfo VALUES(1,1,'〇','2023-12-29','10:00','18:00','11:00','12:00');
+INSERT INTO attendinfo VALUES(2,1,'〇','2023-12-30','11:00','19:00','12:00','13:00');
+INSERT INTO attendinfo VALUES(3,1,'〇','2023-12-31','12:00','20:00','13:00','14:00');
+INSERT INTO attendinfo VALUES(4,1,'〇','2024-01-01','10:00','18:00','11:00','12:00');
+INSERT INTO attendinfo VALUES(5,1,'〇','2024-01-02','11:00','19:00','12:00','13:00');
+INSERT INTO attendinfo VALUES(6,1,'〇','2024-01-03','12:00','20:00','13:00','14:00');
+INSERT INTO attendinfo VALUES(7,1,'〇','2024-01-04','10:00','18:00','11:00','12:00');
 
 --   吉田俊明
-INSERT INTO attendinfo VALUES(3,2,'〇','2023-12-15','10:00','19:00','12:00','13:00');
-INSERT INTO attendinfo VALUES(4,2,'〇','2023-12-16','11:00','20:00','12:00','13:00');
+INSERT INTO attendinfo VALUES(8,2,'〇','2023-12-29','11:00','19:00','12:00','13:00');
+INSERT INTO attendinfo VALUES(9,2,'〇','2023-12-30','12:00','20:00','13:00','14:00');
+INSERT INTO attendinfo VALUES(10,2,'〇','2023-12-31','10:00','18:00','11:00','12:00');
+INSERT INTO attendinfo VALUES(11,2,'〇','2024-01-01','11:00','19:00','12:00','13:00');
+INSERT INTO attendinfo VALUES(12,2,'〇','2024-01-02','12:00','20:00','13:00','14:00');
+INSERT INTO attendinfo VALUES(13,2,'〇','2024-01-03','10:00','18:00','11:00','12:00');
+INSERT INTO attendinfo VALUES(14,2,'〇','2024-01-04','11:00','19:00','12:00','13:00');
 
 --  店舗Bの勤怠情報
 --   小山鋼太郎
-INSERT INTO attendinfo VALUES(5,3,'〇','2023-12-15','14:00','22:00','12:00','13:00');
-INSERT INTO attendinfo VALUES(6,3,'〇','2023-12-16','8:00','22:00','12:00','13:00');
+INSERT INTO attendinfo VALUES(15,3,'〇','2023-12-29','12:00','20:00','13:00','14:00');
+INSERT INTO attendinfo VALUES(16,3,'〇','2023-12-30','10:00','18:00','11:00','12:00');
+INSERT INTO attendinfo VALUES(17,3,'〇','2023-12-31','11:00','19:00','12:00','13:00');
+INSERT INTO attendinfo VALUES(18,3,'〇','2024-01-01','12:00','20:00','13:00','14:00');
+INSERT INTO attendinfo VALUES(19,3,'〇','2024-01-02','10:00','18:00','11:00','12:00');
+INSERT INTO attendinfo VALUES(20,3,'〇','2024-01-03','11:00','19:00','12:00','13:00');
+INSERT INTO attendinfo VALUES(21,3,'〇','2024-01-04','12:00','20:00','13:00','14:00');
 
 --   金長
-INSERT INTO attendinfo VALUES(7,4,'〇','2023-12-15','10:00','19:00','13:00','14:00');
-INSERT INTO attendinfo VALUES(8,4,'〇','2023-12-16','11:00','20:00','13:00','14:00');
+INSERT INTO attendinfo VALUES(22,4,'〇','2023-12-29','10:00','18:00','11:00','12:00');
+INSERT INTO attendinfo VALUES(23,4,'〇','2023-12-30','11:00','19:00','12:00','13:00');
+INSERT INTO attendinfo VALUES(24,4,'〇','2023-12-31','12:00','20:00','13:00','14:00');
+INSERT INTO attendinfo VALUES(25,4,'〇','2024-01-01','10:00','18:00','11:00','12:00');
+INSERT INTO attendinfo VALUES(26,4,'〇','2024-01-02','11:00','19:00','12:00','13:00');
+INSERT INTO attendinfo VALUES(27,4,'〇','2024-01-03','12:00','20:00','13:00','14:00');
+INSERT INTO attendinfo VALUES(28,4,'〇','2024-01-04','10:00','18:00','11:00','12:00');
 
 --  店舗Cの勤怠情報
 --   諏訪響
-INSERT INTO attendinfo VALUES(9,5,'〇','2023-12-15','10:00','19:00','13:00','14:00');
-INSERT INTO attendinfo VALUES(10,5,'〇','2023-12-16','11:00','20:00','13:00','14:00');
+INSERT INTO attendinfo VALUES(29,5,'〇','2023-12-29','11:00','19:00','12:00','13:00');
+INSERT INTO attendinfo VALUES(30,5,'〇','2023-12-30','12:00','20:00','13:00','14:00');
+INSERT INTO attendinfo VALUES(31,5,'〇','2023-12-31','10:00','18:00','11:00','12:00');
+INSERT INTO attendinfo VALUES(32,5,'〇','2024-01-01','11:00','19:00','12:00','13:00');
+INSERT INTO attendinfo VALUES(33,5,'〇','2024-01-02','12:00','20:00','13:00','14:00');
+INSERT INTO attendinfo VALUES(34,5,'〇','2024-01-03','10:00','18:00','11:00','12:00');
+INSERT INTO attendinfo VALUES(35,5,'〇','2024-01-04','11:00','19:00','12:00','13:00');
 
 --   水戸駿介
-INSERT INTO attendinfo VALUES(11,6,'〇','2023-12-15','10:00','19:00','12:00','13:00');
-INSERT INTO attendinfo VALUES(12,6,'〇','2023-12-16','11:00','20:00','12:00','13:00');
-
+INSERT INTO attendinfo VALUES(36,6,'〇','2023-12-29','12:00','20:00','13:00','14:00');
+INSERT INTO attendinfo VALUES(37,6,'〇','2023-12-30','12:00','20:00','13:00','14:00');
+INSERT INTO attendinfo VALUES(38,6,'〇','2023-12-31','10:00','18:00','11:00','12:00');
+INSERT INTO attendinfo VALUES(39,6,'〇','2024-01-01','11:00','19:00','12:00','13:00');
+INSERT INTO attendinfo VALUES(40,6,'〇','2024-01-02','12:00','20:00','13:00','14:00');
+INSERT INTO attendinfo VALUES(41,6,'〇','2024-01-03','10:00','18:00','11:00','12:00');
+INSERT INTO attendinfo VALUES(42,6,'〇','2024-01-04','12:00','20:00','13:00','14:00');
 /*
 
 顧客情報テーブル
@@ -286,9 +315,9 @@ addcomment VARCHAR(20)
 
 -- 予約情報テーブルのデータ登録
 -- 顧客1の予約情報
-INSERT INTO reserveinfo VALUES(1,1,1,1,'2023-12-23','10:00', 1, 1, '');
-INSERT INTO reserveinfo VALUES(2,1,2,1,'2023-12-23','11:00', 1, 1, '');
-INSERT INTO reserveinfo VALUES(3,1,3,1,'2023-12-23','12:00', 1, 0, '');
+INSERT INTO reserveinfo VALUES(1,1,1,1,'2023-12-29','10:00', 1, 1, '');
+INSERT INTO reserveinfo VALUES(2,1,2,1,'2023-12-30','11:00', 1, 1, '');
+INSERT INTO reserveinfo VALUES(3,1,3,1,'2023-12-31','12:00', 1, 0,'');
 
 -- 顧客2の予約情報
 INSERT INTO reserveinfo VALUES(4,2,2,1,'2023-12-23','09:00', 0, 0, '');

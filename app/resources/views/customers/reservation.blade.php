@@ -22,7 +22,7 @@
                 <input type="hidden" name="staffid" id="staffid">
                 <input type="hidden" name="staffid" value="{{ $storeinfo->first()}}">
 
-
+                {{$availability}}
                 <table class="table">
                     <thead>
                         <tr>
