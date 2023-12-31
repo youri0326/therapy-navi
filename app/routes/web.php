@@ -83,4 +83,4 @@ Route::post('/customers/reservation/insert', [ReservationController::class,'stor
 Route::get('/admins/attendanceList', [AttendanceController::class,'list']);
 Route::get('/admins/attendanceDetail', [AttendanceController::class,'detail']);
 Route::post('/admins/update', [AttendanceController::class,'update'])->name('admins.update');;
-Route::post('/admins/store/detail', [StoreController::class,'detail'])->name('admins.storeDetail');;
+Route::get('/admins/store/detail', [StoreController::class,'detail'])->name('admins.storeDetail');;
