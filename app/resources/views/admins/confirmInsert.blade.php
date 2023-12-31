@@ -1,5 +1,5 @@
 {{--
-    プログラム名    ：storeInsert.blade.php
+    プログラム名    ：confirmInsert.blade.php
     プログラム説明  ：検索した店舗の一覧表示を行う
     作成日時        ：
     作成者          ：佐藤泰樹
@@ -16,7 +16,7 @@
 		<hr align="center" size="5" color="BLUE" width="950"></hr>
 		<!-- ログインのコンテンツ部分 -->
 		<div id="main" class="container">
-            <!-- storeInsertConfirm.blade.php -->
+            <!-- confirmInsert.blade.php -->
 
             <h2>登録内容確認</h2>
             <p>店舗名: {{ $data['storename'] }}</p>

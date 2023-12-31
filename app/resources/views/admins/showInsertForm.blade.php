@@ -1,5 +1,5 @@
 {{--
-    プログラム名    ：storeInsert.blade.php
+    プログラム名    ：showInsertForm.blade.php
     プログラム説明  ：検索した店舗の一覧表示を行う
     作成日時        ：
     作成者          ：佐藤泰樹
@@ -17,7 +17,7 @@
 		<!-- ログインのコンテンツ部分 -->
 		<div id="main" class="container">
 
-			<!-- storeInsert.blade.php -->
+			<!-- showInsertForm.blade.php -->
 
             <form action="{{ route('store.confirm') }}" method="post">
                 @csrf

@@ -7,12 +7,12 @@ use App\Models\storeinfo;
 // 店舗登録（管理者）を行う
 class StoreInsertController extends Controller
 {
-    public function storeInsert()
+    public function showInsertForm()
     {
         return view('admins/storeInsert');
     }
 
-    public function confirm(Request $request)
+    public function confirmInsert(Request $request)
     {
         // 入力値を取得して確認画面に渡す処理を記述
         $data = $request->validate([
@@ -27,7 +27,7 @@ class StoreInsertController extends Controller
         return view('admins/storeInsertConfirm', compact('data'));
     }
 
-    public function store(Request $request)
+    public function insert(Request $request)
     {
         // 確認画面からのデータを受け取りDBに保存する処理
         $store = Store::create([
