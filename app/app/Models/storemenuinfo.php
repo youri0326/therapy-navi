@@ -25,12 +25,12 @@ class storemenuinfo extends Model
 
     public function storeinfo()
     {
-        return $this->belongsTo('App\Models\storeinfo', '', '');
+        return $this->belongsTo('App\Models\storeinfo', 'storeid', 'storeid');
     }
 
     public function reserveinfo()
     {
-        return $this->HasMany('App\Models\reserveinfo', 'storemenuid', 'storemenuid');
+        return $this->hasMany('App\Models\reserveinfo', 'storemenuid', 'storemenuid');
     }
 
     public function storeMenuById($storeid)
