@@ -17,6 +17,7 @@ use App\Http\Controllers\ReservationController;
 //管理者側のインポート
 use App\Http\Controllers\AttendanceController;
 
+use App\Http\Controllers\StoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,3 +83,4 @@ Route::post('/customers/reservation/insert', [ReservationController::class,'stor
 Route::get('/admins/attendanceList', [AttendanceController::class,'list']);
 Route::get('/admins/attendanceDetail', [AttendanceController::class,'detail']);
 Route::post('/admins/update', [AttendanceController::class,'update'])->name('admins.update');;
+Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->name('admins.storeDetail');;
