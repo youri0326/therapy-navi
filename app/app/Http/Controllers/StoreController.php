@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\storeinfo;
+
 // 店舗登録（管理者）を行う
-class StoreInsertController extends Controller
+class StoreController extends Controller
 {
     public function showInsertForm()
     {
