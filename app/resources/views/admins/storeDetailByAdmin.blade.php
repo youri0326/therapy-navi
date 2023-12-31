@@ -20,9 +20,7 @@
 			<div id="main" class="container">
 				<table class="input-table">
 					<tbody>
-						<tr>
-							<p><a href ="{{asset('/customers/storeMenu')}}?storeid={{$store->storeid}}">メニュー</a></p>
-						</tr>
+
 						<tr>
 							<th>店舗ID</th><td>{{$store->storeid}}<td>
 						</tr>
@@ -37,9 +35,9 @@
 							<td>
 								@foreach ($store->stationinfo as $station)
 								@if ($station === end($store->stationinfo))
-								{{$station}}
+								{{$station->stationname}}
 								@else
-								{{$station}},
+								{{$station->stationname}},
 								@endif
 								@endforeach
 							</td>
@@ -57,7 +55,7 @@
 							<th>店舗写真</th>
 							<td>
 								@foreach ($store->storephotoinfo as $photo)
-								{{$photo}},
+								{{$photo->photopath}},
 								@endforeach
 							</td>
 						</tr>
