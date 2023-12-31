@@ -58,8 +58,22 @@ Route::get('/customers/storeSearch', [StoreSearchController::class,'index']);
 Route::get('/customers/storeDetail', [StoreDetailController::class,'index']);
 //店舗メニュー一覧機能
 Route::get('/customers/storeMenu', [StoreMenuController::class,'index']);
-//予約情報機能
+
+/*
+顧客 予約関連 機能
+*/
+//予約一覧表示機能
 Route::get('/customers/reservationList', [ReservationController::class,'reservationList']);
+
+//予約機能：予約フォーム表示
+Route::get('/customers/reservation/showForm', [ReservationController::class,'showReservationForm']);
+
+//予約機能：予約情報確認
+Route::post('/customers/reservation/confrim', [ReservationController::class,'confirmReservation']);
+
+//予約機能：予約登録完了
+Route::post('/customers/reservation/insert', [ReservationController::class,'storeReservation']);
+
 /*
 管理者機能
 */
