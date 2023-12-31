@@ -36,6 +36,8 @@
                 <input type="hidden" name="reservation_datetime" value="{{ $reservation_datetime}}">
                 <input type="hidden" name="storeid" value="{{ $storeinfo->storeid}}">
                 <input type="hidden" name="storemenuid" value="{{ $storemenuinfo->storemenuid}}">
+                <p>店舗へのコメント・要望</p>
+                <input type="textarea" name="addcomment">
 
                 <button type="submit" class="btn btn-success">確定</button>
             </form>

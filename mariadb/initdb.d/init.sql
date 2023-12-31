@@ -308,8 +308,8 @@ storemenuid INTEGER,FOREIGN KEY (storemenuid) REFERENCES storemenuinfo (storemen
 staffid INTEGER,FOREIGN KEY (staffid) REFERENCES staffinfo (staffid),
 reservedate date,
 reservetime time,
-payment INTEGER,
-status INTEGER,
+payment INTEGER DEFAULT 0,
+status INTEGER DEFAULT 0,
 addcomment VARCHAR(20)
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 

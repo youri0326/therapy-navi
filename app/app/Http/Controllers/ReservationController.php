@@ -118,21 +118,46 @@ class ReservationController extends Controller
         // $storeid = セッションget的なものを記載するが、ログイン処理が終わってからにする
         //一旦仮でstoreid=3でテストする
         $customerid = 3;
-
-        $storeid = 3;
-        // 予約登録のロジック
         $reservationData = $request->all();
-
-        if (empty($reservationData['staffid'])) {
-            $storeinfo = storeinfo::findOrFail($storeid);
+        $storemenuid = $request->input('storemenuid');
+        $storeid = $request->input('storeid');
+        $addcomment =$request->input('addcomment');
+        $reservation_datetime = $request->input('reservation_datetime');
+        $reservation_datetime = Carbon::parse($reservation_datetime);
+        $reservedate = $reservation_datetime->format('Y-m-d');
+        $reservetime = $reservation_datetime->format('H:i');
+        $storeinfo = storeinfo::firstWhere('storeid',$storeid);
+        $storemenuinfo = storemenuinfo::firstWhere('storemenuid',$storemenuid);
+        $staffid = null;
+        if ($request->has('staffid')) {
+            // 特定のスタッフが選択されている場合
+            $staffid = $request->input('staffid');
+        }else{
+            // $storeinfo = storeinfo::findOrFail($storeid);
             $staff = $storeinfo->staffinfo->random();
-            $reservationData['staffid'] = $staff->staffid;
+            $staffid = $staff->staffid;
         }
+        $reservationDate = array(
+            'customerid'=> $customerid, 
+            'storemenuid'=> $storemenuid,
+            'staffid'=> $staffid,
+            'reservedate'=> $reservedate, 
+            'reservetime'=> $reservetime,
+            // 'payment'=>'なし',
+            // 'status'=>'りんご', 
+            'addcomment'=> $addcomment
+        );
         
         $reservation = new reserveinfo($reservationData);
-        $reservation->save();
 
-        return redirect()->route('reservation.success');
+        //予約登録の成功・失敗の判定内容を格納する変数
+        //成功の場合：1、失敗の場合：0
+        $saveStatus = 0;
+        if($reservation->save()){
+            $saveStatus = 1;
+        }
+
+        return view('customers.reservationConfirmation', compact('storeinfo', 'reservation_datetime','storemenuinfo','staff','addcomment','saveStatus'));
     }
 
     //$storeinfo 各スタッフの情報が必要 または選択されたスタッフの情報
