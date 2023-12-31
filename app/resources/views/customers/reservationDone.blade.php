@@ -22,6 +22,7 @@
             <p>予約日時: {{ $reservation_datetime}}</p>
             <p>予約サービス名: {{ $storemenuinfo->servicename }}</p>
             <p>サービス詳細: {{ $storemenuinfo->description }}</p>
+            <p>担当スタッフ: {{ $staff->staffname }}</p>
             <p>金額: {{ $storemenuinfo->amount }}円</p>
             <p>サービス時間: {{ $storemenuinfo->servicetime }}分</p>
             <p>店舗名: {{ $storeinfo->storename  }}</p>

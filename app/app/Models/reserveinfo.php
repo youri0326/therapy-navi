@@ -28,6 +28,9 @@ class reserveinfo extends Model
     // データの作成日時、更新日時がデフォルトで自動更新されるので、オフ
     public $timestamps = false;
 
+    protected $fillable = [
+        'customerid', 'storemenuid', 'staffid', 'reservedate', 'reservetime', 'addcomment'
+    ];
 
     public function customerinfo() // 親テーブル(customerinfo)
     {

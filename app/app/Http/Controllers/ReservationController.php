@@ -118,7 +118,7 @@ class ReservationController extends Controller
         // $storeid = セッションget的なものを記載するが、ログイン処理が終わってからにする
         //一旦仮でstoreid=3でテストする
         $customerid = 3;
-        $reservationData = $request->all();
+        // $reservationData = $request->all();
         $storemenuid = $request->input('storemenuid');
         $storeid = $request->input('storeid');
         $addcomment =$request->input('addcomment');
@@ -129,15 +129,17 @@ class ReservationController extends Controller
         $storeinfo = storeinfo::firstWhere('storeid',$storeid);
         $storemenuinfo = storemenuinfo::firstWhere('storemenuid',$storemenuid);
         $staffid = null;
+        $staff = null;
         if ($request->has('staffid')) {
             // 特定のスタッフが選択されている場合
             $staffid = $request->input('staffid');
+            $staff = staffinfo::firstWhere('staffid', $staffid);
         }else{
             // $storeinfo = storeinfo::findOrFail($storeid);
             $staff = $storeinfo->staffinfo->random();
             $staffid = $staff->staffid;
         }
-        $reservationDate = array(
+        $reservationData = array(
             'customerid'=> $customerid, 
             'storemenuid'=> $storemenuid,
             'staffid'=> $staffid,
@@ -157,7 +159,7 @@ class ReservationController extends Controller
             $saveStatus = 1;
         }
 
-        return view('customers.reservationConfirmation', compact('storeinfo', 'reservation_datetime','storemenuinfo','staff','addcomment','saveStatus'));
+        return view('customers.reservationDone', compact('storeinfo', 'reservation_datetime','storemenuinfo','staff','addcomment','saveStatus'));
     }
 
     //$storeinfo 各スタッフの情報が必要 または選択されたスタッフの情報
