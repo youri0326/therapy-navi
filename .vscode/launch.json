@@ -13,7 +13,20 @@
             "log": true,
             "pathMappings": {
                 "/var/www/html/laravel-project/": "${workspaceFolder}"
-            }
+            },
+            "hostname": "0.0.0.0",
+            "stopOnEntry": true,
+            "cwd": "${workspaceFolder}",
+            "env": {
+              "APP_ENV": "local",
+              "APP_DEBUG": "true",
+            },
+            "xdebugSettings": {
+              "port": 9001,
+              "ideKey": "PHPStorm",
+              "remoteHost": "host.docker.internal",
+              "clientHost": "host.docker.internal",
+            },
         },
         {
             "name": "Launch currently open script",

@@ -25,37 +25,19 @@ RUN apt-get update && apt-get install -y \
     # zipをインストールするため追加
     libzip-dev \ 
     # mbstring削除し、libonig-devを追加
-    && docker-php-ext-install pdo_mysql mysqli mbstring zip 
+    && docker-php-ext-install pdo_mysql mysqli zip 
 
-# install stable node and latest npm
-# RUN curl -sL https://deb.nodesource.com/setup_14.x | bash
-# RUN apt-get install -y nodejs
-# RUN apt-get update && apt-get install -y npm
-# RUN curl -sL https://deb.nodesource.com/setup_15.x | bash
-# # RUN apt-get update && apt-get install -y nodejs npm
-# RUN apt-get install -y nodejs
-# RUN apt-get update && apt-get install -y npm
-
-# RUN curl -sL https://deb.nodesource.com/setup_10.x | bash && apt-get install -y nodejs npm
-
-# # set PATH environment variable
-# ENV PATH=$PATH:/usr/bin/nodejs/bin
-
-# # set npm executable permission
-# RUN chmod +x /usr/bin/nodejs/bin/npm
 # Node.jsとnpmをインストール
-# RUN apt-get install -y gnupg
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install -y nodejs
-# RUN apt-get update && apt-get install -y npm
 
 # # 確認
 RUN node --version
 RUN npm --version
 
 # install bootstrap
-# RUN npm install bootstrap
-RUN cd /var/www/html/ && npm install bootstrap@5.3.2
+# RUN cd /var/www/html/ && npm install bootstrap@5.3.2
+RUN cd /var/www/html/ && npm install bootstrap@5.1.3
 
 # install xdebug
 RUN pecl install xdebug-3.1.6 && docker-php-ext-enable xdebug
