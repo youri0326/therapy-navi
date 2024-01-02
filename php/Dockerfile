@@ -5,8 +5,9 @@ COPY ./config/php.ini /usr/local/etc/php/php.ini
 RUN cd /usr/bin && curl -s http://getcomposer.org/installer | php && ln -s /usr/bin/composer.phar /usr/bin/composer
 
 # install packages
-RUN apt-get update \
-  && apt-get install -y \
+# RUN apt-get update \
+#   && apt-get install -y \
+RUN apt-get update && apt-get install -y \
     gcc \
     make \
     libpng-dev \
@@ -27,12 +28,44 @@ RUN apt-get update \
     && docker-php-ext-install pdo_mysql mysqli mbstring zip 
 
 # install stable node and latest npm
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+# RUN curl -sL https://deb.nodesource.com/setup_14.x | bash
+# RUN apt-get install -y nodejs
+# RUN apt-get update && apt-get install -y npm
+# RUN curl -sL https://deb.nodesource.com/setup_15.x | bash
+# # RUN apt-get update && apt-get install -y nodejs npm
+# RUN apt-get install -y nodejs
+# RUN apt-get update && apt-get install -y npm
+
+# RUN curl -sL https://deb.nodesource.com/setup_10.x | bash && apt-get install -y nodejs npm
+
+# # set PATH environment variable
+# ENV PATH=$PATH:/usr/bin/nodejs/bin
+
+# # set npm executable permission
+# RUN chmod +x /usr/bin/nodejs/bin/npm
+# Node.jsとnpmをインストール
+# RUN apt-get install -y gnupg
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install -y nodejs
+# RUN apt-get update && apt-get install -y npm
+
+# # 確認
+RUN node --version
+RUN npm --version
+
+# install bootstrap
+# RUN npm install bootstrap
+RUN cd /var/www/html/ && npm install bootstrap@5.3.2
 
 # install xdebug
 RUN pecl install xdebug-3.1.6 && docker-php-ext-enable xdebug
 
-WORKDIR /var/www/html/
-ADD . /var/www/html
+# # set WORKDIR
+# WORKDIR /var/www/html/
+
+# # install local project
+# ADD ./laravel-project /var/www/html/
+
+WORKDIR /var/www/html/laravel-project
+ADD . /var/www/html/laravel-project
 RUN chown -R www-data:www-data /var/www/html
