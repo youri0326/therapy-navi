@@ -84,5 +84,5 @@ Route::get('/admins/attendanceDetail', [AttendanceController::class,'detail']);
 Route::post('/admins/update', [AttendanceController::class,'update'])->name('admins.update');
 
 //店舗登録機能
-Route::get('/admins/store/insertForm', [StoreInsertController::class, 'showInsertForm']);
+Route::get('/admins/store/insertForm', [StoreController::class, 'showInsertForm']);
 Route::post('/admins/store/confirm', 'StoreController@confirm')->name('store.confirm');

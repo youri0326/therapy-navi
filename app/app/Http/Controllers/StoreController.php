@@ -10,7 +10,7 @@ class StoreController extends Controller
 {
     public function showInsertForm()
     {
-        return view('admins/storeInsert');
+        return view('admins/showInsertForm');
     }
 
     public function confirmInsert(Request $request)
@@ -25,7 +25,7 @@ class StoreController extends Controller
             // 他のフォームフィールドもここに追加
         ]);
 
-        return view('admins/storeInsertConfirm', compact('data'));
+        return view('admins/comfirmInsert', compact('data'));
     }
 
     public function insert(Request $request)

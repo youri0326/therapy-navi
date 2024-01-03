@@ -24,11 +24,11 @@
                 <table>
                     <tbody>
                         <tr>
-                            <th>店舗名*</th>
+                            <th>店舗名</th>
                             <td><input type="text" name="storename" placeholder="店舗名"></td>
                         </tr>
                         <tr>
-                            <th>住所*</th>
+                            <th>住所</th>
                             <td><input type="text" name="address" placeholder="住所"></td>
                         </tr>
                         <tr>
