@@ -9,24 +9,20 @@
             "name": "Listen for Xdebug",
             "type": "php",
             "request": "launch",
-            "port": 9001,
             "log": true,
             "pathMappings": {
                 "/var/www/html/laravel-project/": "${workspaceFolder}"
             },
-            "hostname": "0.0.0.0",
+            "hostname": "host.docker.internal",
+            "args": [],
             "stopOnEntry": true,
             "cwd": "${workspaceFolder}",
-            "env": {
-              "APP_ENV": "local",
-              "APP_DEBUG": "true",
-            },
             "xdebugSettings": {
               "port": 9001,
-              "ideKey": "PHPStorm",
+              "ideKey": "PHP",
               "remoteHost": "host.docker.internal",
               "clientHost": "host.docker.internal",
-            },
+            }
         },
         {
             "name": "Launch currently open script",
