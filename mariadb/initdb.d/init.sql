@@ -22,7 +22,7 @@ INSERT INTO bookinfo VALUES('0005','database',1005);
 CREATE TABLE accountinfo ( 
     accountid INTEGER AUTO_INCREMENT PRIMARY KEY,
     loginid VARCHAR(20) NOT NULL UNIQUE,
-    password VARCHAR(20) NOT NULL UNIQUE,
+    password VARCHAR(20) NOT NULL,
     email VARCHAR(100),
     phone VARCHAR(100),
     authority INTEGER
