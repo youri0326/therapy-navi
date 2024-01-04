@@ -14,7 +14,7 @@
 	<body>
 		<h1 align="center" style="margin-top: 21px;">予約一覧画面【管理者】</h1>
 		<hr align="center" size="5" color="BLUE" width="950"></hr>
-        <a>{{$customerList->name}}さんの予約状況</a>
+        <a>予約状況</a>
         <!-- 予約一覧 -->
         <div id="main" class="container">
             @foreach($reservationList as $reserve)
