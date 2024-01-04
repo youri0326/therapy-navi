@@ -82,5 +82,8 @@ Route::post('/customers/reservation/insert', [ReservationController::class,'stor
 //勤怠情報一覧表示
 Route::get('/admins/attendanceList', [AttendanceController::class,'list']);
 Route::get('/admins/attendanceDetail', [AttendanceController::class,'detail']);
-Route::post('/admins/update', [AttendanceController::class,'update'])->name('admins.update');;
-Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->name('admins.storeDetail');;
+Route::post('/admins/update', [AttendanceController::class,'update'])->name('admins.update');
+Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->name('admins.storeDetail');
+
+//予約一覧表示機能
+Route::get('/admins/reservationList', [ReservationController::class,'reservationList']);
