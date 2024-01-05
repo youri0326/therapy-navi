@@ -358,19 +358,19 @@ class ReservationController extends Controller
     }
 
     public function reservationListAdmin(Request $request) {
-        // 顧客ごとの予約情報一覧の表示
-        // customeridを取得
-        //$customerid = $request->query('customerid');
-        // $customerid = 1; デバッグ用
-        // 上記のcustomeridの時の予約情報をreserveinfoのテーブルから該当行を持ってくる
-        // モデル名：where('列名', '=', 検索値)->get();
-        $reservationList = reserveinfo::all();
+        // 店舗IDを取得
+        $storeid = 2;
+
+        // 指定した店舗IDに対応する予約情報を取得
+        $reservationList = reserveinfo::whereHas('storemenuinfo.storeinfo', function ($query) use ($storeid) {
+            $query->where('storeid', $storeid);
+        })->get();
+        // 対象の店舗を取得
+        $storeList = storeinfo::where('storeid', '=', $storeid)->get();
+        // 対象の店舗のメニューリストを取得
+        $storemenuList = storemenuinfo::where('storeid', '=', $storeid)->get();
         // 顧客のレコードを取得
         // $customerList = customerinfo::find($customerid);
-        // 店舗メニューリストを取得
-        $storemenuList = storemenuinfo::all();
-        // 店舗リストを取得
-        $storeList = storeinfo::all();
 
         return view('admins/reservationList',[
             'reservationList' => $reservationList,

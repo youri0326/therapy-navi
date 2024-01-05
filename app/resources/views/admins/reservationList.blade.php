@@ -33,27 +33,26 @@
                     </thead>
                     <tbody>
                         @foreach($reservationList as $reserve)
-                        <!-- 予約店舗情報を表示 -->
-                        @php
-                            // 予約に関連する店舗情報を取得
-                            $store = $storeList->where('storeid', $reserve->storemenuinfo->storeid)->first();
-                            // 予約に関連するメニュー情報を取得
-                            $menu = $storemenuList->where('storemenuid', $reserve->storemenuid)->first();
-                        @endphp
                         <tr>
                             <td>
                                 #{{ $loop->iteration }}
                             </td>
                             <td>
-                                @if($store) <!-- $storeが存在する場合 -->
-                                    {{ $store->storename }}
-                                @else <!-- $storeが存在しない場合 -->
-                                    店舗が存在しません
-                                @endif
+                                @foreach($storeList as $store)
+                                    @if($store->storeid == $reserve->storemenuinfo->storeid)
+                                        {{ $store->storename }}
+                                    @endif
+                                @endforeach
                             </td>
                             <td>{{$reserve->reservedate}}</td>
                             <td>{{$reserve->reservetime}}</td>
-                            <td>{{$menu->servicename}}</td>
+                            <td>
+                                @foreach($storemenuList as $menu)
+                                    @if($menu->storemenuid == $reserve->storemenuid)
+                                        {{$menu->servicename}}
+                                    @endif
+                                @endforeach
+                            </td>
                             <!-- paymentに基づいて表示を切り替え -->
                             <td>
                                 @if($reserve->payment == 0)
