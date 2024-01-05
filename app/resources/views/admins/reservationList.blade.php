@@ -14,18 +14,25 @@
 	<body>
 		<h1 align="center" style="margin-top: 21px;">予約一覧画面【管理者】</h1>
 		<hr align="center" size="5" color="BLUE" width="950"></hr>
-        <a>予約状況</a>
+        <a>予約一覧</a>
         <!-- 予約一覧 -->
         <div id="main" class="container">
-            @foreach($reservationList as $reserve)
             <hr></hr>
-                <table class="input-table">
+                <table class="table">
                     <thead>
                         <tr>
-                            <th>予約番号</th><td>#{{ $loop->iteration }}</td>
+                            <th>予約番号</th>
+                            <th>予約店舗</th>
+                            <th>予約日</th>
+                            <th>予約時間</th>
+                            <th>支払い状況</th>
+                            <th>メニュー</th>
+                            <th>支払方法</th>
+                            <th>追記事項</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($reservationList as $reserve)
                         <!-- 予約店舗情報を表示 -->
                         @php
                             // 予約に関連する店舗情報を取得
@@ -34,7 +41,9 @@
                             $menu = $storemenuList->where('storemenuid', $reserve->storemenuid)->first();
                         @endphp
                         <tr>
-                            <th>予約店舗</th>
+                            <td>
+                                #{{ $loop->iteration }}
+                            </td>
                             <td>
                                 @if($store) <!-- $storeが存在する場合 -->
                                     {{ $store->storename }}
@@ -42,18 +51,9 @@
                                     店舗が存在しません
                                 @endif
                             </td>
-                        </tr>
-                        <tr>
-                            <th>予約日</th><td>{{$reserve->reservedate}}<td>
-                        </tr>
-                        <tr>
-                            <th>予約時間</th><td>{{$reserve->reservetime}}<td>
-                        </tr>
-                        <tr>
-                            <th>メニュー</th><td>{{$menu->servicename}}</td>
-                        </tr>
-                        <tr>
-                            <th>支払方法</th>
+                            <td>{{$reserve->reservedate}}</td>
+                            <td>{{$reserve->reservetime}}</td>
+                            <td>{{$menu->servicename}}</td>
                             <!-- paymentに基づいて表示を切り替え -->
                             <td>
                                 @if($reserve->payment == 0)
@@ -65,10 +65,7 @@
                                 @else
                                     その他
                                 @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>支払い状況</th>
+                            </td>                         
                             <td>
                                 @if($reserve->status == 0)
                                     店舗でお支払い
@@ -78,14 +75,11 @@
 
                                 @endif
                             </td>
+                            <td>{{$reserve->addcomment}}</td>
                         </tr>
-                        <tr>
-                            <th>追記事項</th><td>{{$reserve->addcomment}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            
-            @endforeach
+                    @endforeach
+                </tbody>
+            </table>
         </div>
 	</body>
 </html>

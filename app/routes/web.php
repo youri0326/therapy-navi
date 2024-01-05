@@ -86,4 +86,4 @@ Route::post('/admins/update', [AttendanceController::class,'update'])->name('adm
 Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->name('admins.storeDetail');
 
 //予約一覧表示機能
-Route::get('/admins/reservationList', [ReservationController::class,'reservationList']);
+Route::get('/admins/reservationList', [ReservationController::class,'reservationListAdmin']);
