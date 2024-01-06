@@ -27,6 +27,9 @@
 					</ul>
 				</div>
 			@endif
+			@if (session('login_error'))
+				<p>{{session('login_error')}}</p>
+			@endif
 			<div id="main" class="container">
 				<form action="{{asset('/common/login')}}" method="POST" class="form-signin">
 						{{ csrf_field() }}

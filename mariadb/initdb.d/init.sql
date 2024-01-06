@@ -1,8 +1,8 @@
 -- USE therapyNavi-db;
 
 CREATE TABLE bookinfo (
-    isbn VARCHAR(20) PRIMARY KEY,
-    title VARCHAR(100),
+    isbn VARCHAR(255) PRIMARY KEY,
+    title VARCHAR(255),
     price INTEGER
 )ENGINE=InnoDB,DEFAULT CHARSET=utf8;
 
@@ -19,25 +19,30 @@ INSERT INTO bookinfo VALUES('0005','database',1005);
 */
 
 -- アカウントテーブル作成
-CREATE TABLE accountinfo ( 
-    accountid INTEGER AUTO_INCREMENT PRIMARY KEY,
-    loginid VARCHAR(20) NOT NULL UNIQUE,
-    password VARCHAR(20) NOT NULL,
-    email VARCHAR(100),
-    phone VARCHAR(100),
-    authority INTEGER
+CREATE TABLE userinfo (
+    userid INTEGER AUTO_INCREMENT PRIMARY KEY,
+    loginid VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255),
+    phone VARCHAR(255),
+    authority INTEGER,
+    login_date DATE,
+    locked_flg TINYINT default 0,
+    error_count INTEGER default 0
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 
 -- アカウントテーブルのデータ登録
 --  顧客データ登録
-INSERT INTO accountinfo (accountid,loginid,password,email,phone,authority) VALUES(1,'0001','test','youriyoshiike@gmail.com','000-0000-0000',0);
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (1,'0001','$2a$08$G7ioaWi.zkNBAOuutUp9qepMjY3bM2K/H7myLmNMilEBO1k/OuB1O','youriyoshiike@gmail.com','000-0000-0000',0,CURDATE()); --パスワード：test
 
 --  店舗データ登録
-INSERT INTO accountinfo (accountid,loginid,password,email,phone,authority) VALUES(2,'0002','test2','youriyoshiike@gmail.com','000-0000-0000',1);
-INSERT INTO accountinfo (accountid,loginid,password,email,phone,authority) VALUES(3,'0003','test3','youriyoshiike@gmail.com','000-0000-0000',1);
-INSERT INTO accountinfo (accountid,loginid,password,email,phone,authority) VALUES(4,'0004','test4','youriyoshiike@gmail.com','000-0000-0000',1);
-INSERT INTO accountinfo (accountid,loginid,password,email,phone,authority) VALUES(5,'0005','test5','youriyoshiike@gmail.com','000-0000-0000',1);
-INSERT INTO accountinfo (accountid,loginid,password,email,phone,authority) VALUES(6,'0006','test6','youriyoshiike@gmail.com','000-0000-0000',1);
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (2,'0002','$2a$08$cTzRuqvqr9Fa4KA.31vRRe7rDLeBhR4BhzchqJ1jUw.noVI9WvQ4S','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); --パスワード：test2
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (3,'0003','$2a$08$GDTIi8LN.QraeIHBJ3FVdOxGvuL5zQ4ADfp/r0wBKUHwSO5zrJgSi','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); --パスワード：test3
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (4,'0004','$2a$08$w4uFGCDD3pbNIf2sDlCIOuHqgxJ4i/Xlp/EYE0wAyVcXR7LqyAoNm','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); --パスワード：test4
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (5,'0005','$2a$08$Xo4HD.rcupoR1Mn13OVwMO2J7UtJYzNIHbDTsi0SdPBKbMHkT0TxK','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); --パスワード：test5
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (6,'0006','$2a$08$YbPn5xgktUyqsKaawdBZh.onWW6QWPgq0XcjMMLWdvTo5YkoXHb72','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); --パスワード：test6
+
+
 
 /*  
 
@@ -47,12 +52,12 @@ INSERT INTO accountinfo (accountid,loginid,password,email,phone,authority) VALUE
 
 CREATE TABLE storeinfo ( 
     storeid INTEGER AUTO_INCREMENT PRIMARY KEY,
-    accountid INTEGER,FOREIGN KEY (accountid) REFERENCES accountinfo (accountid),
-    storename VARCHAR(20),
-    address VARCHAR(100),
-    budget VARCHAR(20),
-    comment VARCHAR(100),
-    payment VARCHAR(20)
+    userid INTEGER,FOREIGN KEY (userid) REFERENCES userinfo (userid),
+    storename VARCHAR(255),
+    address VARCHAR(255),
+    budget VARCHAR(255),
+    comment VARCHAR(255),
+    payment VARCHAR(255)
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 
 -- 店舗テーブルのデータ登録
@@ -71,8 +76,8 @@ INSERT INTO storeinfo VALUES(4,5,'マッサージD','東京都 目白',8000,'','
 CREATE TABLE storemenuinfo ( 
     storemenuid INTEGER AUTO_INCREMENT PRIMARY KEY,
     storeid INTEGER,FOREIGN KEY (storeid) REFERENCES storeinfo (storeid),
-    servicename VARCHAR(20),
-    description VARCHAR(100),
+    servicename VARCHAR(255),
+    description VARCHAR(255),
     amount INTEGER,
     servicetime INTEGER
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
@@ -144,9 +149,9 @@ INSERT INTO storephotoinfo VALUES(12,4,'storage/img/seitaiD_03.jpg');
 CREATE TABLE stationinfo ( 
     stationid INTEGER AUTO_INCREMENT PRIMARY KEY,
     storeid INTEGER,FOREIGN KEY (storeid) REFERENCES storeinfo (storeid),
-    stationname VARCHAR(20),
-    stationline VARCHAR(20),
-    distance VARCHAR(20)
+    stationname VARCHAR(255),
+    stationline VARCHAR(255),
+    distance VARCHAR(255)
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 
 
@@ -175,12 +180,12 @@ INSERT INTO stationinfo VALUES(7,4,'目白駅','JR山手線','徒歩10分');
 CREATE TABLE staffinfo (
 staffid INTEGER AUTO_INCREMENT PRIMARY KEY,
 storeid INTEGER,FOREIGN KEY (storeid) REFERENCES storeinfo (storeid),
-staffname VARCHAR(20),
-stafffurigana VARCHAR(20),
+staffname VARCHAR(255),
+stafffurigana VARCHAR(255),
 gender INTEGER,
-treathistory VARCHAR(20),
+treathistory VARCHAR(255),
 staffbirthday date,
-photo VARCHAR(100)
+photo VARCHAR(255)
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 
 -- 従業員情報テーブルのデータ登録
@@ -208,7 +213,7 @@ INSERT INTO staffinfo VALUES(6,3,'水戸駿介','みとしゅんすけ',1,201603
 CREATE TABLE attendinfo ( 
     attendid INTEGER AUTO_INCREMENT PRIMARY KEY,
     staffid INTEGER,FOREIGN KEY (staffid) REFERENCES staffinfo (staffid),
-    attendance_status VARCHAR(20),
+    attendance_status VARCHAR(255),
     workingdate DATE,
     starttime TIME,
     endtime TIME,
@@ -281,11 +286,11 @@ INSERT INTO attendinfo VALUES(42,6,'〇','2024-01-04','12:00','20:00','13:00','1
 
 CREATE TABLE customerinfo ( 
 customerid INTEGER AUTO_INCREMENT PRIMARY KEY,
-accountid INTEGER,FOREIGN KEY (accountid) REFERENCES accountinfo (accountid),
-name VARCHAR(20),
-furigana VARCHAR(20),
+userid INTEGER,FOREIGN KEY (userid) REFERENCES userinfo (userid),
+name VARCHAR(255),
+furigana VARCHAR(255),
 birthday date,
-address VARCHAR(20),
+address VARCHAR(255),
 point INTEGER
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 
@@ -310,7 +315,7 @@ reservedate date,
 reservetime time,
 payment INTEGER DEFAULT 0,
 status INTEGER DEFAULT 0,
-addcomment VARCHAR(20)
+addcomment VARCHAR(255)
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 
 -- 予約情報テーブルのデータ登録

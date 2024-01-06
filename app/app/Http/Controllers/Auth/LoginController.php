@@ -1,6 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
+// use Illuminate\Http\Controller;
+use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 use App\Models\accountinfo;
 use App\Http\Requests\LoginFormRequest;
@@ -10,12 +13,21 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
+    public function logintest() {
+        
+        // 顧客ログイン画面へ書籍情報と一緒に遷移
+        return view('common/commonLoginTest');
+    }
     public function customerLogin() {
         
         // 顧客ログイン画面へ書籍情報と一緒に遷移
         return view('customers/customerLogin');
     }
-
     public function adminLogin() {
         
         // 管理者ログイン画面へ書籍情報と一緒に遷移
@@ -42,6 +54,7 @@ class LoginController extends Controller
         $redirectPath = "";
         if($formDatas["authority"]==="0"){
             $redirectPath = 'home';
+            // $redirectPath = 'logintest';
         }else{
             $redirectPath = 'admins.storeDetail';
         }

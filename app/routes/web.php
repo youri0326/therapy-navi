@@ -1,8 +1,9 @@
 <?php
+namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Auth\LoginController;
 
 //顧客側のインポート
 use App\Http\Controllers\CustomerHomeController;
@@ -30,27 +31,27 @@ use App\Http\Controllers\StoreController;
 |
 */
 
-//　トップページ
-Route::get('/', function () {
-    return view('menu');
-});
-
 // 一覧表示
 Route::get('/list', [ListController::class,'index']);
 
 //login機能
 // Route::resource('common/login', 'common/LoginController@performLogin');
 
-Route::get('/common/login', [LoginController::class,'performLogin']);
-Route::post('/common/login', [LoginController::class,'performLogin']);
-Route::get('/customers/login', [LoginController::class,'customerLogin']);
-Route::get('/admins/login', [LoginController::class,'adminLogin']);
+Route::group(['middleware' => ['guest']], function() {
+    Route::post('/common/login', [LoginController::class,'performLogin']);
+    Route::get('/customers/login', [LoginController::class,'customerLogin'])->name('customer.login');
+    Route::get('/admins/login', [LoginController::class,'adminLogin'])->name('admin.login');
+});
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/common/logintest', [LoginController::class,'logintest'])->name('logintest');
+    Route::get('/', [CustomerHomeController::class,'index'])->name('home');
+});
 
 /*
 顧客機能系
 */
 // ホーム画面
-Route::get('/', [CustomerHomeController::class,'index']);
+Route::get('/', [CustomerHomeController::class,'index'])->name('home');
 //店舗スタッフ一覧
 Route::get('/customers/storeStaffList', [StoreStaffListController::class,'index']);
 //検索機能
@@ -82,5 +83,7 @@ Route::post('/customers/reservation/insert', [ReservationController::class,'stor
 //勤怠情報一覧表示
 Route::get('/admins/attendanceList', [AttendanceController::class,'list']);
 Route::get('/admins/attendanceDetail', [AttendanceController::class,'detail']);
-Route::post('/admins/update', [AttendanceController::class,'update'])->name('admins.update');;
-Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->name('admins.storeDetail');;
+Route::post('/admins/update', [AttendanceController::class,'update'])->name('admins.update');
+
+//店舗系
+Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->name('admins.storeDetail');

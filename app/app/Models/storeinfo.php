@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use App\Models\accountinfo;
+use App\Models\userinfo;
 use App\Models\stationinfo;
 use App\Models\storemenuinfo;
 use App\Models\storephotoinfo;
@@ -21,15 +21,18 @@ class storeinfo extends Model
     // プライマリキーを指定
     protected $primaryKey = 'storeid';
     
+    protected $fillable = [
+        'storename', 'address', 'budget', 'comment', 'payment', 
+    ];
     // プライマリーキーがオートインクリメントのため 設定をオン
     public $incrementing = true;
     
     // データの作成日時、更新日時がデフォルトで自動更新されるので、オフ
     public $timestamps = false;
 
-    public function accountinfo()
+    public function userinfo()
     {
-        return $this->belongsTo('App\Models\accountinfo');
+        return $this->belongsTo('App\Models\userinfo');
     }
 
     public function storephotoinfo()

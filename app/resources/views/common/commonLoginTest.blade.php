@@ -15,8 +15,12 @@
 		<hr align="center" size="5" color="BLUE" width="950"></hr>
 			<!-- ログインのコンテンツ部分 -->
 			<div id="main" class="container">
-                <p>{{$accountid}}</p>
-                <p>{{$password }}</p>
+				@if (session('login_success'))
+				<p>{{session('login_success')}}</p>
+				@endif
+                <p>{{Auth::user()->loginid}}</p>
+                <p>{{Auth::user()->password}}</p>
+                <p>{{Auth::user()->authority}}</p>
 			</div>
 	</body>
 </html>
