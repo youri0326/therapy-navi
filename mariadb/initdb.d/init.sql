@@ -33,14 +33,14 @@ CREATE TABLE userinfo (
 
 -- アカウントテーブルのデータ登録
 --  顧客データ登録
-INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (1,'0001','$2a$08$G7ioaWi.zkNBAOuutUp9qepMjY3bM2K/H7myLmNMilEBO1k/OuB1O','youriyoshiike@gmail.com','000-0000-0000',0,CURDATE()); --パスワード：test
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (1,'0001','$2a$08$G7ioaWi.zkNBAOuutUp9qepMjY3bM2K/H7myLmNMilEBO1k/OuB1O','youriyoshiike@gmail.com','000-0000-0000',0,CURDATE()); /*パスワード：test*/
 
 --  店舗データ登録
-INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (2,'0002','$2a$08$cTzRuqvqr9Fa4KA.31vRRe7rDLeBhR4BhzchqJ1jUw.noVI9WvQ4S','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); --パスワード：test2
-INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (3,'0003','$2a$08$GDTIi8LN.QraeIHBJ3FVdOxGvuL5zQ4ADfp/r0wBKUHwSO5zrJgSi','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); --パスワード：test3
-INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (4,'0004','$2a$08$w4uFGCDD3pbNIf2sDlCIOuHqgxJ4i/Xlp/EYE0wAyVcXR7LqyAoNm','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); --パスワード：test4
-INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (5,'0005','$2a$08$Xo4HD.rcupoR1Mn13OVwMO2J7UtJYzNIHbDTsi0SdPBKbMHkT0TxK','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); --パスワード：test5
-INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (6,'0006','$2a$08$YbPn5xgktUyqsKaawdBZh.onWW6QWPgq0XcjMMLWdvTo5YkoXHb72','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); --パスワード：test6
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (2,'0002','$2a$08$cTzRuqvqr9Fa4KA.31vRRe7rDLeBhR4BhzchqJ1jUw.noVI9WvQ4S','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test2*/
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (3,'0003','$2a$08$GDTIi8LN.QraeIHBJ3FVdOxGvuL5zQ4ADfp/r0wBKUHwSO5zrJgSi','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test3*/
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (4,'0004','$2a$08$w4uFGCDD3pbNIf2sDlCIOuHqgxJ4i/Xlp/EYE0wAyVcXR7LqyAoNm','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test4*/
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (5,'0005','$2a$08$Xo4HD.rcupoR1Mn13OVwMO2J7UtJYzNIHbDTsi0SdPBKbMHkT0TxK','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test5*/
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (6,'0006','$2a$08$YbPn5xgktUyqsKaawdBZh.onWW6QWPgq0XcjMMLWdvTo5YkoXHb72','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test6*/
 
 
 
