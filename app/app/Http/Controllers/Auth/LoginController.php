@@ -45,7 +45,7 @@ class LoginController extends Controller
         //認証の可否を判定
         if(Auth::attempt($formDatas)){
             $request->session()->regenerate();
-
+            $request->session()->put('csrf_token', csrf_token());
         }else{
             $error = "ログインIDかパスワードが間違っています。";
         }
@@ -53,16 +53,21 @@ class LoginController extends Controller
         //遷移先のパス情報の取得
         $redirectPath = "";
         if($formDatas["authority"]==="0"){
-            $redirectPath = 'home';
+            $redirectPath = '/';
             // $redirectPath = 'logintest';
         }else{
-            $redirectPath = 'admins.storeDetail';
+            $redirectPath = '/admins/store/detail';
         }
 
         //遷移処理
-        if($error===""){
-            return redirect($redirectPath)-with('login_success','ログインが成功しました。');
+        // if($error===""){
+        //     return redirect($redirectPath)->with('login_success', function () {
+        //         return 'ログインが成功しました。';
+        //     });
+        // }
 
+        if($error===""){
+            return redirect($redirectPath)->with('login_success', 'ログインが成功しました。');
         }else{
             return back()->withErrors([
                 'login_error' => 'ログインIDかパスワードが間違っています。',

@@ -45,6 +45,7 @@ Route::group(['middleware' => ['guest']], function() {
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/common/logintest', [LoginController::class,'logintest'])->name('logintest');
     Route::get('/', [CustomerHomeController::class,'index'])->name('home');
+    Route::get('/home', [CustomerHomeController::class,'index'])->name('home');
 });
 
 /*

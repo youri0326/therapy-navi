@@ -32,7 +32,7 @@
 			@endif
 			<div id="main" class="container">
 				<form action="{{asset('/common/login')}}" method="POST" class="form-signin">
-						{{ csrf_field() }}
+						@csrf
 					<h1 class="h3 mb-3 font-weight-normal">顧客ログイン</h1>
 					<label for="inputEmail" class="sr-only">ログインID</label>
 					<input type="text" name="loginid" id="inputEmail" class="form-control" placeholder="ログインID" required autofocus>

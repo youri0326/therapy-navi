@@ -15,14 +15,16 @@
 		<hr align="center" size="5" color="BLUE" width="950"></hr>
 			<!-- ログインのコンテンツ部分 -->
 			<div id="main" class="container">
-				<div>
-					@if (session('login_success'))
-					<p>{{session('login_success')}}</p>
+				<div class="header-container">
+					@if (Auth::check())
+						<p>{{Auth::user()->customerinfo->name}}さん</p>
+						<p><a href="{{asset('/customers/member/detail')}}">▶マイページ</a></p>
+					@else
+						<p><a href="{{route('customer.login')}}">ログイン</a></p>
+						<p><a href="{{asset('/customers/member/registration')}}">会員登録</a></p>
 					@endif
-					<p>{{Auth::user()->loginid}}</p>
-					<p>{{Auth::user()->password}}</p>
-					<p>{{Auth::user()->authority}}</p>
 				</div>
+				<div></div>
 				<form action="{{asset('/customers/storeSearch')}}" method="GET">
 					<table class="input-table">
 						<tr>
