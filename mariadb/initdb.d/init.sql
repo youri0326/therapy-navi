@@ -51,8 +51,8 @@ INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) 
 -- 地域テーブルの追加
 
 CREATE TABLE regioninfo (
-  regionid INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL
+    regionid INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
 );
 
 INSERT INTO regioninfo
@@ -62,16 +62,15 @@ INSERT INTO regioninfo
     ('関東'),
     ('中部'),
     ('近畿'),
-    ('中国'),
-    ('四国'),
+    ('中国・四国'),
     ('九州・沖縄');
 
 CREATE TABLE prefectureinfo (
-  prefectureid INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  regionid INT UNSIGNED,FOREIGN KEY (regionid) REFERENCES regioninfo (regionid),
-  created_at TIMESTAMP NULL DEFAULT NULL,
-  updated_at TIMESTAMP NULL DEFAULT NULL
+    prefectureid INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    regionid INTEGER UNSIGNED,FOREIGN KEY (regionid) REFERENCES regioninfo (regionid),
+    created_at TIMESTAMP NULL DEFAULT NULL,
+    updated_at TIMESTAMP NULL DEFAULT NULL
 );
 
 INSERT INTO prefectureinfo
@@ -95,35 +94,35 @@ INSERT INTO prefectureinfo
     ('富山県', 3),
     ('石川県', 3),
     ('福井県', 3),
-    ('山梨県', 4),
-    ('長野県', 4),
-    ('岐阜県', 4),
-    ('静岡県', 4),
-    ('愛知県', 4),
-    ('三重県', 4),
-    ('滋賀県', 5),
-    ('京都府', 5),
-    ('大阪府', 5),
-    ('兵庫県', 5),
-    ('奈良県', 5),
-    ('和歌山県', 5),
-    ('鳥取県', 6),
-    ('島根県', 6),
-    ('岡山県', 6),
-    ('広島県', 6),
-    ('山口県', 6),
-    ('徳島県', 7),
-    ('香川県', 7),
-    ('愛媛県', 7),
-    ('高知県', 7),
-    ('福岡県', 8),
-    ('佐賀県', 8),
-    ('長崎県', 8),
-    ('熊本県', 8),
-    ('大分県', 8),
-    ('宮崎県', 8),
-    ('鹿児島県', 8),
-    ('沖縄県', 9);
+    ('山梨県', 3),
+    ('長野県', 3),
+    ('岐阜県', 3),
+    ('静岡県', 3),
+    ('愛知県', 3),
+    ('三重県', 3),
+    ('滋賀県', 4),
+    ('京都府', 4),
+    ('大阪府', 4),
+    ('兵庫県', 4),
+    ('奈良県', 4),
+    ('和歌山県', 4),
+    ('鳥取県', 5),
+    ('島根県', 5),
+    ('岡山県', 5),
+    ('広島県', 5),
+    ('山口県', 5),
+    ('徳島県', 5),
+    ('香川県', 5),
+    ('愛媛県', 5),
+    ('高知県', 5),
+    ('福岡県', 6),
+    ('佐賀県', 6),
+    ('長崎県', 6),
+    ('熊本県', 6),
+    ('大分県', 6),
+    ('宮崎県', 6),
+    ('鹿児島県', 6),
+    ('沖縄県', 6);
 
 /*  
 

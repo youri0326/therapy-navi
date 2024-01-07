@@ -8,7 +8,7 @@
 @section('title', 'トップページ')
 
 @section('content')
-	<form action="{{asset('/customers/storeSearch')}}" method="GET">
+	<form action="{{route('customer.storeSearch')}}" method="GET">
 		<table class="input-table">
 			<tr>
 				<th>地域※必須</th>
@@ -37,4 +37,15 @@
 		</table>
 		<input type="submit" value="検索">
 	</form>
+	<div>
+		<p>▼都道府県から探す</p>
+			@foreach ($regions as $region)
+					<p>{{ $region->name }}</p>
+					<p>
+						@foreach ($prefectures[$region->regionid] as $prefecture)
+							<a href="{{route('customer.storeSearch')}}?address={{ $prefecture->name }}">{{ $prefecture->name }}</a>/
+						@endforeach
+					</p>
+			@endforeach
+	</div>
 @endsection
