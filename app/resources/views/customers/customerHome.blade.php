@@ -3,7 +3,7 @@
     プログラム説明	：顧客側トップページ
 
 --}}
-@extends('layouts.app')
+@extends('customers.layouts.app')
 
 @section('title', 'トップページ')
 

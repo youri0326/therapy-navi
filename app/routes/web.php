@@ -43,7 +43,7 @@ Route::get('/list', [ListController::class,'index']);
 
 Route::get('/common/login', [LoginController::class,'performLogin']);
 Route::post('/common/login', [LoginController::class,'performLogin']);
-Route::get('/customers/login', [LoginController::class,'customerLogin']);
+Route::get('/customers/login', [LoginController::class,'customerLogin'])->name('customer.login');
 Route::get('/admins/login', [LoginController::class,'adminLogin']);
 
 /*
