@@ -1,6 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
+// use Illuminate\Http\Controller;
+use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 use App\Models\accountinfo;
 use App\Http\Requests\LoginFormRequest;
@@ -10,12 +13,21 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
+    public function logintest() {
+        
+        // 顧客ログイン画面へ書籍情報と一緒に遷移
+        return view('common/commonLoginTest');
+    }
     public function customerLogin() {
         
         // 顧客ログイン画面へ書籍情報と一緒に遷移
         return view('customers/customerLogin');
     }
-
     public function adminLogin() {
         
         // 管理者ログイン画面へ書籍情報と一緒に遷移
@@ -33,7 +45,7 @@ class LoginController extends Controller
         //認証の可否を判定
         if(Auth::attempt($formDatas)){
             $request->session()->regenerate();
-
+            $request->session()->put('csrf_token', csrf_token());
         }else{
             $error = "ログインIDかパスワードが間違っています。";
         }
@@ -41,15 +53,21 @@ class LoginController extends Controller
         //遷移先のパス情報の取得
         $redirectPath = "";
         if($formDatas["authority"]==="0"){
-            $redirectPath = 'home';
+            $redirectPath = '/';
+            // $redirectPath = 'logintest';
         }else{
-            $redirectPath = 'admins.storeDetail';
+            $redirectPath = '/admins/store/detail';
         }
 
         //遷移処理
-        if($error===""){
-            return redirect($redirectPath)-with('login_success','ログインが成功しました。');
+        // if($error===""){
+        //     return redirect($redirectPath)->with('login_success', function () {
+        //         return 'ログインが成功しました。';
+        //     });
+        // }
 
+        if($error===""){
+            return redirect($redirectPath)->with('login_success', 'ログインが成功しました。');
         }else{
             return back()->withErrors([
                 'login_error' => 'ログインIDかパスワードが間違っています。',
