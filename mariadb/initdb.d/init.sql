@@ -43,6 +43,87 @@ INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) 
 INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (6,'0006','$2a$08$YbPn5xgktUyqsKaawdBZh.onWW6QWPgq0XcjMMLWdvTo5YkoXHb72','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test6*/
 
 
+/*  
+
+都道府県テーブル関連
+
+*/
+-- 地域テーブルの追加
+
+CREATE TABLE regioninfo (
+  regionid INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL
+);
+
+INSERT INTO regioninfo
+ (name) 
+ VALUES
+    ('北海道・東北'),
+    ('関東'),
+    ('中部'),
+    ('近畿'),
+    ('中国'),
+    ('四国'),
+    ('九州・沖縄');
+
+CREATE TABLE prefectureinfo (
+  prefectureid INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  regionid INT UNSIGNED,FOREIGN KEY (regionid) REFERENCES regioninfo (regionid),
+  created_at TIMESTAMP NULL DEFAULT NULL,
+  updated_at TIMESTAMP NULL DEFAULT NULL
+);
+
+INSERT INTO prefectureinfo
+ (name, regionid) 
+ VALUES
+    ('北海道', 1),
+    ('青森県', 1),
+    ('岩手県', 1),
+    ('宮城県', 1),
+    ('秋田県', 1),
+    ('山形県', 1),
+    ('福島県', 1),
+    ('茨城県', 2),
+    ('栃木県', 2),
+    ('群馬県', 2),
+    ('埼玉県', 2),
+    ('千葉県', 2),
+    ('東京都', 2),
+    ('神奈川県', 2),
+    ('新潟県', 3),
+    ('富山県', 3),
+    ('石川県', 3),
+    ('福井県', 3),
+    ('山梨県', 4),
+    ('長野県', 4),
+    ('岐阜県', 4),
+    ('静岡県', 4),
+    ('愛知県', 4),
+    ('三重県', 4),
+    ('滋賀県', 5),
+    ('京都府', 5),
+    ('大阪府', 5),
+    ('兵庫県', 5),
+    ('奈良県', 5),
+    ('和歌山県', 5),
+    ('鳥取県', 6),
+    ('島根県', 6),
+    ('岡山県', 6),
+    ('広島県', 6),
+    ('山口県', 6),
+    ('徳島県', 7),
+    ('香川県', 7),
+    ('愛媛県', 7),
+    ('高知県', 7),
+    ('福岡県', 8),
+    ('佐賀県', 8),
+    ('長崎県', 8),
+    ('熊本県', 8),
+    ('大分県', 8),
+    ('宮崎県', 8),
+    ('鹿児島県', 8),
+    ('沖縄県', 9);
 
 /*  
 
