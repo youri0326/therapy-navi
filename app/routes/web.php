@@ -1,8 +1,9 @@
 <?php
+namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Auth\LoginController;
 
 //顧客側のインポート
 use App\Http\Controllers\CustomerHomeController;
@@ -29,7 +30,6 @@ use App\Http\Controllers\StoreController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 //　トップページ
 Route::get('/', function () {
     return view('menu');
@@ -87,3 +87,6 @@ Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->na
 
 //予約一覧表示機能
 Route::get('/admins/reservationList', [ReservationController::class,'reservationListAdmin']);
+
+//店舗系
+Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->name('admins.storeDetail');
