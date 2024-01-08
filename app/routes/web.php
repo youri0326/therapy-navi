@@ -41,10 +41,15 @@ Route::get('/list', [ListController::class,'index']);
 //login機能
 // Route::resource('common/login', 'common/LoginController@performLogin');
 
-Route::get('/common/login', [LoginController::class,'performLogin']);
-Route::post('/common/login', [LoginController::class,'performLogin']);
-Route::get('/customers/login', [LoginController::class,'customerLogin'])->name('customer.login');
-Route::get('/admins/login', [LoginController::class,'adminLogin'])->name('admin.login');
+Route::group(['middleware' => ['guest']], function() {
+    Route::post('/common/login', [LoginController::class,'performLogin']);
+    Route::get('/customers/login', [LoginController::class,'customerLogin'])->name('customer.login');
+    Route::get('/admins/login', [LoginController::class,'adminLogin'])->name('admin.login');
+});
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/', [CustomerHomeController::class,'index'])->name('home');
+});
 
 /*
 顧客機能系
@@ -79,14 +84,16 @@ Route::post('/customers/reservation/insert', [ReservationController::class,'stor
 管理者機能
 */
 
-//勤怠情報一覧表示
-Route::get('/admins/attendanceList', [AttendanceController::class,'list']);
-Route::get('/admins/attendanceDetail', [AttendanceController::class,'detail']);
-Route::post('/admins/update', [AttendanceController::class,'update'])->name('admins.update');
-Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->name('admins.storeDetail');
+Route::group(['middleware' => ['auth']], function() {
+    //勤怠情報一覧表示
+    Route::get('/admins/attendanceList', [AttendanceController::class,'list']);
+    Route::get('/admins/attendanceDetail', [AttendanceController::class,'detail']);
+    Route::post('/admins/update', [AttendanceController::class,'update'])->name('admins.update');
+    Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->name('admins.storeDetail');
 
-//予約一覧表示機能
-Route::get('/admins/reservationList', [ReservationController::class,'reservationListAdmin']);
+    //予約一覧表示機能
+    Route::get('/admins/reservationList', [ReservationController::class,'reservationListAdmin']);
 
-//店舗系
-Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->name('admins.storeDetail');
+    //店舗系
+    Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->name('admins.storeDetail');
+});
