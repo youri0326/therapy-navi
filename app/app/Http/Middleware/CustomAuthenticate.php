@@ -9,14 +9,16 @@ class CustomAuthenticate extends Authenticate
 {
     protected function redirectTo($request)
     {
-        $user = Auth::user();
-        $authority = $user->authority;
+        // $user = Auth::user();
+        // $authority = $user->authority;
 
         if (! $request->expectsJson()) {
-            if ($authority === 0) {
-                return route('customer.login');
-            } else {
+            $pathInfo = $request->path();
+            if ($pathInfo === '/admins' || $pathInfo === '/admins/*') {
                 return route('admin.login');
+            } else {
+                return route('customer.login');
+                
             }
         }
     }
