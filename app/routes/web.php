@@ -41,10 +41,15 @@ Route::get('/list', [ListController::class,'index']);
 //login機能
 // Route::resource('common/login', 'common/LoginController@performLogin');
 
-Route::get('/common/login', [LoginController::class,'performLogin']);
-Route::post('/common/login', [LoginController::class,'performLogin']);
-Route::get('/customers/login', [LoginController::class,'customerLogin'])->name('customer.login');
-Route::get('/admins/login', [LoginController::class,'adminLogin'])->name('admin.login');
+Route::group(['middleware' => ['guest']], function() {
+    Route::post('/common/login', [LoginController::class,'performLogin']);
+    Route::get('/customers/login', [LoginController::class,'customerLogin'])->name('customer.login');
+    Route::get('/admins/login', [LoginController::class,'adminLogin'])->name('admin.login');
+});
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/', [CustomerHomeController::class,'index'])->name('home');
+});
 
 /*
 顧客機能系
@@ -54,7 +59,8 @@ Route::get('/', [CustomerHomeController::class,'index']);
 //店舗スタッフ一覧
 Route::get('/customers/storeStaffList', [StoreStaffListController::class,'index']);
 //検索機能
-Route::get('/customers/storeSearch', [StoreSearchController::class,'index'])->name('customer.storeSearch');
+Route::get('/customers/store/search', [StoreController::class,'search'])->name('customer.storeSearch');
+
 //店舗詳細機能
 Route::get('/customers/storeDetail', [StoreDetailController::class,'index']);
 //店舗メニュー一覧機能
@@ -82,14 +88,16 @@ Route::get('/customers/reservation/detail', [ReservationController::class,'reser
 管理者機能
 */
 
-//勤怠情報一覧表示
-Route::get('/admins/attendanceList', [AttendanceController::class,'list']);
-Route::get('/admins/attendanceDetail', [AttendanceController::class,'detail']);
-Route::post('/admins/update', [AttendanceController::class,'update'])->name('admins.update');
-Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->name('admins.storeDetail');
+Route::group(['middleware' => ['auth']], function() {
+    //勤怠情報一覧表示
+    Route::get('/admins/attendanceList', [AttendanceController::class,'list']);
+    Route::get('/admins/attendanceDetail', [AttendanceController::class,'detail']);
+    Route::post('/admins/update', [AttendanceController::class,'update'])->name('admins.update');
+    Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->name('admins.storeDetail');
 
-//予約一覧表示機能
-Route::get('/admins/reservationList', [ReservationController::class,'reservationListAdmin']);
+    //予約一覧表示機能
+    Route::get('/admins/reservationList', [ReservationController::class,'reservationListAdmin']);
 
-//店舗系
-Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->name('admins.storeDetail');
+    //店舗系
+    Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->name('admins.storeDetail');
+});
