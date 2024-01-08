@@ -10,7 +10,7 @@
 
 @section('content')
 
-		<p>aa{{$address}}</p>
+		<h2>{{$address}}の整体院一覧</h2>
 		<div align="center">
     		<table  style="border:2;">
     			<tr >
@@ -26,11 +26,21 @@
         					<a href ="{{asset('/customers/storeDetail')}}?storeid={{$store->storeid}}">{{$store->storename}}</a>
     					</td>
         				<td align=center>
-							@if($store->storephotoinfo->count() > 0)
+
+							@if($store->storephotoinfo->where('imgrole', 0)->count() > 0)
 								<ul>
-								@foreach($store->storephotoinfo as $photo)
-									<li>{{ $photo->photopath }}</li>
-								@endforeach
+									@foreach($store->storephotoinfo->where('imgrole', 0) as $photo)
+										@php
+										$photopath = $photo->photopath;
+										if(str_contains($photopath, '.jpg')){
+											$photoName = str_replace('.jpg', '', $photopath);
+										}
+										elseif(str_contains($photopath, '.png')){
+											$photoName = str_replace('.png', '', $photopath);
+										}
+										@endphp
+										<li><img src="{{asset($photo->photopath)}}" alt="{{ $photoName }}"></li>
+									@endforeach
 								</ul>
 							@endif
 						</td>
@@ -45,11 +55,11 @@
 						</td>
 						<td align=center>{{$store->comment}}</td>
 						<td align=center>
-							@if($store->storemenuinfo->count() > 0)
+							@if($store->storemenuinfo->where('servicerole', 0)->count() > 0)
 								<ul>
-								@foreach($store->storemenuinfo as $menu)
-									<li>{{ $menu->servicename }}</li>
-								@endforeach
+									@foreach($store->storemenuinfo->where('servicerole', 0) as $menu)
+										<li>{{ $menu->servicename }}/{{ $menu->amount }}円</li>
+									@endforeach
 								</ul>
 							@endif
 						</td>
