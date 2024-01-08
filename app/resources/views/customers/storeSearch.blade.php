@@ -4,18 +4,12 @@
     作成日時			：
     作成者			：吉池悠理
 --}}
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta http-equiv="Content-Style-Type" content="text/css" />
-		<title>List</title>
-	</head>
-	<body>
-		<h1 align="center" style="margin-top: 21px;">店舗検索画面{{$station}}</h1>
-		<hr align="center" size="5" color="BLUE" width="950"></hr>
-		<hr align="center" size="2" color="black" width="950"></hr>
-		<br/>
+@extends('customers.layouts.app')
+
+@section('title', 'トップページ')
+
+@section('content')
+
 		<p>aa{{$address}}</p>
 		<div align="center">
     		<table  style="border:2;">
@@ -65,23 +59,4 @@
 					@endforeach
     		</table>
 		</div>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<hr align="center" size="5" color="blue" width="950"></hr>
-		<div  align="center">
-    		<table style="width:950px;">
-    			<tr>
-    				<td>copyright (c) all rights reserved.</td>
-    			</tr>
-    		</table>
-		</div>
-	</body>
-</html>
+		@endsection
