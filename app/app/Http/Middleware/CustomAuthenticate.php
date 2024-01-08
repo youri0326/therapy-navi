@@ -14,7 +14,7 @@ class CustomAuthenticate extends Authenticate
 
         if (! $request->expectsJson()) {
             $pathInfo = $request->path();
-            if ($pathInfo === '/admins' || $pathInfo === '/admins/*') {
+            if (str_starts_with($pathInfo, 'admins/')) {
                 return route('admin.login');
             } else {
                 return route('customer.login');
