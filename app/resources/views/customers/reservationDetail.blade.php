@@ -20,16 +20,16 @@
             <table class="input-table">
                 <thead>
                     <tr>
-                        <th>予約番号</th><td>#{{ $loop->iteration }}</td>
+                        <th>予約番号</th><td></td>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- 予約店舗情報を表示 -->
                     @php
                         // 予約に関連する店舗情報を取得
-                        $store = $storeList->where('storeid', $reserve->storemenuinfo->storeid)->first();
+                        $store = $storeList->first();
                         // 予約に関連するメニュー情報を取得
-                        $menu = $storemenuList->where('storemenuid', $reserve->storemenuid)->first();
+                        $menu = $storemenuList->first();
                     @endphp
                     <tr>
                         <th>予約店舗</th>
