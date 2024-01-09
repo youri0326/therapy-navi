@@ -20,6 +20,7 @@
     				<th bgcolor="#6666FF" width="250">コメント</th>
                     <th bgcolor="#6666FF" width="250">主なメニュー</th>
     			</tr>
+				@if($storeList->count() > 0)
     				@foreach($storeList as $store)
     				<tr>
         				<td align=center>
@@ -67,6 +68,7 @@
 
 
 					@endforeach
+				@endif
     		</table>
 		</div>
 		@endsection
