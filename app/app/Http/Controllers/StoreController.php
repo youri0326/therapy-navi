@@ -24,24 +24,25 @@ class StoreController extends Controller
         $objStore = new storeinfo();
 
         $error = "";
-        $link = "";
+        $link = [
+            'href' => '',
+            'text' => '',
+        ];
         // 【検索データの取得】
         try {
             // 入力フォームの受け取り情報を検索値に、storeinfoテーブルから該当のデータ(店舗情報)を取得
             $storeList = $objStore->searchStore($address, $station, $storename, $comment);
-            if($storeList->count() === 0){
-                $error = '該当の店舗がありませんでしたので、再度、ホーム画面に戻り、検索をお試しください。';
-                $link = 'home';
-            };
+
         } catch (Exception $e) {
             // エラー処理
-            $error = '検索に失敗しましたので、再度、ホーム画面に戻り、検索をお試しください。';
-            $link = 'home';
+            $error = '検索に失敗しましたので、再度、ホーム場面に戻り検索してください。';
         }finally{
             if($error===""){
                 // 検索画面へ店舗情報と一緒に遷移
                 return view('customers/storeSearch', compact('storeList', 'address','station'));
             }else{
+                $link['href'] = 'home';
+                $link['text'] = 'ホーム画面に戻る';
                 return view('customers/error', compact('error', 'link'));
             }
         }
