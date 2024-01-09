@@ -146,6 +146,13 @@ INSERT INTO storeinfo VALUES(2,3,'マッサージB','東京都 世田谷区 用�
 INSERT INTO storeinfo VALUES(3,4,'整体C','東京都 目黒区',8000,'','クレジットカード');
 INSERT INTO storeinfo VALUES(4,5,'マッサージD','東京都 目白',8000,'','クレジットカード');
 
+INSERT INTO storeinfo VALUES(5,6,'整体E','東京都 文京区',9000,'','クレジットカード');
+INSERT INTO storeinfo VALUES(6,6,'マッサージF','東京都 台東区',7000,'','クレジットカード');
+INSERT INTO storeinfo VALUES(7,7,'整体G','東京都 江東区',7000,'','クレジットカード');
+INSERT INTO storeinfo VALUES(8,7,'マッサージH','東京都 渋谷区',9000,'','クレジットカード');
+INSERT INTO storeinfo VALUES(9,7,'整体I','東京都 新宿区',8000,'','クレジットカード');
+INSERT INTO storeinfo VALUES(10,8,'マッサージJ','東京都 江戸川区',7000,'','クレジットカード');
+
 /*  
 
 店舗メニューテーブル関連
