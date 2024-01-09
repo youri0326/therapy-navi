@@ -12,6 +12,7 @@
 
 		<h2>{{$address}}の整体院一覧</h2>
 		<div align="center">
+		@if($storeList->count() > 0)
     		<table  style="border:2;">
     			<tr >
     				<th bgcolor="#6666FF" width="200">店名</th>
@@ -20,7 +21,6 @@
     				<th bgcolor="#6666FF" width="250">コメント</th>
                     <th bgcolor="#6666FF" width="250">主なメニュー</th>
     			</tr>
-				@if($storeList->count() > 0)
     				@foreach($storeList as $store)
     				<tr>
         				<td align=center>
@@ -68,7 +68,13 @@
 
 
 					@endforeach
-				@endif
     		</table>
+			@else
+				<div class="research_title">
+					<h3>ご指定の条件に該当するお店は見つかりませんでした。</h3>
+					<p>検索条件を変更して、再度検索してください。</p>
+				</div>
+				@include('customers.layouts.storeSearchForm')
+			@endif
 		</div>
 		@endsection
