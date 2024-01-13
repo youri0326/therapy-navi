@@ -15,6 +15,7 @@ class StoreController extends Controller
     public function search(Request $request) {
         
         //入力フォームの情報の受け取り
+        
         $address = $request->query('address');
         $station = $request->query('station');
         $storename = $request->query("storename");
