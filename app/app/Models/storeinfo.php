@@ -77,7 +77,7 @@ class storeinfo extends Model
             $searchStore->where('comment', 'like', '%'.$comment.'%');
         }
 
-        $searchStore = $searchStore->with(['stationinfo', 'storephotoinfo','storemenuinfo'])->get();
+        $searchStore = $searchStore->with(['stationinfo', 'storephotoinfo','storemenuinfo'])->paginate(5);
 
         // 値を取得しリターン
         return $searchStore;

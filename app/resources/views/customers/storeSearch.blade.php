@@ -69,12 +69,15 @@
 
 					@endforeach
     		</table>
-			@else
-				<div class="research_title">
-					<h3>ご指定の条件に該当するお店は見つかりませんでした。</h3>
-					<p>検索条件を変更して、再度検索してください。</p>
-				</div>
-				@include('customers.layouts.storeSearchForm')
-			@endif
+			<div class="pagination">
+						{{ $storeList->links() }}
+			</div>
+		@else
+			<div class="research_title">
+				<h3>ご指定の条件に該当するお店は見つかりませんでした。</h3>
+				<p>検索条件を変更して、再度検索してください。</p>
+			</div>
+			@include('customers.layouts.storeSearchForm')
+		@endif
 		</div>
 		@endsection
