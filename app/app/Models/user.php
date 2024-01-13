@@ -30,6 +30,8 @@ class user extends Authenticatable
     
     // プライマリーキーがオートインクリメントのため設定をオン
     public $incrementing = true;
+    // データの作成日時、更新日時がデフォルトで自動更新されるので、オフ
+    public $timestamps = false;
 
     public function storeinfo()
     {

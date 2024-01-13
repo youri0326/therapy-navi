@@ -19,7 +19,7 @@
                     <p><a href="{{asset('/customers/member/detail')}}">▶マイページ</a></p>
                 @else
                     <p><a href="{{route('customer.login')}}">ログイン</a></p>
-                    <p><a href="{{asset('/customers/member/registration')}}">会員登録</a></p>
+                    <p><a href="{{route('customers.registration.showForm')}}">会員登録</a></p>
                 @endif
             </div>
         </header>
