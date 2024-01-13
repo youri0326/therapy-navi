@@ -42,6 +42,12 @@ INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) 
 INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (5,'0005','$2a$08$Xo4HD.rcupoR1Mn13OVwMO2J7UtJYzNIHbDTsi0SdPBKbMHkT0TxK','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test5*/
 INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (6,'0006','$2a$08$YbPn5xgktUyqsKaawdBZh.onWW6QWPgq0XcjMMLWdvTo5YkoXHb72','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test6*/
 
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (7,'0007','$2a$08$//RcWDpC5c8e1UP.mKfpmeSeJNQlxBHTfLlktm7seRnaScaBscWbO','yskfinance456@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test7*/
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (8,'0008','$2a$08$N2IQG1EKxyS01aqExl87VOJAVVvLDshu10g/f2GyiRH9Dau/.2kC.','yskfinance456@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test8*/
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (9,'0009','$2a$08$Ugq908Is3IhzgcqUSGxsHeUh549Bo70ErvfAHTrx/zOF2V95T6eWa','yskfinance456@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test9*/
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (10,'0010','$2a$08$hn2tTl8YqMN8yoNmvLBFnOtP48JdHfrLhYhyAQ7cS7dEeRbg7GeI2','yskfinance456@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test10*/
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (11,'0011','$2a$08$nAAAiePdkYw49ybntJF4Z.dq2/6WYZx6PlzELICFMEDlBRDeP/S72','yskfinance456@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test11*/
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (12,'0012','$2a$08$9r3a1xa5V0SEALo5PgrZF.H3Fwciuq6qzCeKr4zX38QO6TekFxqA.','yskfinance456@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test12*/
 
 /*  
 
@@ -147,11 +153,11 @@ INSERT INTO storeinfo VALUES(3,4,'整体C','東京都 目黒区',8000,'','クレ
 INSERT INTO storeinfo VALUES(4,5,'マッサージD','東京都 目白',8000,'','クレジットカード');
 
 INSERT INTO storeinfo VALUES(5,6,'整体E','東京都 文京区',9000,'','クレジットカード');
-INSERT INTO storeinfo VALUES(6,6,'マッサージF','東京都 台東区',7000,'','クレジットカード');
-INSERT INTO storeinfo VALUES(7,7,'整体G','東京都 江東区',7000,'','クレジットカード');
-INSERT INTO storeinfo VALUES(8,7,'マッサージH','東京都 渋谷区',9000,'','クレジットカード');
-INSERT INTO storeinfo VALUES(9,7,'整体I','東京都 新宿区',8000,'','クレジットカード');
-INSERT INTO storeinfo VALUES(10,8,'マッサージJ','東京都 江戸川区',7000,'','クレジットカード');
+INSERT INTO storeinfo VALUES(6,7,'マッサージF','東京都 台東区',7000,'','クレジットカード');
+INSERT INTO storeinfo VALUES(7,8,'整体G','東京都 江東区',7000,'','クレジットカード');
+INSERT INTO storeinfo VALUES(8,9,'マッサージH','東京都 渋谷区',9000,'','クレジットカード');
+INSERT INTO storeinfo VALUES(9,10,'整体I','東京都 新宿区',8000,'','クレジットカード');
+INSERT INTO storeinfo VALUES(10,11,'マッサージJ','東京都 江戸川区',7000,'','クレジットカード');
 
 /*  
 
@@ -225,6 +231,18 @@ INSERT INTO storephotoinfo VALUES(9,3,'storage/img/seitaiC_03.jpg');
 INSERT INTO storephotoinfo VALUES(10,4,'storage/img/seitaiD_01.jpg');
 INSERT INTO storephotoinfo VALUES(11,4,'storage/img/seitaiD_02.jpg');
 INSERT INTO storephotoinfo VALUES(12,4,'storage/img/seitaiD_03.jpg');
+
+--   整体Eの写真情報
+INSERT INTO storephotoinfo VALUES(13,5,'storage/img/seitaiE_01.jpg');
+
+--   マッサージFの写真情報
+INSERT INTO storephotoinfo VALUES(14,6,'storage/img/massageF_01.jpg');
+
+--   整体Gの写真情報
+INSERT INTO storephotoinfo VALUES(13,5,'storage/img/seitaiG_01.jpg');
+
+--   マッサージHの写真情報
+INSERT INTO storephotoinfo VALUES(14,6,'storage/img/massageH_01.jpg');
 
 /*  
 
