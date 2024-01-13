@@ -172,30 +172,31 @@ CREATE TABLE storemenuinfo (
     servicename VARCHAR(255),
     description VARCHAR(255),
     amount INTEGER,
-    servicetime INTEGER
+    servicetime INTEGER,
+    servicerole tinyint
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 
 
 -- 店舗メニューテーブルのデータ登録
 --   整体Aのメニュー情報
-INSERT INTO storemenuinfo VALUES(1,1,'骨盤矯正30分','痛みの改善',5000,30);
-INSERT INTO storemenuinfo VALUES(2,1,'骨盤矯正60分','痛みの改善',5000,60);
-INSERT INTO storemenuinfo VALUES(3,1,'全体マッサージ','痛みの改善',5000,60);
+INSERT INTO storemenuinfo VALUES(1,1,'骨盤矯正30分','痛みの改善',5000,30,0);
+INSERT INTO storemenuinfo VALUES(2,1,'骨盤矯正60分','痛みの改善',5000,60,1);
+INSERT INTO storemenuinfo VALUES(3,1,'全体マッサージ','痛みの改善',5000,60,1);
 
 --   マッサージBのメニュー情報
-INSERT INTO storemenuinfo VALUES(4,2,'骨盤矯正30分','痛みの改善',5000,30);
-INSERT INTO storemenuinfo VALUES(5,2,'骨盤矯正60分','痛みの改善',5000,60);
-INSERT INTO storemenuinfo VALUES(6,2,'全体マッサージ','痛みの改善',5000,60);
+INSERT INTO storemenuinfo VALUES(4,2,'骨盤矯正30分','痛みの改善',5000,30,0);
+INSERT INTO storemenuinfo VALUES(5,2,'骨盤矯正60分','痛みの改善',5000,60,1);
+INSERT INTO storemenuinfo VALUES(6,2,'全体マッサージ','痛みの改善',5000,60,1);
 
 --   整体Cのメニュー情報
-INSERT INTO storemenuinfo VALUES(7,3,'骨盤矯正30分','痛みの改善',5000,30);
-INSERT INTO storemenuinfo VALUES(8,3,'骨盤矯正60分','痛みの改善',5000,60);
-INSERT INTO storemenuinfo VALUES(9,3,'全体マッサージ','痛みの改善',5000,60);
+INSERT INTO storemenuinfo VALUES(7,3,'骨盤矯正30分','痛みの改善',5000,30,0);
+INSERT INTO storemenuinfo VALUES(8,3,'骨盤矯正60分','痛みの改善',5000,60,1);
+INSERT INTO storemenuinfo VALUES(9,3,'全体マッサージ','痛みの改善',5000,60,1);
 
 --   マッサージDのメニュー情報
-INSERT INTO storemenuinfo VALUES(10,4,'骨盤矯正30分','痛みの改善',5000,30);
-INSERT INTO storemenuinfo VALUES(11,4,'骨盤矯正60分','痛みの改善',5000,60);
-INSERT INTO storemenuinfo VALUES(12,4,'全体マッサージ','痛みの改善',5000,60);
+INSERT INTO storemenuinfo VALUES(10,4,'骨盤矯正30分','痛みの改善',5000,30,0);
+INSERT INTO storemenuinfo VALUES(11,4,'骨盤矯正60分','痛みの改善',5000,60,1);
+INSERT INTO storemenuinfo VALUES(12,4,'全体マッサージ','痛みの改善',5000,60,1);
 
 /*  
 
@@ -207,30 +208,31 @@ INSERT INTO storemenuinfo VALUES(12,4,'全体マッサージ','痛みの改善',
 CREATE TABLE storephotoinfo ( 
     storephotoid INTEGER AUTO_INCREMENT PRIMARY KEY,
     storeid INTEGER,FOREIGN KEY (storeid) REFERENCES storeinfo (storeid),
-    photopath VARCHAR(255)
+    photopath VARCHAR(255),
+    imgrole tinyint
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 
 
 -- 店舗写真テーブルのデータ登録
 --   整体Aの写真情報
-INSERT INTO storephotoinfo VALUES(1,1,'storage/img/seitaiA_01.jpg');
-INSERT INTO storephotoinfo VALUES(2,1,'storage/img/seitaiA_02.jpg');
-INSERT INTO storephotoinfo VALUES(3,1,'storage/img/seitaiA_03.jpg');
+INSERT INTO storephotoinfo VALUES(1,1,'storage/img/seitaiA_01.jpg',0);
+INSERT INTO storephotoinfo VALUES(2,1,'storage/img/seitaiA_02.jpg',1);
+INSERT INTO storephotoinfo VALUES(3,1,'storage/img/seitaiA_03.jpg',1);
 
 --   マッサージBの写真情報
-INSERT INTO storephotoinfo VALUES(4,2,'storage/img/seitaiB_01.jpg');
-INSERT INTO storephotoinfo VALUES(5,2,'storage/img/seitaiB_02.jpg');
-INSERT INTO storephotoinfo VALUES(6,2,'storage/img/seitaiB_03.jpg');
+INSERT INTO storephotoinfo VALUES(4,2,'storage/img/seitaiB_01.jpg',0);
+INSERT INTO storephotoinfo VALUES(5,2,'storage/img/seitaiB_02.jpg',1);
+INSERT INTO storephotoinfo VALUES(6,2,'storage/img/seitaiB_03.jpg',1);
 
 --   整体Cの写真情報
-INSERT INTO storephotoinfo VALUES(7,3,'storage/img/seitaiC_01.jpg');
-INSERT INTO storephotoinfo VALUES(8,3,'storage/img/seitaiC_02.jpg');
-INSERT INTO storephotoinfo VALUES(9,3,'storage/img/seitaiC_03.jpg');
+INSERT INTO storephotoinfo VALUES(7,3,'storage/img/seitaiC_01.jpg',0);
+INSERT INTO storephotoinfo VALUES(8,3,'storage/img/seitaiC_02.jpg',1);
+INSERT INTO storephotoinfo VALUES(9,3,'storage/img/seitaiC_03.jpg',1);
 
 --   マッサージDの写真情報
-INSERT INTO storephotoinfo VALUES(10,4,'storage/img/seitaiD_01.jpg');
-INSERT INTO storephotoinfo VALUES(11,4,'storage/img/seitaiD_02.jpg');
-INSERT INTO storephotoinfo VALUES(12,4,'storage/img/seitaiD_03.jpg');
+INSERT INTO storephotoinfo VALUES(10,4,'storage/img/seitaiD_01.jpg',0);
+INSERT INTO storephotoinfo VALUES(11,4,'storage/img/seitaiD_02.jpg',1);
+INSERT INTO storephotoinfo VALUES(12,4,'storage/img/seitaiD_03.jpg',1);
 
 --   整体Eの写真情報
 INSERT INTO storephotoinfo VALUES(13,5,'storage/img/seitaiE_01.jpg');

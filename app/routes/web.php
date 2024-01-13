@@ -55,7 +55,7 @@ Route::group(['middleware' => ['auth']], function() {
 顧客機能系
 */
 // ホーム画面
-Route::get('/', [CustomerHomeController::class,'index']);
+Route::get('/', [CustomerHomeController::class,'index'])->name('home');
 //店舗スタッフ一覧
 Route::get('/customers/storeStaffList', [StoreStaffListController::class,'index']);
 //検索機能
