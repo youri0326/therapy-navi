@@ -14,7 +14,7 @@
 	<body>
         <div class="container">
             <h2>予約画面</h2>
-            <form method="post" action="{{asset('/customers/reservation/confrim')}}" id="reservationForm">
+            <form method="post" action="{{route('customers.reservation.confirm')}}" id="reservationForm">
                 @csrf
                 <p>店舗名: {{ $storeinfo->storename }}</p>
                 @if ($staff !== null)
