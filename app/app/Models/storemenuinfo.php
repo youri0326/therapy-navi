@@ -23,12 +23,14 @@ class storemenuinfo extends Model
     // データの作成日時、更新日時がデフォルトで自動更新されるので、オフ
     public $timestamps = false;
 
-    public function storeinfo()
+    // storeinfo -> storeに変更
+    public function store()
     {
         return $this->belongsTo('App\Models\storeinfo', 'storeid', 'storeid');
     }
 
-    public function reserveinfo()
+    // reserveinfo -> reservationsに変更
+    public function reservations()
     {
         return $this->hasMany('App\Models\reserveinfo', 'storemenuid', 'storemenuid');
     }

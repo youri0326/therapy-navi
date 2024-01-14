@@ -198,6 +198,35 @@ INSERT INTO storemenuinfo VALUES(10,4,'骨盤矯正30分','痛みの改善',5000
 INSERT INTO storemenuinfo VALUES(11,4,'骨盤矯正60分','痛みの改善',5000,60,1);
 INSERT INTO storemenuinfo VALUES(12,4,'全体マッサージ','痛みの改善',5000,60,1);
 
+--   整体Eのメニュー情報
+INSERT INTO storemenuinfo VALUES(13,5,'骨盤矯正30分','痛みの改善',5000,30,0);
+INSERT INTO storemenuinfo VALUES(14,5,'骨盤矯正60分','痛みの改善',5000,60,1);
+INSERT INTO storemenuinfo VALUES(15,5,'全体マッサージ','痛みの改善',5000,60,1);
+
+--   マッサージFのメニュー情報
+INSERT INTO storemenuinfo VALUES(16,6,'骨盤矯正30分','痛みの改善',5000,30,0);
+INSERT INTO storemenuinfo VALUES(17,6,'骨盤矯正60分','痛みの改善',5000,60,1);
+INSERT INTO storemenuinfo VALUES(18,6,'全体マッサージ','痛みの改善',5000,60,1);
+--   整体Gのメニュー情報
+INSERT INTO storemenuinfo VALUES(19,7,'骨盤矯正30分','痛みの改善',5000,30,0);
+INSERT INTO storemenuinfo VALUES(20,7,'骨盤矯正60分','痛みの改善',5000,60,1);
+INSERT INTO storemenuinfo VALUES(21,7,'全体マッサージ','痛みの改善',5000,60,1);
+
+--   マッサージHのメニュー情報
+INSERT INTO storemenuinfo VALUES(22,8,'骨盤矯正30分','痛みの改善',5000,30,0);
+INSERT INTO storemenuinfo VALUES(23,8,'骨盤矯正60分','痛みの改善',5000,60,1);
+INSERT INTO storemenuinfo VALUES(24,8,'全体マッサージ','痛みの改善',5000,60,1);
+
+--   整体Iのメニュー情報
+INSERT INTO storemenuinfo VALUES(25,9,'骨盤矯正30分','痛みの改善',5000,30,0);
+INSERT INTO storemenuinfo VALUES(26,9,'骨盤矯正60分','痛みの改善',5000,60,1);
+INSERT INTO storemenuinfo VALUES(27,9,'全体マッサージ','痛みの改善',5000,60,1);
+
+--   マッサージJのメニュー情報
+INSERT INTO storemenuinfo VALUES(28,10,'骨盤矯正30分','痛みの改善',5000,30,0);
+INSERT INTO storemenuinfo VALUES(29,10,'骨盤矯正60分','痛みの改善',5000,60,1);
+INSERT INTO storemenuinfo VALUES(30,10,'全体マッサージ','痛みの改善',5000,60,1);
+
 /*  
 
 店舗写真テーブル関連
@@ -235,16 +264,22 @@ INSERT INTO storephotoinfo VALUES(11,4,'storage/img/seitaiD_02.jpg',1);
 INSERT INTO storephotoinfo VALUES(12,4,'storage/img/seitaiD_03.jpg',1);
 
 --   整体Eの写真情報
-INSERT INTO storephotoinfo VALUES(13,5,'storage/img/seitaiE_01.jpg');
+INSERT INTO storephotoinfo VALUES(13,5,'storage/img/seitaiE_01.jpg',0);
 
 --   マッサージFの写真情報
-INSERT INTO storephotoinfo VALUES(14,6,'storage/img/massageF_01.jpg');
+INSERT INTO storephotoinfo VALUES(14,6,'storage/img/massageF_01.jpg',0);
 
 --   整体Gの写真情報
-INSERT INTO storephotoinfo VALUES(13,5,'storage/img/seitaiG_01.jpg');
+INSERT INTO storephotoinfo VALUES(15,7,'storage/img/seitaiG_01.jpg',0);
 
 --   マッサージHの写真情報
-INSERT INTO storephotoinfo VALUES(14,6,'storage/img/massageH_01.jpg');
+INSERT INTO storephotoinfo VALUES(16,8,'storage/img/massageH_01.jpg',0);
+
+--   整体Iの写真情報
+INSERT INTO storephotoinfo VALUES(17,9,'storage/img/seitaiI_01.jpg',0);
+
+--   マッサージJの写真情報
+INSERT INTO storephotoinfo VALUES(18,10,'storage/img/massageJ_01.jpg',0);
 
 /*  
 
@@ -270,12 +305,32 @@ INSERT INTO stationinfo VALUES(2,1,'経堂駅','小田急線','徒歩10分');
 --   マッサージBの最寄り駅情報
 INSERT INTO stationinfo VALUES(3,2,'用賀駅','田園都市線','徒歩10分');
 INSERT INTO stationinfo VALUES(4,2,'二子玉川駅','田園都市線','バスで10分');
+
 --   整体Cの最寄り駅情報
 INSERT INTO stationinfo VALUES(5,3,'中目黒駅','東急東横線','徒歩10分');
 INSERT INTO stationinfo VALUES(6,3,'目黒駅','JR山手線','徒歩20分');
 
 --   マッサージDの最寄り駅情報
 INSERT INTO stationinfo VALUES(7,4,'目白駅','JR山手線','徒歩10分');
+
+--   整体Eの最寄り駅情報
+INSERT INTO stationinfo VALUES(8,5,'池袋駅','JR山手線','徒歩10分');
+
+--   マッサージFの最寄り駅情報
+INSERT INTO stationinfo VALUES(9,6,'板橋駅','JR埼京線','徒歩5分');
+
+--   整体Gの最寄り駅情報
+INSERT INTO stationinfo VALUE(10,7,'大山駅','東武東上線','徒歩10分');
+
+--   マッサージHの最寄り駅情報
+INSERT INTO stationinfo VALUE(11,8,'池上駅','東急池上線','徒歩10分');
+
+--   整体Iの最寄り駅情報
+INSERT INTO stationinfo VALUE(12,9,'五反田駅','JR山手線','徒歩5分');
+INSERT INTO stationinfo VALUE(13,9,'大崎広小路駅','東急池上線','徒歩5分');
+
+--   マッサージJの最寄り駅情報
+INSERT INTO stationinfo VALUE(14,10,'大井町駅','JR京浜東北線','徒歩10分');
 
 /*  
 
