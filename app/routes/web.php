@@ -1,8 +1,9 @@
 <?php
+namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Auth\LoginController;
 
 //顧客側のインポート
 use App\Http\Controllers\CustomerHomeController;
@@ -18,6 +19,8 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\StoreInsertController;
 
+use App\Http\Controllers\StoreController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,7 +31,6 @@ use App\Http\Controllers\StoreInsertController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 //　トップページ
 Route::get('/', function () {
     return view('menu');
@@ -40,20 +42,37 @@ Route::get('/list', [ListController::class,'index']);
 //login機能
 // Route::resource('common/login', 'common/LoginController@performLogin');
 
-Route::get('/common/login', [LoginController::class,'performLogin']);
-Route::post('/common/login', [LoginController::class,'performLogin']);
-Route::get('/customers/login', [LoginController::class,'customerLogin']);
-Route::get('/admins/login', [LoginController::class,'adminLogin']);
+Route::group(['middleware' => ['guest']], function() {
+    Route::post('/common/login', [LoginController::class,'performLogin']);
+    Route::get('/customers/login', [LoginController::class,'customerLogin'])->name('customer.login');
+    Route::get('/admins/login', [LoginController::class,'adminLogin'])->name('admin.login');
+});
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/', [CustomerHomeController::class,'index'])->name('home');
+});
 
 /*
 顧客機能系
 */
 // ホーム画面
-Route::get('/', [CustomerHomeController::class,'index']);
+Route::get('/', [CustomerHomeController::class,'index'])->name('home');
+
+//顧客会員登録
+//顧客会員登録：フォーム表示
+Route::get('/customers/registration/showForm', [CustomerRegisterController ::class,'showForm'])->name('customers.registration.showForm');
+
+//顧客会員登録：情報確認
+Route::post('/customers/registration/confirm', [CustomerRegisterController ::class,'confirm'])->name('customers.registration.confirm');
+
+//顧客会員登録：登録完了
+Route::post('/customers/registration/insert', [CustomerRegisterController ::class,'insert'])->name('customers.registration.insert');
+
 //店舗スタッフ一覧
 Route::get('/customers/storeStaffList', [StoreStaffListController::class,'index']);
 //検索機能
-Route::get('/customers/storeSearch', [StoreSearchController::class,'index']);
+Route::get('/customers/store/search', [StoreController::class,'search'])->name('customer.storeSearch');
+
 //店舗詳細機能
 Route::get('/customers/storeDetail', [StoreDetailController::class,'index']);
 //店舗メニュー一覧機能
@@ -69,7 +88,7 @@ Route::get('/customers/reservationList', [ReservationController::class,'reservat
 Route::get('/customers/reservation/showForm', [ReservationController::class,'showReservationForm']);
 
 //予約機能：予約情報確認
-Route::post('/customers/reservation/confrim', [ReservationController::class,'confirmReservation']);
+Route::post('/customers/reservation/confirm', [ReservationController::class,'confirmReservation'])->name('customers.reservation.confirm');
 
 //予約機能：予約登録完了
 Route::post('/customers/reservation/insert', [ReservationController::class,'storeReservation']);
@@ -86,3 +105,16 @@ Route::post('/admins/update', [AttendanceController::class,'update'])->name('adm
 //店舗登録機能
 Route::get('/admins/store/insertForm', [StoreController::class, 'showInsertForm']);
 Route::post('/admins/store/confirm', 'StoreController@confirm')->name('store.confirm');
+Route::group(['middleware' => ['auth']], function() {
+    //勤怠情報一覧表示
+    Route::get('/admins/attendanceList', [AttendanceController::class,'list']);
+    Route::get('/admins/attendanceDetail', [AttendanceController::class,'detail']);
+    Route::post('/admins/update', [AttendanceController::class,'update'])->name('admins.update');
+    Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->name('admins.storeDetail');
+
+    //予約一覧表示機能
+    Route::get('/admins/reservationList', [ReservationController::class,'reservationListAdmin']);
+
+    //店舗系
+    Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->name('admins.storeDetail');
+});

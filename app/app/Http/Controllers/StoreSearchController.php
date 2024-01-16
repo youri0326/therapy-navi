@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\accountinfo;
-use App\Models\store;
 use App\Models\storeinfo;
 use App\Models\stationinfo;
 use App\Models\storemenuinfo;

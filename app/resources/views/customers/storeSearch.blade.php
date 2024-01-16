@@ -4,20 +4,15 @@
     作成日時			：
     作成者			：吉池悠理
 --}}
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta http-equiv="Content-Style-Type" content="text/css" />
-		<title>List</title>
-	</head>
-	<body>
-		<h1 align="center" style="margin-top: 21px;">店舗検索画面{{$station}}</h1>
-		<hr align="center" size="5" color="BLUE" width="950"></hr>
-		<hr align="center" size="2" color="black" width="950"></hr>
-		<br/>
-		<p>aa{{$address}}</p>
+@extends('customers.layouts.app')
+
+@section('title', 'トップページ')
+
+@section('content')
+
+		<h2>{{$address}}の整体院一覧</h2>
 		<div align="center">
+		@if($storeList->count() > 0)
     		<table  style="border:2;">
     			<tr >
     				<th bgcolor="#6666FF" width="200">店名</th>
@@ -32,11 +27,21 @@
         					<a href ="{{asset('/customers/storeDetail')}}?storeid={{$store->storeid}}">{{$store->storename}}</a>
     					</td>
         				<td align=center>
-							@if($store->storephotoinfo->count() > 0)
+
+							@if($store->storephotoinfo->where('imgrole', 0)->count() > 0)
 								<ul>
-								@foreach($store->storephotoinfo as $photo)
-									<li>{{ $photo->photopath }}</li>
-								@endforeach
+									@foreach($store->storephotoinfo->where('imgrole', 0) as $photo)
+										@php
+										$photopath = $photo->photopath;
+										if(str_contains($photopath, '.jpg')){
+											$photoName = str_replace('.jpg', '', $photopath);
+										}
+										elseif(str_contains($photopath, '.png')){
+											$photoName = str_replace('.png', '', $photopath);
+										}
+										@endphp
+										<li><img src="{{asset($photo->photopath)}}" alt="{{ $photoName }}"></li>
+									@endforeach
 								</ul>
 							@endif
 						</td>
@@ -51,11 +56,11 @@
 						</td>
 						<td align=center>{{$store->comment}}</td>
 						<td align=center>
-							@if($store->storemenuinfo->count() > 0)
+							@if($store->storemenuinfo->where('servicerole', 0)->count() > 0)
 								<ul>
-								@foreach($store->storemenuinfo as $menu)
-									<li>{{ $menu->servicename }}</li>
-								@endforeach
+									@foreach($store->storemenuinfo->where('servicerole', 0) as $menu)
+										<li>{{ $menu->servicename }}/{{ $menu->amount }}円</li>
+									@endforeach
 								</ul>
 							@endif
 						</td>
@@ -64,24 +69,15 @@
 
 					@endforeach
     		</table>
+			<div class="pagination">
+						{{ $storeList->links() }}
+			</div>
+		@else
+			<div class="research_title">
+				<h3>ご指定の条件に該当するお店は見つかりませんでした。</h3>
+				<p>検索条件を変更して、再度検索してください。</p>
+			</div>
+			@include('customers.layouts.storeSearchForm')
+		@endif
 		</div>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<hr align="center" size="5" color="blue" width="950"></hr>
-		<div  align="center">
-    		<table style="width:950px;">
-    			<tr>
-    				<td>copyright (c) all rights reserved.</td>
-    			</tr>
-    		</table>
-		</div>
-	</body>
-</html>
+		@endsection

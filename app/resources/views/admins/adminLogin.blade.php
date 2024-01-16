@@ -3,38 +3,32 @@
     プログラム説明	：管理者のログイン画面
 
 --}}
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta http-equiv="Content-Style-Type" content="text/css" />
-		<title>List</title>
-	</head>
-	<body>
-		<h1 align="center" style="margin-top: 21px;">管理者ログイン画面</h1>
-		<hr align="center" size="5" color="BLUE" width="950"></hr>
-			<!-- ログインのコンテンツ部分 -->
-			<div id="main" class="container">
+@extends('customers.layouts.app')
 
-				<form action="{{asset('/common/login')}}" method="POST">
-                {{ csrf_field() }}
-					<table class="input-table">
-						<tr>
-							<th>ユーザー</th>
-							<td>
-								<input type="text" size="25" name="accountid" value="修正時にセッション情報入れたい">
-							</td>
-						</tr>
-						<tr>
-							<th>パスワード</th>
-							<td>
-								<input type="password" size="25" name="password" value="修正時にセッション情報入れたい">
-							</td>
-						</tr>
-					</table>
-					<input type="hidden" size="25" name="authority" value="admin">
-					<input type="submit" value="ログイン">
-				</form>
-			</div>
-	</body>
-</html>
+@section('title', '管理者のログイン画面')
+
+@section('content')
+	<!-- ログインのコンテンツ部分 -->
+	@if ($errors->any())
+		<div class="alert alert-danger">
+			<ul>
+				@foreach ($errors->all() as $error)
+					<li>{{ $error }}</li>
+				@endforeach
+			</ul>
+		</div>
+	@endif
+	@if (session('login_error'))
+		<p>{{session('login_error')}}</p>
+	@endif
+	<form action="{{asset('/common/login')}}" method="POST" class="form-signin">
+	@csrf
+		<h1 class="h3 mb-3 font-weight-normal">管理者ログイン</h1>
+		<label for="inputEmail" class="sr-only">ログインID</label>
+		<input type="text" name="loginid" id="inputEmail" class="form-control" placeholder="ログインID" required autofocus>
+		<label for="inputPassword" class="sr-only">パスワード</label>
+		<input type="password" name="password" id="inputPassword" class="form-control" placeholder="パスワード" required>
+		<input type="hidden" size="25" name="authority" value="1">
+		<button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
+	</form>
+@endsection

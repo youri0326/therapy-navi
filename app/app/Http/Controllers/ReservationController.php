@@ -357,6 +357,26 @@ class ReservationController extends Controller
         // }
     }
 
-}
+    public function reservationListAdmin(Request $request) {
+        // 店舗IDを取得
+        $storeid = 2;
 
+        // 指定した店舗IDに対応する予約情報を取得
+        $reservationList = reserveinfo::whereHas('storemenuinfo.storeinfo', function ($query) use ($storeid) {
+            $query->where('storeid', $storeid);
+        })->get();
+        // 対象の店舗を取得
+        $storeList = storeinfo::where('storeid', '=', $storeid)->get();
+        // 対象の店舗のメニューリストを取得
+        $storemenuList = storemenuinfo::where('storeid', '=', $storeid)->get();
+        // 顧客のレコードを取得
+        // $customerList = customerinfo::find($customerid);
+
+        return view('admins/reservationList',[
+            'reservationList' => $reservationList,
+            'storemenuList' => $storemenuList, 
+            'storeList' => $storeList
+        ]);
+    }
+}
 

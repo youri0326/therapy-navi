@@ -1,8 +1,8 @@
 -- USE therapyNavi-db;
 
 CREATE TABLE bookinfo (
-    isbn VARCHAR(20) PRIMARY KEY,
-    title VARCHAR(100),
+    isbn VARCHAR(255) PRIMARY KEY,
+    title VARCHAR(255),
     price INTEGER
 )ENGINE=InnoDB,DEFAULT CHARSET=utf8;
 
@@ -19,25 +19,110 @@ INSERT INTO bookinfo VALUES('0005','database',1005);
 */
 
 -- アカウントテーブル作成
-CREATE TABLE accountinfo ( 
-    accountid INTEGER AUTO_INCREMENT PRIMARY KEY,
-    loginid VARCHAR(20) NOT NULL UNIQUE,
-    password VARCHAR(20) NOT NULL UNIQUE,
-    email VARCHAR(100),
-    phone VARCHAR(100),
-    authority INTEGER
+CREATE TABLE userinfo (
+    userid INTEGER AUTO_INCREMENT PRIMARY KEY,
+    loginid VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255),
+    phone VARCHAR(255),
+    authority INTEGER,
+    login_date DATE,
+    locked_flg TINYINT default 0,
+    error_count INTEGER default 0
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 
 -- アカウントテーブルのデータ登録
 --  顧客データ登録
-INSERT INTO accountinfo (accountid,loginid,password,email,phone,authority) VALUES(1,'0001','test','youriyoshiike@gmail.com','000-0000-0000',0);
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (1,'0001','$2a$08$G7ioaWi.zkNBAOuutUp9qepMjY3bM2K/H7myLmNMilEBO1k/OuB1O','youriyoshiike@gmail.com','000-0000-0000',0,CURDATE()); /*パスワード：test*/
 
 --  店舗データ登録
-INSERT INTO accountinfo (accountid,loginid,password,email,phone,authority) VALUES(2,'0002','test2','youriyoshiike@gmail.com','000-0000-0000',1);
-INSERT INTO accountinfo (accountid,loginid,password,email,phone,authority) VALUES(3,'0003','test3','youriyoshiike@gmail.com','000-0000-0000',1);
-INSERT INTO accountinfo (accountid,loginid,password,email,phone,authority) VALUES(4,'0004','test4','youriyoshiike@gmail.com','000-0000-0000',1);
-INSERT INTO accountinfo (accountid,loginid,password,email,phone,authority) VALUES(5,'0005','test5','youriyoshiike@gmail.com','000-0000-0000',1);
-INSERT INTO accountinfo (accountid,loginid,password,email,phone,authority) VALUES(6,'0006','test6','youriyoshiike@gmail.com','000-0000-0000',1);
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (2,'0002','$2a$08$cTzRuqvqr9Fa4KA.31vRRe7rDLeBhR4BhzchqJ1jUw.noVI9WvQ4S','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test2*/
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (3,'0003','$2a$08$GDTIi8LN.QraeIHBJ3FVdOxGvuL5zQ4ADfp/r0wBKUHwSO5zrJgSi','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test3*/
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (4,'0004','$2a$08$w4uFGCDD3pbNIf2sDlCIOuHqgxJ4i/Xlp/EYE0wAyVcXR7LqyAoNm','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test4*/
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (5,'0005','$2a$08$Xo4HD.rcupoR1Mn13OVwMO2J7UtJYzNIHbDTsi0SdPBKbMHkT0TxK','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test5*/
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (6,'0006','$2a$08$YbPn5xgktUyqsKaawdBZh.onWW6QWPgq0XcjMMLWdvTo5YkoXHb72','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test6*/
+
+
+/*  
+
+都道府県テーブル関連
+
+*/
+-- 地域テーブルの追加
+
+CREATE TABLE regioninfo (
+    regionid INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+INSERT INTO regioninfo
+ (name) 
+ VALUES
+    ('北海道・東北'),
+    ('関東'),
+    ('中部'),
+    ('近畿'),
+    ('中国・四国'),
+    ('九州・沖縄');
+
+CREATE TABLE prefectureinfo (
+    prefectureid INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    regionid INTEGER UNSIGNED,FOREIGN KEY (regionid) REFERENCES regioninfo (regionid),
+    created_at TIMESTAMP NULL DEFAULT NULL,
+    updated_at TIMESTAMP NULL DEFAULT NULL
+);
+
+INSERT INTO prefectureinfo
+ (name, regionid) 
+ VALUES
+    ('北海道', 1),
+    ('青森県', 1),
+    ('岩手県', 1),
+    ('宮城県', 1),
+    ('秋田県', 1),
+    ('山形県', 1),
+    ('福島県', 1),
+    ('茨城県', 2),
+    ('栃木県', 2),
+    ('群馬県', 2),
+    ('埼玉県', 2),
+    ('千葉県', 2),
+    ('東京都', 2),
+    ('神奈川県', 2),
+    ('新潟県', 3),
+    ('富山県', 3),
+    ('石川県', 3),
+    ('福井県', 3),
+    ('山梨県', 3),
+    ('長野県', 3),
+    ('岐阜県', 3),
+    ('静岡県', 3),
+    ('愛知県', 3),
+    ('三重県', 3),
+    ('滋賀県', 4),
+    ('京都府', 4),
+    ('大阪府', 4),
+    ('兵庫県', 4),
+    ('奈良県', 4),
+    ('和歌山県', 4),
+    ('鳥取県', 5),
+    ('島根県', 5),
+    ('岡山県', 5),
+    ('広島県', 5),
+    ('山口県', 5),
+    ('徳島県', 5),
+    ('香川県', 5),
+    ('愛媛県', 5),
+    ('高知県', 5),
+    ('福岡県', 6),
+    ('佐賀県', 6),
+    ('長崎県', 6),
+    ('熊本県', 6),
+    ('大分県', 6),
+    ('宮崎県', 6),
+    ('鹿児島県', 6),
+    ('沖縄県', 6);
 
 /*  
 
@@ -47,12 +132,12 @@ INSERT INTO accountinfo (accountid,loginid,password,email,phone,authority) VALUE
 
 CREATE TABLE storeinfo ( 
     storeid INTEGER AUTO_INCREMENT PRIMARY KEY,
-    accountid INTEGER,FOREIGN KEY (accountid) REFERENCES accountinfo (accountid),
-    storename VARCHAR(20),
-    address VARCHAR(100),
-    budget VARCHAR(20),
-    comment VARCHAR(100),
-    payment VARCHAR(20)
+    userid INTEGER,FOREIGN KEY (userid) REFERENCES userinfo (userid),
+    storename VARCHAR(255),
+    address VARCHAR(255),
+    budget VARCHAR(255),
+    comment VARCHAR(255),
+    payment VARCHAR(255)
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 
 -- 店舗テーブルのデータ登録
@@ -71,33 +156,34 @@ INSERT INTO storeinfo VALUES(4,5,'マッサージD','東京都 目白',8000,'','
 CREATE TABLE storemenuinfo ( 
     storemenuid INTEGER AUTO_INCREMENT PRIMARY KEY,
     storeid INTEGER,FOREIGN KEY (storeid) REFERENCES storeinfo (storeid),
-    servicename VARCHAR(20),
-    description VARCHAR(100),
+    servicename VARCHAR(255),
+    description VARCHAR(255),
     amount INTEGER,
-    servicetime INTEGER
+    servicetime INTEGER,
+    servicerole tinyint
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 
 
 -- 店舗メニューテーブルのデータ登録
 --   整体Aのメニュー情報
-INSERT INTO storemenuinfo VALUES(1,1,'骨盤矯正30分','痛みの改善',5000,30);
-INSERT INTO storemenuinfo VALUES(2,1,'骨盤矯正60分','痛みの改善',5000,60);
-INSERT INTO storemenuinfo VALUES(3,1,'全体マッサージ','痛みの改善',5000,60);
+INSERT INTO storemenuinfo VALUES(1,1,'骨盤矯正30分','痛みの改善',5000,30,0);
+INSERT INTO storemenuinfo VALUES(2,1,'骨盤矯正60分','痛みの改善',5000,60,1);
+INSERT INTO storemenuinfo VALUES(3,1,'全体マッサージ','痛みの改善',5000,60,1);
 
 --   マッサージBのメニュー情報
-INSERT INTO storemenuinfo VALUES(4,2,'骨盤矯正30分','痛みの改善',5000,30);
-INSERT INTO storemenuinfo VALUES(5,2,'骨盤矯正60分','痛みの改善',5000,60);
-INSERT INTO storemenuinfo VALUES(6,2,'全体マッサージ','痛みの改善',5000,60);
+INSERT INTO storemenuinfo VALUES(4,2,'骨盤矯正30分','痛みの改善',5000,30,0);
+INSERT INTO storemenuinfo VALUES(5,2,'骨盤矯正60分','痛みの改善',5000,60,1);
+INSERT INTO storemenuinfo VALUES(6,2,'全体マッサージ','痛みの改善',5000,60,1);
 
 --   整体Cのメニュー情報
-INSERT INTO storemenuinfo VALUES(7,3,'骨盤矯正30分','痛みの改善',5000,30);
-INSERT INTO storemenuinfo VALUES(8,3,'骨盤矯正60分','痛みの改善',5000,60);
-INSERT INTO storemenuinfo VALUES(9,3,'全体マッサージ','痛みの改善',5000,60);
+INSERT INTO storemenuinfo VALUES(7,3,'骨盤矯正30分','痛みの改善',5000,30,0);
+INSERT INTO storemenuinfo VALUES(8,3,'骨盤矯正60分','痛みの改善',5000,60,1);
+INSERT INTO storemenuinfo VALUES(9,3,'全体マッサージ','痛みの改善',5000,60,1);
 
 --   マッサージDのメニュー情報
-INSERT INTO storemenuinfo VALUES(10,4,'骨盤矯正30分','痛みの改善',5000,30);
-INSERT INTO storemenuinfo VALUES(11,4,'骨盤矯正60分','痛みの改善',5000,60);
-INSERT INTO storemenuinfo VALUES(12,4,'全体マッサージ','痛みの改善',5000,60);
+INSERT INTO storemenuinfo VALUES(10,4,'骨盤矯正30分','痛みの改善',5000,30,0);
+INSERT INTO storemenuinfo VALUES(11,4,'骨盤矯正60分','痛みの改善',5000,60,1);
+INSERT INTO storemenuinfo VALUES(12,4,'全体マッサージ','痛みの改善',5000,60,1);
 
 /*  
 
@@ -109,30 +195,31 @@ INSERT INTO storemenuinfo VALUES(12,4,'全体マッサージ','痛みの改善',
 CREATE TABLE storephotoinfo ( 
     storephotoid INTEGER AUTO_INCREMENT PRIMARY KEY,
     storeid INTEGER,FOREIGN KEY (storeid) REFERENCES storeinfo (storeid),
-    photopath VARCHAR(255)
+    photopath VARCHAR(255),
+    imgrole tinyint
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 
 
 -- 店舗写真テーブルのデータ登録
 --   整体Aの写真情報
-INSERT INTO storephotoinfo VALUES(1,1,'storage/img/seitaiA_01.jpg');
-INSERT INTO storephotoinfo VALUES(2,1,'storage/img/seitaiA_02.jpg');
-INSERT INTO storephotoinfo VALUES(3,1,'storage/img/seitaiA_03.jpg');
+INSERT INTO storephotoinfo VALUES(1,1,'storage/img/seitaiA_01.jpg',0);
+INSERT INTO storephotoinfo VALUES(2,1,'storage/img/seitaiA_02.jpg',1);
+INSERT INTO storephotoinfo VALUES(3,1,'storage/img/seitaiA_03.jpg',1);
 
 --   マッサージBの写真情報
-INSERT INTO storephotoinfo VALUES(4,2,'storage/img/seitaiB_01.jpg');
-INSERT INTO storephotoinfo VALUES(5,2,'storage/img/seitaiB_02.jpg');
-INSERT INTO storephotoinfo VALUES(6,2,'storage/img/seitaiB_03.jpg');
+INSERT INTO storephotoinfo VALUES(4,2,'storage/img/seitaiB_01.jpg',0);
+INSERT INTO storephotoinfo VALUES(5,2,'storage/img/seitaiB_02.jpg',1);
+INSERT INTO storephotoinfo VALUES(6,2,'storage/img/seitaiB_03.jpg',1);
 
 --   整体Cの写真情報
-INSERT INTO storephotoinfo VALUES(7,3,'storage/img/seitaiC_01.jpg');
-INSERT INTO storephotoinfo VALUES(8,3,'storage/img/seitaiC_02.jpg');
-INSERT INTO storephotoinfo VALUES(9,3,'storage/img/seitaiC_03.jpg');
+INSERT INTO storephotoinfo VALUES(7,3,'storage/img/seitaiC_01.jpg',0);
+INSERT INTO storephotoinfo VALUES(8,3,'storage/img/seitaiC_02.jpg',1);
+INSERT INTO storephotoinfo VALUES(9,3,'storage/img/seitaiC_03.jpg',1);
 
 --   マッサージDの写真情報
-INSERT INTO storephotoinfo VALUES(10,4,'storage/img/seitaiD_01.jpg');
-INSERT INTO storephotoinfo VALUES(11,4,'storage/img/seitaiD_02.jpg');
-INSERT INTO storephotoinfo VALUES(12,4,'storage/img/seitaiD_03.jpg');
+INSERT INTO storephotoinfo VALUES(10,4,'storage/img/seitaiD_01.jpg',0);
+INSERT INTO storephotoinfo VALUES(11,4,'storage/img/seitaiD_02.jpg',1);
+INSERT INTO storephotoinfo VALUES(12,4,'storage/img/seitaiD_03.jpg',1);
 
 /*  
 
@@ -144,9 +231,9 @@ INSERT INTO storephotoinfo VALUES(12,4,'storage/img/seitaiD_03.jpg');
 CREATE TABLE stationinfo ( 
     stationid INTEGER AUTO_INCREMENT PRIMARY KEY,
     storeid INTEGER,FOREIGN KEY (storeid) REFERENCES storeinfo (storeid),
-    stationname VARCHAR(20),
-    stationline VARCHAR(20),
-    distance VARCHAR(20)
+    stationname VARCHAR(255),
+    stationline VARCHAR(255),
+    distance VARCHAR(255)
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 
 
@@ -175,12 +262,12 @@ INSERT INTO stationinfo VALUES(7,4,'目白駅','JR山手線','徒歩10分');
 CREATE TABLE staffinfo (
 staffid INTEGER AUTO_INCREMENT PRIMARY KEY,
 storeid INTEGER,FOREIGN KEY (storeid) REFERENCES storeinfo (storeid),
-staffname VARCHAR(20),
-stafffurigana VARCHAR(20),
+staffname VARCHAR(255),
+stafffurigana VARCHAR(255),
 gender INTEGER,
-treathistory VARCHAR(20),
+treathistory VARCHAR(255),
 staffbirthday date,
-photo VARCHAR(100)
+photo VARCHAR(255)
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 
 -- 従業員情報テーブルのデータ登録
@@ -208,7 +295,7 @@ INSERT INTO staffinfo VALUES(6,3,'水戸駿介','みとしゅんすけ',1,201603
 CREATE TABLE attendinfo ( 
     attendid INTEGER AUTO_INCREMENT PRIMARY KEY,
     staffid INTEGER,FOREIGN KEY (staffid) REFERENCES staffinfo (staffid),
-    attendance_status VARCHAR(20),
+    attendance_status VARCHAR(255),
     workingdate DATE,
     starttime TIME,
     endtime TIME,
@@ -281,11 +368,11 @@ INSERT INTO attendinfo VALUES(42,6,'〇','2024-01-04','12:00','20:00','13:00','1
 
 CREATE TABLE customerinfo ( 
 customerid INTEGER AUTO_INCREMENT PRIMARY KEY,
-accountid INTEGER,FOREIGN KEY (accountid) REFERENCES accountinfo (accountid),
-name VARCHAR(20),
-furigana VARCHAR(20),
+userid INTEGER,FOREIGN KEY (userid) REFERENCES userinfo (userid),
+name VARCHAR(255),
+furigana VARCHAR(255),
 birthday date,
-address VARCHAR(20),
+address VARCHAR(255),
 point INTEGER
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 
@@ -310,7 +397,7 @@ reservedate date,
 reservetime time,
 payment INTEGER DEFAULT 0,
 status INTEGER DEFAULT 0,
-addcomment VARCHAR(20)
+addcomment VARCHAR(255)
 )ENGINE = InnoDB,DEFAULT CHARSET=utf8;
 
 -- 予約情報テーブルのデータ登録
