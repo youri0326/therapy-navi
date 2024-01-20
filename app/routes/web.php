@@ -56,6 +56,17 @@ Route::group(['middleware' => ['auth']], function() {
 */
 // ホーム画面
 Route::get('/', [CustomerHomeController::class,'index'])->name('home');
+
+//顧客会員登録
+//顧客会員登録：フォーム表示
+Route::get('/customers/registration/showForm', [CustomerRegisterController ::class,'showForm'])->name('customers.registration.showForm');
+
+//顧客会員登録：情報確認
+Route::post('/customers/registration/confirm', [CustomerRegisterController ::class,'confirm'])->name('customers.registration.confirm');
+
+//顧客会員登録：登録完了
+Route::post('/customers/registration/insert', [CustomerRegisterController ::class,'insert'])->name('customers.registration.insert');
+
 //店舗スタッフ一覧
 Route::get('/customers/storeStaffList', [StoreStaffListController::class,'index']);
 //検索機能
@@ -76,7 +87,7 @@ Route::get('/customers/reservationList', [ReservationController::class,'reservat
 Route::get('/customers/reservation/showForm', [ReservationController::class,'showReservationForm']);
 
 //予約機能：予約情報確認
-Route::post('/customers/reservation/confrim', [ReservationController::class,'confirmReservation']);
+Route::post('/customers/reservation/confirm', [ReservationController::class,'confirmReservation'])->name('customers.reservation.confirm');
 
 //予約機能：予約登録完了
 Route::post('/customers/reservation/insert', [ReservationController::class,'storeReservation']);

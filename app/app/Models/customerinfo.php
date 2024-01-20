@@ -23,6 +23,14 @@ class customerinfo extends Model
     // データの作成日時、更新日時がデフォルトで自動更新されるので、オフ
     public $timestamps = false;
 
+    protected $fillable = [
+        'userid',
+        'name',
+        'furigana',
+        'birthday',
+        'address',
+      ];
+
     public function userinfo() // 親テーブル(userinfo)
     {
         // belongsTo('モデル', '外部キー', 'カスタムキー');
