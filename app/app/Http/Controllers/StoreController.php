@@ -80,7 +80,7 @@ class StoreController extends Controller
         try{
             // 店舗情報の取得
             // $storeid = $request->storeid;
-            $storeid = 2;
+            $storeid = 1;
             $store = storeinfo::with(['stationinfo', 'storephotoinfo'])->firstWhere('storeid', $storeid);
 
         } catch (Exception $e) {
@@ -108,6 +108,7 @@ class StoreController extends Controller
         $error = "";
         $dbErrorJudge = false;
         $store = null;
+        $storeid = 1;
         $link = [
             'href' => '',
             'text' => '',
@@ -119,12 +120,18 @@ class StoreController extends Controller
                 // バリデーション
 
                 $rules = [
-                    'photo_01' => 'required|image|max:2048',
-                    'subphoto1' => 'required|image|max:2048',
-                    'subphoto2' => 'required|image|max:2048',
+                    'photo_0' => 'required|image|max:2048',
+                    'photo_1' => 'required|image|max:2048',
+                    'photo_2' => 'required|image|max:2048',
                 ];
-                $validator = Validator::make($request->all(), $rules);
 
+                // $rules = array();
+                // for ($i = 0; $i < 3; $i++) {
+                //     $key_name = (string)$i;
+                //     $rules[$key_name] = 'required|image|max:2048';
+                // }
+
+                $validator = Validator::make($request->all(), $rules);
                 //バリデーションに失敗した場合
                 if ($request->$validator->fails()) {
                     // 登録フォームに戻る
@@ -136,30 +143,44 @@ class StoreController extends Controller
                 */
 
                 $photoList = [new storephotoinfo(),new storephotoinfo(),new storephotoinfo()];
-                $photoDir = 'public/img/storephoto';
+                // $photoDir = 'public/img/storephoto';
+                $photoDir = 'public/img/';
 
                 for ($i = 0; $i < 3; $i++) {
                     //name属性の値の取得
                     $name_field = 'photo_'.$i;
                     //ファイル情報の取得
                     $photoname = $request->file($name_field);
+                    if (empty($photoname)) {
+                        $error ="aaa";
+                        return;
+                    }
                     //ファイルのパスの取得
                     $photopath = $photoDir.'/'.$photoname;
                     //画像のアップロード
                     $photoname->store($photoDir);
 
                     //モデルズにDBへの登録情報を格納
-                    $photo = $photoList[$i];
-                    $photo->storeid = $request->storeid;
+                    $photo = storephotoinfo::where('storeid', $storeid)->where('imgrole', $i)->first();
+                    
+                    /*
+                    検索情報の有無を確認します。
+                        ①情報が確認できなければ新規登録、
+                        ②できれば更新処理
+                    */
+                    if (!$photo) {
+                        // 新規登録の場合の処理
+                        $photo = new storephotoinfo();
+                        $photo->storeid = $storeid;
+                        $photo->imgrole = $i;
+                    }
                     $photo->photopath = $photopath;
-                    $photo->imgrole = $i;
-                    $photo->save();
+                    $photo->save();                    
                 }
 
                 // 成功メッセージ
                 $message = '店舗写真を追加・更新しました。';
             }
-
             // フォームからの送信がない場合、Finnally句に移動して登録フォームに遷移
             else {
                 $error = 'エラーが発生しました、再アップロードしてください。';
@@ -173,7 +194,7 @@ class StoreController extends Controller
             //アップロード処理が上手くいった際の遷移先
             if($error === ""){
                 // JSON 形式でレスポンスを返す
-                return response()->json(['message' => $message]);
+                return redirect()->route('admins.storeDetail')->with(compact('message'));
             }else{
                 return redirect()->route('admins/store_photos/showForm')->with(compact('error'));
             }
