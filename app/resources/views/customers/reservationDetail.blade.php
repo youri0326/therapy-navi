@@ -28,8 +28,8 @@
                 <tr>
                     <th>予約店舗</th>
                     <td>
-                        @if($reservation->storemenu->store) <!-- $storeが存在する場合 -->
-                            {{ $reservation->storemenu->store->storename }}
+                        @if($reservation->storemenuinfo->storeinfo) <!-- $storeが存在する場合 -->
+                            {{ $reservation->storemenuinfo->storeinfo->storename }}
                         @else <!-- $storeが存在しない場合 -->
                             店舗が存在しません
                         @endif
@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                     <th>メニュー</th>
-                    <td>{{ $reservation->storemenu->servicename }}</td>
+                    <td>{{ $reservation->storemenuinfo->servicename }}</td>
                 </tr>
                 <tr>
                     <th>支払方法</th>

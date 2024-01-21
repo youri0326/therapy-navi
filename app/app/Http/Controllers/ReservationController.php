@@ -382,7 +382,7 @@ class ReservationController extends Controller
     public function reservationDetail() {
         // IDはあとでフォームから取得するように変更する
         $reserveid = 2;
-        $reservation = reserveinfo::with('storemenu.store')->find($reserveid);
+        $reservation = reserveinfo::with('storemenuinfo.storeinfo')->find($reserveid);
         
         return view('customers/reservationDetail',[
             'reservation' => $reservation,

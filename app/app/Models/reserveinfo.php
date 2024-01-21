@@ -39,7 +39,7 @@ class reserveinfo extends Model
     }
 
 
-    public function storemenu()
+    public function storemenuinfo()
     {
         return $this->belongsTo('App\Models\storemenuinfo', 'storemenuid', 'storemenuid');
     }
