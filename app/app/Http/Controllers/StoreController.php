@@ -159,8 +159,19 @@ class StoreController extends Controller
                     //ファイル情報の取得
                     $photoData = $request->file($name_field);
 
+                    /*
+                        ファイル名の取得
+                    */
                     // ファイル名を取得
                     $photoname = $photoData->getClientOriginalName();
+                    // 拡張子の取得
+                    $extension = $photoData->getClientOriginalExtension();
+                    //拡張子を除いたファイル名の取得
+                    $photoname = substr($photoname, 0, -strlen(".".$extension));
+
+                    //日付・拡張子を含むファイル名を生成
+                    $photoname = $photoname . '-' . time() . '.' . $extension;
+
                     echo("04：".$photoname);
 
                     if (empty($photoData)) {
@@ -172,7 +183,7 @@ class StoreController extends Controller
                     $photopath = $photoDir.$photoname;
                     echo("06：".$photopath);
                     //画像のアップロード
-                    $photoData->store($uploadDir,$photoname);
+                    $photoData->storeAs($uploadDir,$photoname);
 
                     //モデルズにDBへの登録情報を格納
                     $photoObj = storephotoinfo::where('storeid', $storeid)->where('imgrole', $i)->first();
