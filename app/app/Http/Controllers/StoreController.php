@@ -149,8 +149,8 @@ class StoreController extends Controller
                 */
                 echo("03.1：");
                 $photoList = [new storephotoinfo(),new storephotoinfo(),new storephotoinfo()];
-                // $photoDir = 'public/img/storephoto';
-                $photoDir = 'storage/img/store_photos/';
+                $uploadDir = 'public/img/storephoto/';
+                $photoDir = 'storage/img/storephoto/';
 
                 for ($i = 0; $i < 3; $i++) {
                     //name属性の値の取得
@@ -169,10 +169,10 @@ class StoreController extends Controller
                         return;
                     }
                     //ファイルのパスの取得
-                    $photopath = $photoDir.'/'.$photoname;
+                    $photopath = $photoDir.$photoname;
                     echo("06：".$photopath);
                     //画像のアップロード
-                    $photoData->store($photoDir);
+                    $photoData->store($uploadDir,$photoname);
 
                     //モデルズにDBへの登録情報を格納
                     $photoObj = storephotoinfo::where('storeid', $storeid)->where('imgrole', $i)->first();
@@ -210,7 +210,7 @@ class StoreController extends Controller
             //アップロード処理が上手くいった際の遷移先
             if($error === ""){
                 // JSON 形式でレスポンスを返す
-                return view('admins.storeDetail', compact('store'));
+                return view('admins/storeDetailByAdmin', compact('store'));
                 // return redirect()->route('admins.storeDetail')->with(compact('message'));
             }else{
                 // return redirect()->route('admins/store_photos/showForm')->with(compact('error'));

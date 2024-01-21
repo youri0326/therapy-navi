@@ -165,7 +165,6 @@ $(document).ready(function() {
             var fileList = dropzone.files;
             var file = fileList[0];
             formData.append("photo_" + i, file);
-            alert("test:"+file.name);
             // $("#photo_" + i).val(file);
             // dropzone.processQueue();
         }
@@ -173,6 +172,7 @@ $(document).ready(function() {
             .then(function(response) {
                 console.log(response);
                 window.location.href = "{{ route('admins.store.photo.insert') }}"; 
+                // redirect("{{ route('admins.store.photo.insert') }}");
             })
             .catch(function(error) {
                 console.log(error);
