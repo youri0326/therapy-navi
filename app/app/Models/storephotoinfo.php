@@ -16,7 +16,12 @@ class storephotoinfo extends Model
     
     // プライマリキーを指定
     protected $primaryKey = 'storephotoid';
-    
+    protected $fillable = [
+        'storeid',
+        'photopath',
+        'imgrole',
+    ];
+ 
     // プライマリーキーがオートインクリメントのため 設定をオン
     public $incrementing = true;
     

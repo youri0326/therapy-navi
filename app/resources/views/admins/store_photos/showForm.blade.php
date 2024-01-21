@@ -26,7 +26,7 @@
                         <div class="form-group">
                             <div class="dropzone" id="myDropzone_{{ $i }}">
                                 <div class="fallback">
-                                    <input type="file" name="photo_{{ $i }}" id="photo_{{ $i }}" />
+                                    <!-- <input type="file" name="photo_{{ $i }}" id="photo_{{ $i }}" /> -->
                                 </div>
                             </div>
                             <label class="custom-file-label" id="photo_{{ $i }}-label" for="photo_{{ $i }}">
@@ -61,7 +61,7 @@
 
         <label class="custom-file-label" id="photo-label" for="photo">
     <div class="col-12">
-        <button type="submit" class="btn btn-primary" id="submit">更新</button>
+        <button type="submit" class="btn btn-primary" >更新</button>
     </div>
 
 </form>
@@ -77,91 +77,11 @@ $(document).ready(function() {
         alert("test:");
     });
     // Dropzone の初期化
-        // Dropzone の初期化
     Dropzone.autoDiscover = false;
-//     Dropzone.options.myAwesomeDropzone = {
-//         url: "{{ route('admins.store.photo.insert') }}", // ファイルアップロードのためのURLを指定
-//         paramName : "file",
-//         paralleUploads : 3,
-//         acceptedFiles : 'image/*',
-//         maxFiles: 3,
-//         maxFilesize: 1,
-//         autoProcessQueue: false,
-//         // uploadMultiple:true,
-//         dictFileTooBig: "ファイルが大きすぎます。(@{{filesize}}MB). 最大サイズ: @{{maxFilesize}}MB.",
-//         dictInvalidFileType: "画像ファイルのみアップロードが可能です。",
-//         dictMaxFilesExceeded: "ファイルは6ファイルまで追加が可能です。",
-//         dictDefaultMessage: "ここへファイルをドラッグ＆ドロップするとアップロードされます。<br>最大6ファイルまでアップ可能です。<br><br>（もしくはここをクリックするとファイル選択ウインドウが表示されますのでそこで選択してもアップ可能です）",
-//   };
-    // if ($("#myDropzone").data("dropzone")) {
-    //     $("#myDropzone").data("dropzone").destroy();
-    // }
-    // var dropzone = new Dropzone("#myDropzone", {
-    //     url: "{{ route('admins.store.photo.insert') }}", // ファイルアップロードのためのURLを指定
-    //     autoProcessQueue: false, // 手動で処理するために自動処理を無効化
-    //     dictDefaultMessage: "ファイルを選択またはドラッグ&ドロップ",
-    //     paramName: "photo", // ファイルのパラメータ名
-    //     maxFiles: 3, // 1つのファイルに制限
-    //     acceptedFiles: 'image/*', // 受け入れるファイルの種類を指定
-    // });  
 
-    // Dropzone.autoDiscover = false;
-    // if ($("#myDropzone_0").data("dropzone")) {
-    //     $("#myDropzone_0").data("dropzone").destroy();
-    // }
-    // var dropzone0 = new Dropzone("#myDropzone_0", {
-    //     url: "{{ route('admins.store.photo.insert') }}", // ファイルアップロードのためのURLを指定
-    //     autoProcessQueue: false, // 手動で処理するために自動処理を無効化
-    //     dictDefaultMessage: "ファイルを選択またはドラッグ&ドロップ",
-    //     paramName: "photo_0", // ファイルのパラメータ名
-    //     maxFiles: 3, // 1つのファイルに制限
-    //     acceptedFiles: 'image/*', // 受け入れるファイルの種類を指定
-    // });  
-    // Dropzone.autoDiscover = false;
-    // if ($("#myDropzone_1").data("dropzone")) {
-    //     $("#myDropzone_1").data("dropzone").destroy();
-    // }
-    // var dropzone1 = new Dropzone("#myDropzone_1", {
-    //     url: "{{ route('admins.store.photo.insert') }}", // ファイルアップロードのためのURLを指定
-    //     autoProcessQueue: false, // 手動で処理するために自動処理を無効化
-    //     dictDefaultMessage: "ファイルを選択またはドラッグ&ドロップ",
-    //     paramName: "photo_1", // ファイルのパラメータ名
-    //     maxFiles: 3, // 1つのファイルに制限
-    //     acceptedFiles: 'image/*', // 受け入れるファイルの種類を指定
-    // });     
-    // Dropzone.autoDiscover = false;
-    // if ($("#myDropzone_2").data("dropzone")) {
-    //     $("#myDropzone_2").data("dropzone").destroy();
-    // }
-    // var dropzone2 = new Dropzone("#myDropzone_2", {
-    //     url: "{{ route('admins.store.photo.insert') }}", // ファイルアップロードのためのURLを指定
-    //     autoProcessQueue: false, // 手動で処理するために自動処理を無効化
-    //     dictDefaultMessage: "ファイルを選択またはドラッグ&ドロップ",
-    //     paramName: "photo_2", // ファイルのパラメータ名
-    //     maxFiles: 3, // 1つのファイルに制限
-    //     acceptedFiles: 'image/*', // 受け入れるファイルの種類を指定
-    // });
 
-    // dropzone1.on("addedfile", function (file) {
-    //     // ファイル名を表示する
-    //     $("#photo_1-label").text(file.name);
-    //     alert(file.name);
-    //     file.previewElement.remove();
-    //     // プレビュー画像を表示する
-    //     var reader = new FileReader();
-    //     reader.onload = function (e) {
-    //         // $("#photo_" + i + "-preview").attr("src", e.target.result);
-    //         $("#photo_0-preview").attr("src", e.target.result);
-    //     };
-    //     reader.readAsDataURL(file);
-        
-    // });
-    //     // ファイルが正常にアップロードされたときのイベント
-    //     dropzone1.on("success", function (file, response) {
-    //     // 成功時の処理、必要に応じて実装
-    //     alert("ファイルが正常にアップロードされました");
-    // });
-    //     var dropzones = [];
+    // Dropzone インスタンスを格納する配列
+    var dropzones = [];
 
     for (let i = 0; i < 3; i++) {
         if ($("#myDropzone_"+i).data("dropzone")) {
@@ -169,19 +89,19 @@ $(document).ready(function() {
         }
         var dropzone = new Dropzone("#myDropzone_"+i, {
             url: "{{ route('admins.store.photo.insert') }}", // ファイルアップロードのためのURLを指定
-            // autoProcessQueue: false, // 手動で処理するために自動処理を無効化
-            // dictDefaultMessage: "ファイルを選択またはドラッグ&ドロップ",
+            autoProcessQueue: false, // 手動で処理するために自動処理を無効化
             maxFilesize: 1,
+            parallelUploads: 1,
+            uploadMultiple: false,
             dictDefaultMessage: "ここへファイルをドラッグ＆ドロップするとアップロードされます。<br>最大6ファイルまでアップ可能です。<br><br>（もしくはここをクリックするとファイル選択ウインドウが表示されますのでそこで選択してもアップ可能です）",
             paramName: "photo_" + i, // ファイルのパラメータ名
-            // maxFiles: 3, // 1つのファイルに制限
+            autoRemoveFileInput: false,
             acceptedFiles: 'image/*', // 受け入れるファイルの種類を指定
         });
-
+        dropzones.push(dropzone); // Dropzone インスタンスを配列に追加
 
         // ファイルが追加されたら、処理を行う
         dropzone.on("addedfile", function(file) {
-            alert(file.name);
             file.previewElement.remove();
             // ファイル名を表示する
             $("#" + file.previewTemplate.id + "-label").text(file.name);
@@ -205,79 +125,85 @@ $(document).ready(function() {
                 // ファイルを削除する
                 file.remove();
             }
+            // else{
+            //     $("input[name='photo_" + i + "']").val(file.name);
+            // }
         });
 
         // ファイルが削除されたら、プレビュー画像をリセットする
         dropzone.on("removedfile", function(file) {
-            $("#photo_" + i + "-preview").attr("src", "{{ asset('path_to_noimage.jpg') }}");
+            $("#photo_" + i + "-preview").attr("src", "{{ asset('storage/img/noimage.jpg') }}");
         });
     }
+    // フォーム送信時の処理
+    $("#form").submit(function(e) {
+        e.preventDefault(); // 通常のフォーム送信を防ぐ
+
+        // FormData オブジェクトを作成
+        var formData = new FormData();
+
+        // 各Dropzoneのキューにあるファイルを処理
+        // dropzones.forEach(function(dropzone, index) {
+        //     var files = dropzone.files;
+
+        //     alert(files);
+        //     alert(files.name);
+        //     formData.append("photo_" + index + "[" + fileIndex + "]", file);
+
+        //     // ファイルのデータを FormData に追加
+        //     files.forEach(function(file, fileIndex) {
+        //         alert(file.name);
+        //         formData.append("photo_" + index + "[" + fileIndex + "]", file);
+        //     });
+        // });
+        // フォームに追加のデータを FormData に追加（例えば _token）
+        formData.append("_token", $("input[name='_token']").val());
+
+        // ファイルのデータをフォームに追加
+        for (let i = 0; i < 3; i++) {
+            var dropzone = dropzones[i];
+            var fileList = dropzone.files;
+            var file = fileList[0];
+            formData.append("photo_" + i, file);
+            alert("test:"+file.name);
+            // $("#photo_" + i).val(file);
+            // dropzone.processQueue();
+        }
+        axios.post("{{ route('admins.store.photo.insert') }}", formData)
+            .then(function(response) {
+                console.log(response);
+                window.location.href = "{{ route('admins.store.photo.insert') }}"; 
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+        // this.submit();
+        // // 各Dropzoneのキューにあるファイルを処理
+        // dropzones.forEach(function(dropzone) {
+        //     // ファイルのデータを取得
+        //     var files = dropzone.files;
+
+        //     // axios.post でデータを送信する
+        //     axios.post("{{ route('admins.store.photo.insert') }}", {
+        //     "photo_0": files[0],
+        //     "photo_1": files[1],
+        //     "photo_2": files[2],
+        //     })
+        //     .then(function(response) {
+        //         console.log(response);
+        //         // // 別のページに遷移する
+        //         // window.location.href = "{{ route('admins.store.photo.insert') }}";
+        //     })
+        //     .catch(function(error) {
+        //         console.log(error);
+        //     });
+
+        // });
+        this.submit();
+        
+    });
 });
 
-$(function() {
-    
-    // // Dropzone の初期化
-    // var dropzone1 = new Dropzone("#photo_1");
-
-    // dropzone1.on("addedfile", function(file) {
-    //     // ファイル名を表示する
-    //     $("#photo_1-label").text(file.name);
-    //     $("#" + file.previewTemplate.id + "-label").text(file.name);
-    //     alert('test:');
-    //     alert(file.name);
-    //     // this オブジェクトを明示的に渡す
-    //     this.on("addedfile", function() {
-    //       // プレビュー画像を表示する
-    //       var reader = new FileReader();
-    //       reader.onload = function (e) {
-    //         $("#photo_" + i + "-preview").attr("src", e.target.result);
-    //       };
-    //       reader.readAsDataURL(file);
-
-    //       // ファイル名を表示する
-    //       $("#photo_1-label").text(file.name);
-    //     //   $("#" + file.previewTemplate.id + "-label").text(file.name);
-    //     });
-    // });
-
-    // var dropzones = [];
-
-    // for (let i = 0; i < 3; i++) {
-    //     var dropzone = new Dropzone("#photo_" + i);
-    //     dropzones.push(dropzone);
-
-    //     // ファイルが追加されたら、処理を行う
-    //     dropzone.on("addedfile", function(file) {
-    //         // ファイル名を表示する
-    //         $("#" + file.previewTemplate.id + "-label").text(file.name);
-
-    //         // プレビュー画像を表示する
-    //         var reader = new FileReader();
-    //         reader.onload = function (e) {
-    //             // $("#photo_" + i + "-preview").attr("src", e.target.result);
-    //             $("#photo_" + dropzone.options.index + "-preview").attr("src", e.target.result);
-    //         };
-    //         reader.readAsDataURL(file);
-
-    //         // ファイルの種類を取得する
-    //         var type = file.type;
-
-    //         // バリデーションを行う
-    //         if (type !== "image/jpeg" && type !== "image/png") {
-    //             // エラーメッセージを表示する
-    //             alert("画像のファイル形式が正しくありません。");
-
-    //             // ファイルを削除する
-    //             file.remove();
-    //         }
-    //     });
-
-    //     // ファイルが削除されたら、プレビュー画像をリセットする
-    //     dropzone.on("removedfile", function(file) {
-    //         $("#photo_" + i + "-preview").attr("src", "{{ asset('path_to_noimage.jpg') }}");
-    //     });
-    // }
-});
 
 
 
