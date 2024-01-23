@@ -102,6 +102,103 @@ class StoreController extends Controller
         }
     }
 
+    public function insert(Request $request)
+    {
+        $error = "";
+        $message = '';
+        $storeid = 1; 
+        $s = $request->hasFile('photo_0');
+        info('変数の中身: ' . print_r($s, true));
+        dd($s);
+
+
+        try{
+            // バリデーション
+
+            $rules = [
+                'photo_0' => 'image|max:2048',
+                'photo_1' => 'image|max:2048',
+                'photo_2' => 'image|max:2048',
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+            //バリデーションに失敗した場合
+            if ($validator->fails()) {
+                // 登録フォームに戻る
+                $error = 'エラーが発生しました、再アップロードしてください。';
+                return;
+            }
+            /*
+            ファイルの保存
+            */
+            $uploadDir = 'public/img/storephoto/';
+            $photoDir = 'storage/img/storephoto/';
+
+           
+
+            for ($i = 0; $i < 3; $i++) {
+                //name属性の値の取得
+                $name_field = 'photo_'.$i;
+                //ファイル情報の取得
+                $photoData = $request->file($name_field);
+                $nullJudge = $request->hasFile($name_field);
+
+                info($i.":".$photoData);
+                if (!$nullJudge) {
+                // if (!$photoData) {
+                    $message = $message."アップロードなし.";
+                    info("nothing");
+                    continue;
+                }
+                /*
+                    ファイル名の取得
+                */
+                // ファイル名を取得
+                $photoname = $photoData->getClientOriginalName();
+                $message = $message.$photoname;
+                // 拡張子の取得
+                $extension = $photoData->getClientOriginalExtension();
+                //拡張子を除いたファイル名の取得
+                $photoname = substr($photoname, 0, -strlen(".".$extension));
+                //日付・拡張子を含むファイル名を生成
+                $photoname = $photoname . '-' . time() . '.' . $extension;
+
+                //ファイルのパスの取得
+                $photopath = $photoDir.$photoname;
+
+                //画像のアップロード
+                $photoData->storeAs($uploadDir,$photoname);
+
+                //モデルズにDBへの登録情報を格納
+                $photoObj = storephotoinfo::where('storeid', $storeid)->where('imgrole', $i)->first();
+                
+                /*
+                検索情報の有無を確認します。
+                    ①情報が確認できなければ新規登録、
+                    ②できれば更新処理
+                */
+                if (!$photoObj) {
+                    // 新規登録の場合の処理
+                    $photoObj = new storephotoinfo();
+                    $photoObj->storeid = $storeid;
+                    $photoObj->imgrole = $i;
+                }
+                $photoObj->photopath = $photopath;
+                $photoObj->save();                    
+            }
+
+            // 成功メッセージ
+            $message = '店舗写真を追加・更新しました。';
+
+        } catch (Exception $e) {
+            // エラー処理
+            $error = 'エラーが発生しました、再アップロードしてください。';
+
+        }finally{
+            return response()->json(['message' => $message,'error' => $error,])->with(compact('s'));
+        }
+    }
+
 
     public function storePhoto(Request $request)
     {
@@ -121,24 +218,19 @@ class StoreController extends Controller
                 // バリデーション
 
                 $rules = [
-                    'photo_0' => 'required|image|max:2048',
-                    'photo_1' => 'required|image|max:2048',
-                    'photo_2' => 'required|image|max:2048',
+                    'photo_0' => 'image|max:2048',
+                    'photo_1' => 'image|max:2048',
+                    'photo_2' => 'image|max:2048',
                 ];
-                var_dump($request->all());
-                $name = $request->file('photo_0');
-                echo("送信:");
-                echo($name);
                 // $rules = array();
                 // for ($i = 0; $i < 3; $i++) {
                 //     $key_name = (string)$i;
                 //     $rules[$key_name] = 'required|image|max:2048';
                 // }
-                echo("01：");
-                $validator = Validator::make($request->all(), $rules);
-                echo("02：");
-                //バリデーションに失敗した場合
-                // if ($request->$validator->fails()) {
+                // $validator = Validator::make($request->all(), $rules);
+                // echo("02：");
+                // //バリデーションに失敗した場合
+                // if ($validator->fails()) {
                 //     // 登録フォームに戻る
                 //     $error = 'エラーが発生しました、再アップロードしてください。';
                 //     echo("03：".$error);
@@ -147,41 +239,37 @@ class StoreController extends Controller
                 /*
                 ファイルの保存
                 */
-                echo("03.1：");
                 $photoList = [new storephotoinfo(),new storephotoinfo(),new storephotoinfo()];
                 $uploadDir = 'public/img/storephoto/';
                 $photoDir = 'storage/img/storephoto/';
 
                 for ($i = 0; $i < 3; $i++) {
+                    echo("03");
                     //name属性の値の取得
                     $name_field = 'photo_'.$i;
-                    echo("03.2：");
                     //ファイル情報の取得
                     $photoData = $request->file($name_field);
-
                     /*
                         ファイル名の取得
                     */
                     // ファイル名を取得
                     $photoname = $photoData->getClientOriginalName();
+                    if ($request->input($name_field, null) === "nothing") {
+                        echo("con");
+                        continue;
+                    }
+
+                    echo("name".$photoname );
                     // 拡張子の取得
                     $extension = $photoData->getClientOriginalExtension();
                     //拡張子を除いたファイル名の取得
                     $photoname = substr($photoname, 0, -strlen(".".$extension));
-
                     //日付・拡張子を含むファイル名を生成
                     $photoname = $photoname . '-' . time() . '.' . $extension;
 
-                    echo("04：".$photoname);
-
-                    if (empty($photoData)) {
-                        $error ="aaa";
-                        echo("05：".$photoname);
-                        return;
-                    }
                     //ファイルのパスの取得
                     $photopath = $photoDir.$photoname;
-                    echo("06：".$photopath);
+
                     //画像のアップロード
                     $photoData->storeAs($uploadDir,$photoname);
 
@@ -193,14 +281,12 @@ class StoreController extends Controller
                         ①情報が確認できなければ新規登録、
                         ②できれば更新処理
                     */
-                    if (!$photoData) {
+                    if (!$photoObj) {
                         // 新規登録の場合の処理
                         $photoObj = new storephotoinfo();
                         $photoObj->storeid = $storeid;
                         $photoObj->imgrole = $i;
-                        echo("あれ？登録？");
                     }
-                    echo("iii");
                     $photoObj->photopath = $photopath;
                     $photoObj->save();                    
                 }

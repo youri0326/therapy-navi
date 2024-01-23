@@ -114,4 +114,6 @@ Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->na
 
 //店舗写真登録
 Route::get('/admins/store/photo/showForm', [StoreController::class,'showPhotoForm'])->name('admins.store.photo.showform');
-Route::post('/admins/store/photo/insert', [StoreController::class,'storePhoto'])->name('admins.store.photo.insert');
+Route::post('/admins/store/photo/insert', [StoreController::class,'insert'])->name('admins.store.photo.insert');
+// Route::post('/admins/store/photo/insert', [StoreController::class,'storePhoto'])->name('admins.store.photo.insert');
+// Route::get('/admins/store/photo/insert', [StoreController::class,'storePhoto'])->name('admins.store.photo.insert');
