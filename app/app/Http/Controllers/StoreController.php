@@ -9,6 +9,7 @@ use App\Models\storephotoinfo;
 use App\Models\storemenuinfo;
 use Exception;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 
 // ユーザーが各店舗の詳細をクリック後表示
@@ -101,15 +102,105 @@ class StoreController extends Controller
             }
         }
     }
-
     public function insert(Request $request)
     {
         $error = "";
         $message = '';
         $storeid = 1; 
-        $s = $request->hasFile('photo_0');
-        info('変数の中身: ' . print_r($s, true));
-        dd($s);
+        // $s = $request->hasFile('photo_0');
+        // info('変数の中身: ' . print_r($s, true));
+        // dd($s);
+
+
+        try{
+            // バリデーション
+
+            $rules = [
+                'photo' => 'image|max:2048',
+            ];
+
+            // $validator = Validator::make($requestList, $rules);
+            // //バリデーションに失敗した場合
+            // if ($validator->fails()) {
+            //     // 登録フォームに戻る
+            //     $error = 'エラーが発生しました、再アップロードしてください。';
+            //     return;
+            // }
+            /*
+            ファイルの保存
+            */
+            $uploadDir = 'public/img/storephoto/';
+            $photoDir = 'storage/img/storephoto/';
+
+            $imgrole = (int)$request->input('imgrole');
+
+            // ファイルフィールドの判定
+            // if (!$request->hasFile('photo')) {
+            //     $message = $message."アップロードなし.";
+            //     return;
+            // }
+            $photoData = $request->file('photo');
+            
+            /*
+                ファイル名の取得
+            */
+            // ファイル名を取得
+            $photoname = $photoData->getClientOriginalName();
+            $message = $message.$photoname;
+
+            // 拡張子の取得
+            $extension = $photoData->getClientOriginalExtension();
+
+            //拡張子を除いたファイル名の取得
+            $photoname = substr($photoname, 0, -strlen(".".$extension));
+
+            //日付・拡張子を含むファイル名を生成
+            $photoname = $photoname . '-' . time() . '.' . $extension;
+
+            //ファイルのパスの取得
+            $photopath = $photoDir.$photoname;
+
+            //画像のアップロード
+            $photoData->storeAs($uploadDir,$photoname);
+
+            //モデルズにDBへの登録情報を格納
+            $photoObj = storephotoinfo::where('storeid', $storeid)->where('imgrole', $imgrole)->first();
+            
+            /*
+            検索情報の有無を確認します。
+                ①情報が確認できなければ新規登録、
+                ②できれば更新処理
+            */
+            if (!$photoObj) {
+                // 新規登録の場合の処理
+                $photoObj = new storephotoinfo();
+                $photoObj->storeid = $storeid;
+                $photoObj->imgrole = $imgrole;
+            }
+            $photoObj->photopath = $photopath;
+            $photoObj->save(); 
+
+            // 成功メッセージ
+            $message = 'photo_'.$imgrole.'の店舗写真を追加・更新しました。';
+
+        } catch (Exception $e) {
+            // エラー処理
+            Log::error("Error processing 外側のtrycatch: " . $e->getMessage());
+            $error = 'エラーが発生しました、再アップロードしてください。';
+
+        }finally{
+            return response()->json(['message' => $message,'error' => $error,]);
+        }
+    }
+
+    public function insert3(Request $request)
+    {
+        $error = "";
+        $message = '';
+        $storeid = 1; 
+        // $s = $request->hasFile('photo_0');
+        // info('変数の中身: ' . print_r($s, true));
+        // dd($s);
 
 
         try{
@@ -121,45 +212,54 @@ class StoreController extends Controller
                 'photo_2' => 'image|max:2048',
             ];
 
-            $validator = Validator::make($request->all(), $rules);
-            //バリデーションに失敗した場合
-            if ($validator->fails()) {
-                // 登録フォームに戻る
-                $error = 'エラーが発生しました、再アップロードしてください。';
-                return;
-            }
+            session()->put(['key1' => $request->all()]);
+            $requestList = $request->all();
+
+            // $validator = Validator::make($request->all(), $rules);
+            // //バリデーションに失敗した場合
+            // if ($validator->fails()) {
+            //     // 登録フォームに戻る
+            //     $error = 'エラーが発生しました、再アップロードしてください。';
+            //     return;
+            // }
             /*
             ファイルの保存
             */
             $uploadDir = 'public/img/storephoto/';
             $photoDir = 'storage/img/storephoto/';
 
-           
+            $photoDataList = array();
+            
+            foreach ($requestList as $key => $value) {
+                if($key !== "_token"){
+                    $photoDataList[$key] = $value;
+                }
+            }
 
-            for ($i = 0; $i < 3; $i++) {
-                //name属性の値の取得
-                $name_field = 'photo_'.$i;
-                //ファイル情報の取得
-                $photoData = $request->file($name_field);
-                $nullJudge = $request->hasFile($name_field);
-
-                info($i.":".$photoData);
-                if (!$nullJudge) {
-                // if (!$photoData) {
+            foreach ($photoDataList as $i => $value) {
+                $name_field = $i;
+                $i = (int)$i;
+            
+                // ファイルフィールドの判定
+                if (!$request->hasFile($name_field)) {
                     $message = $message."アップロードなし.";
-                    info("nothing");
                     continue;
                 }
+                $photoData = $request->file($name_field);
+
                 /*
                     ファイル名の取得
                 */
                 // ファイル名を取得
                 $photoname = $photoData->getClientOriginalName();
                 $message = $message.$photoname;
+
                 // 拡張子の取得
                 $extension = $photoData->getClientOriginalExtension();
+
                 //拡張子を除いたファイル名の取得
                 $photoname = substr($photoname, 0, -strlen(".".$extension));
+
                 //日付・拡張子を含むファイル名を生成
                 $photoname = $photoname . '-' . time() . '.' . $extension;
 
@@ -184,22 +284,126 @@ class StoreController extends Controller
                     $photoObj->imgrole = $i;
                 }
                 $photoObj->photopath = $photopath;
-                $photoObj->save();                    
+                $photoObj->save(); 
+
+                // 成功メッセージ
+                $message = 'photo_'.$i.'の店舗写真を追加・更新しました。';
+
             }
-
-            // 成功メッセージ
-            $message = '店舗写真を追加・更新しました。';
-
         } catch (Exception $e) {
             // エラー処理
+            Log::error("Error processing 外側のtrycatch: " . $e->getMessage());
             $error = 'エラーが発生しました、再アップロードしてください。';
 
         }finally{
-            return response()->json(['message' => $message,'error' => $error,])->with(compact('s'));
+            return response()->json(['message' => $message,'error' => $error,]);
         }
     }
 
+    public function insert2(Request $request)
+    {
+        $error = "";
+        $message = '';
+        $storeid = 1; 
+        // $s = $request->hasFile('photo_0');
+        // info('変数の中身: ' . print_r($s, true));
+        // dd($s);
 
+
+        try{
+            // バリデーション
+
+            $rules = [
+                'photo_0' => 'image|max:2048',
+                'photo_1' => 'image|max:2048',
+                'photo_2' => 'image|max:2048',
+            ];
+
+            // $validator = Validator::make($request->all(), $rules);
+            // //バリデーションに失敗した場合
+            // if ($validator->fails()) {
+            //     // 登録フォームに戻る
+            //     $error = 'エラーが発生しました、再アップロードしてください。';
+            //     return;
+            // }
+            /*
+            ファイルの保存
+            */
+            $uploadDir = 'public/img/storephoto/';
+            $photoDir = 'storage/img/storephoto/';
+
+           
+
+            for ($i = 0; $i < 3; $i++) {
+                //name属性の値の取得
+                $name_field = 'photo_'.$i;
+
+                try{
+                    //ファイル情報の取得
+                    $photoData = $request->file($name_field);
+
+                    info($i.":".$photoData);
+                    session()->put($i.':', $photoData);
+                    if (!$photoData) {
+                    // if (!$photoData) {
+                        $message = $message."アップロードなし.";
+                        info("nothing");
+                        continue;
+                    }
+                    /*
+                        ファイル名の取得
+                    */
+                    // ファイル名を取得
+                    $photoname = $photoData->getClientOriginalName();
+                    $message = $message.$photoname;
+                    // 拡張子の取得
+                    $extension = $photoData->getClientOriginalExtension();
+                    //拡張子を除いたファイル名の取得
+                    $photoname = substr($photoname, 0, -strlen(".".$extension));
+                    //日付・拡張子を含むファイル名を生成
+                    $photoname = $photoname . '-' . time() . '.' . $extension;
+
+                    //ファイルのパスの取得
+                    $photopath = $photoDir.$photoname;
+
+                    //画像のアップロード
+                    $photoData->storeAs($uploadDir,$photoname);
+
+                    //モデルズにDBへの登録情報を格納
+                    $photoObj = storephotoinfo::where('storeid', $storeid)->where('imgrole', $i)->first();
+                    
+                    /*
+                    検索情報の有無を確認します。
+                        ①情報が確認できなければ新規登録、
+                        ②できれば更新処理
+                    */
+                    if (!$photoObj) {
+                        // 新規登録の場合の処理
+                        $photoObj = new storephotoinfo();
+                        $photoObj->storeid = $storeid;
+                        $photoObj->imgrole = $i;
+                    }
+                    $photoObj->photopath = $photopath;
+                    $photoObj->save(); 
+
+                    // 成功メッセージ
+                    $message = 'photo_'.$i.'の店舗写真を追加・更新しました。';
+                
+                }catch(\Exception $e){
+                    Log::error("Error processing photo_{$i}: " . $e->getMessage());
+                }
+            }
+
+
+        } catch (Exception $e) {
+            // エラー処理
+            Log::error("Error processing 外側のtrycatch: " . $e->getMessage());
+            $error = 'エラーが発生しました、再アップロードしてください。';
+
+        }finally{
+            return response()->json(['message' => $message,'error' => $error,]);
+        }
+    }
     public function storePhoto(Request $request)
     {
         $error = "";

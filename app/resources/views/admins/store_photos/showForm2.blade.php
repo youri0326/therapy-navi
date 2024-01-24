@@ -21,7 +21,7 @@
 
 @csrf
     <div class="row">
-    <div class="dropzone" id="myDropzone">
+        <div class="dropzone" id="myDropzone">
         @for ($i = 0; $i < 3; $i++)
             <div class="col-md-6">
                 <div class="card">
@@ -30,11 +30,10 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-
                             <div class="dropzone" id="myDropzone_{{ $i }}">
                                 <div class="fallback">
                                     <!-- <input type="file" name="photo_{{ $i }}" id="photo_{{ $i }}" /> -->
-                            </div>
+                                </div>
                             </div>
                             <label class="custom-file-label" id="photo_{{ $i }}-label" for="photo_{{ $i }}">
                             @if($i === 0)
@@ -44,7 +43,6 @@
                             @endif                             
                             </label>
                             <img id="photo_{{ $i }}-preview" src="{{ asset('storage/img/noimage.jpg') }}" alt="No Image" class="img-fluid mt-2">
-                            <button type="button" class="btn btn-primary" id="submit_{{ $i }}" data-index="{{ $i }}">更新</button>
                         </div>
                     </div>
                 </div>
@@ -67,12 +65,15 @@
                 </div>
               </div>
             </div>
-
+            
         @endfor
-    </div>
+        </div>
     </div>
 
-
+        <label class="custom-file-label" id="photo-label" for="photo">
+    <div class="col-12">
+        <button type="button" id="submit" class="btn btn-primary" >更新</button>
+    </div>
 
 </form>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -136,31 +137,36 @@ $(document).ready(function() {
         dropzone.on("removedfile", function(file) {
             $("#photo_" + i + "-preview").attr("src", "{{ asset('storage/img/noimage.jpg') }}");
         });
-
-        // フォーム送信時の処理
-        $("#submit_"+i).click(function(e) {
-            e.preventDefault(); // 通常のフォーム送信を防ぐ
-
-            var fileList = dropzones[i].files;
-            var file = fileList[0];
-            if (file) {
-                // 各Dropzoneのキューにあるファイルを処理
-                submitForm(e,i,file);
-            }else{
-                alert("画像を選択してください。");
-            }
-
-        });
     }
+        // フォーム送信時の処理
+    $("#submit").click(function(e) {
+        e.preventDefault(); // 通常のフォーム送信を防ぐ
 
+        // 各Dropzoneのキューにあるファイルを処理
+        submitForm(e, dropzones);
+    });
 });
 
-function submitForm(event,index,file) {
+function submitForm(event,dropzones) {
     // FormData オブジェクトを作成
     var formData = new FormData();
     formData.append("_token", $("input[name='_token']").val());
-    formData.append("photo", file);
-    formData.append("imgrole",index);
+    formData.delete('_token');
+
+
+    // ファイルのデータをフォームに追加
+    for (let i = 0; i < 3; i++) {
+        var dropzone = dropzones[i];
+        var fileList = dropzone.files;
+        var file = fileList[0];
+        if (file) {
+            // formData.append("photo_" + i, file);
+            formData.append(i, file);
+        }
+        alert(formData.get(i));
+
+    }
+
 
     axios.post("{{ route('admins.store.photo.insert') }}", formData, {
         headers: {
@@ -171,8 +177,8 @@ function submitForm(event,index,file) {
     })
     .then(function(response) {
         if (response.status === 200) {
-            // 正常に登録された場合
             alert("成功");
+            // 正常に登録された場合
             const responseData = response.data;
             console.log(responseData);
 
