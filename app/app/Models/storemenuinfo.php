@@ -28,8 +28,7 @@ class storemenuinfo extends Model
         return $this->belongsTo('App\Models\storeinfo', 'storeid', 'storeid');
     }
 
-    // reserveinfo -> reservationsに変更
-    public function reservations()
+    public function reserveinfo()
     {
         return $this->hasMany('App\Models\reserveinfo', 'storemenuid', 'storemenuid');
     }
