@@ -109,3 +109,7 @@ Route::group(['middleware' => ['auth']], function() {
     //店舗系
     Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->name('admins.storeDetail');
 });
+
+//店舗写真登録
+Route::get('/admins/store/photo/showForm', [StoreController::class,'showPhotoForm'])->name('admins.store.photo.showform');
+Route::post('/admins/store/photo/insert', [StoreController::class,'insert'])->name('admins.store.photo.insert');
