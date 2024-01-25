@@ -38,9 +38,14 @@ RUN npm --version
 # install bootstrap
 # RUN cd /var/www/html/ && npm install bootstrap@5.3.2
 RUN cd /var/www/html/ && npm install bootstrap@5.1.3
+# Bootstrap、jQueryのインストール
+RUN npm install bootstrap@5.1.3 jquery@3.6.0
 
 # install xdebug
 RUN pecl install xdebug-3.1.6 && docker-php-ext-enable xdebug
+
+# Dropzoneとaxiosのインストール
+RUN npm install dropzone@5.7.0 axios@0.21.1
 
 # # set WORKDIR
 # WORKDIR /var/www/html/

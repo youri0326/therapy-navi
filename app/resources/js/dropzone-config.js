@@ -1,90 +1,25 @@
-{{--
-    プログラム名		：customers.registration.showForm.blade.php
-    プログラム説明	：顧客側トップページ
-
---}}
-@extends('customers.layouts.app')
-
-@section('title', '会員登録')
-
-@section('content')
-@if(session('error'))
-  <p>{{ session('error') }}</p>
-@endif
-
-@if(session('s'))
-  <p>{{ session('s') }}</p>
-@endif
-
-<form method="post" enctype="multipart/form-data" id="form">
-<!-- <form method="post" enctype="multipart/form-data" id="form" action="{{ route('admins.store.photo.insert') }}"> -->
-
-@csrf
-    <div class="row">
-    <div class="dropzone" id="myDropzone">
-        @for ($i = 0; $i < 3; $i++)
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        ドラッグ＆ドロップで画像を追加・更新
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-
-                            <div class="dropzone" id="myDropzone_{{ $i }}">
-                                <div class="fallback">
-                                    <!-- <input type="file" name="photo_{{ $i }}" id="photo_{{ $i }}" /> -->
-                            </div>
-                            </div>
-                            <label class="custom-file-label" id="photo_{{ $i }}-label" for="photo_{{ $i }}">
-                            @if($i === 0)
-                              メイン画像
-                            @else
-                              サブ画像{{ $i }}
-                            @endif                             
-                            </label>
-                            <img id="photo_{{ $i }}-preview" src="{{ asset('storage/img/noimage.jpg') }}" alt="No Image" class="img-fluid mt-2">
-                            <button type="button" class="btn btn-primary" id="submit_{{ $i }}" data-index="{{ $i }}">更新</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card">
-                <div class="card-header">
-                  既存画像
-                </div>
-                <div class="card-body">
-                @php
-                    $storephotoinfo = $store->storephotoinfo->where('imgrole', $i)->first();
-                @endphp
-
-                @if ($storephotoinfo)
-                    <img src="{{ asset($storephotoinfo->photopath) }}" alt="画像{{$storephotoinfo->imgrole}}" class="img-fluid">
-                @else
-                    <img src="{{ asset('storage/img/noimage.jpg') }}" alt="No Image" class="img-fluid">
-                @endif
-                </div>
-              </div>
-            </div>
-
-        @endfor
-    </div>
-    </div>
-
-
-
-</form>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.js"></script>
-<script src="{{ asset('js/dropzone-config.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-
-<script>
+// public/js/dropzone-config.js
 $(document).ready(function() {
     // Dropzone の初期化
     Dropzone.autoDiscover = false;
+    var myDropzone = new Dropzone("#my-dropzone", {
+        url: "/upload", // アップロード先のルートを指定
+        addRemoveLinks: true,
+        acceptedFiles: 'image/*', // 受け入れるファイルタイプを指定
+        maxFilesize: 2, // 最大ファイルサイズ（MB）を指定
+        parallelUploads: 1, // 並行アップロード数を指定
+        // 必要に応じて追加の構成オプションを追加
+    });
 
+    myDropzone.on("success", function(file, response) {
+        // アップロード成功時の処理
+        console.log(response);
+    });
+
+    myDropzone.on("error", function(file, errorMessage) {
+        // アップロードエラー時の処理
+        console.error(errorMessage);
+    });
 
     // Dropzone インスタンスを格納する配列
     var dropzones = [];
@@ -203,7 +138,3 @@ function submitForm(event,index,file) {
         console.log(error);
     });
 }
-
-</script>
-
-@endsection

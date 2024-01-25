@@ -110,10 +110,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->name('admins.storeDetail');
 });
 
-Route::get('/admins/store/detail', [StoreController::class,'detailByAdmin'])->name('admins.storeDetail');
-
 //店舗写真登録
 Route::get('/admins/store/photo/showForm', [StoreController::class,'showPhotoForm'])->name('admins.store.photo.showform');
 Route::post('/admins/store/photo/insert', [StoreController::class,'insert'])->name('admins.store.photo.insert');
-// Route::post('/admins/store/photo/insert', [StoreController::class,'storePhoto'])->name('admins.store.photo.insert');
-// Route::get('/admins/store/photo/insert', [StoreController::class,'storePhoto'])->name('admins.store.photo.insert');
