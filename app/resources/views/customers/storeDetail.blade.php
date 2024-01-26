@@ -9,8 +9,8 @@
 
 @section('content')
 
-			<!-- 店舗の詳細情報 -->
-			<div id="main" class="container">
+			<div align="center">
+			@if($store->count() > 0)
 				<table class="input-table">
 					<tbody>
 						@foreach($store as $store)
@@ -38,5 +38,11 @@
 						@endforeach
 					</tbody>
 				</table>
+				@else
+					<div class="research_title">
+						<h3>店舗情報が見つかりませんでした。</h3>
+						<a href="{{asset('/')}}">トップページ</a>
+					</div>
+				@endif
 			</div>
 			@endsection
