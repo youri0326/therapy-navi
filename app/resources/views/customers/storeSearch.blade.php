@@ -24,7 +24,7 @@
     				@foreach($storeList as $store)
     				<tr>
         				<td align=center>
-        					<a href ="{{asset('/customers/storeDetail')}}?storeid={{$store->storeid}}">{{$store->storename}}</a>
+        					<a href ="{{asset('/customers/store/detail')}}?storeid={{$store->storeid}}">{{$store->storename}}</a>
     					</td>
         				<td align=center>
 
