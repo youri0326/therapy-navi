@@ -73,7 +73,7 @@ Route::get('/customers/storeStaffList', [StoreStaffListController::class,'index'
 Route::get('/customers/store/search', [StoreController::class,'search'])->name('customer.storeSearch');
 
 //店舗詳細機能
-Route::get('/customers/store/detail', [StoreDetailController::class,'index']);
+Route::get('/customers/store/detail', [StoreController::class,'detail']);
 //店舗メニュー一覧機能
 Route::get('/customers/storeMenu', [StoreMenuController::class,'index']);
 
