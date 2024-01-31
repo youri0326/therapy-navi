@@ -10,6 +10,19 @@
 @section('content')
 
 			<div align="center">
+			@foreach($store->storephotoinfo->where('imgrole', 0) as $photo)
+				@php
+				$photopath = $photo->photopath;
+				if(str_contains($photopath, '.jpg')){
+					$photoName = str_replace('.jpg', '', $photopath);
+				}
+				elseif(str_contains($photopath, '.png')){
+					$photoName = str_replace('.png', '', $photopath);
+				}
+				@endphp
+				<li><img src="{{asset($photo->photopath)}}" alt="{{ $photoName }}"></li>
+			@endforeach
+			
 			@if($store->count() > 0)
 				<table class="input-table">
 					<tbody>
@@ -38,6 +51,10 @@
 						@endforeach
 					</tbody>
 				</table>
+				<div id="map" style="height:500px">
+				</div>
+				<script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=[APIキーをここに入力]&callback=initMap" async defer>
+				</script>
 				@else
 					<div class="research_title">
 						<h3>店舗情報が見つかりませんでした。</h3>
