@@ -30,18 +30,16 @@
 
 							@if($store->storephotoinfo->where('imgrole', 0)->count() > 0)
 								<ul>
-									@foreach($store->storephotoinfo->where('imgrole', 0) as $photo)
-										@php
-										$photopath = $photo->photopath;
-										if(str_contains($photopath, '.jpg')){
-											$photoName = str_replace('.jpg', '', $photopath);
-										}
-										elseif(str_contains($photopath, '.png')){
-											$photoName = str_replace('.png', '', $photopath);
-										}
-										@endphp
-										<li><img src="{{asset($photo->photopath)}}" alt="{{ $photoName }}"></li>
-									@endforeach
+									@php
+									$photopath = $photo->photopath;
+									if(str_contains($photopath, '.jpg')){
+										$photoName = str_replace('.jpg', '', $photopath);
+									}
+									elseif(str_contains($photopath, '.png')){
+										$photoName = str_replace('.png', '', $photopath);
+									}
+									@endphp
+									<li><img src="{{asset($photo->photopath)}}" alt="{{ $photoName }}"></li>
 								</ul>
 							@endif
 						</td>
