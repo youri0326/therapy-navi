@@ -204,22 +204,22 @@ CREATE TABLE storephotoinfo (
 --   整体Aの写真情報
 INSERT INTO storephotoinfo VALUES(1,1,'storage/img/seitaiA_01.jpg',0);
 INSERT INTO storephotoinfo VALUES(2,1,'storage/img/seitaiA_02.jpg',1);
-INSERT INTO storephotoinfo VALUES(3,1,'storage/img/seitaiA_03.jpg',1);
+INSERT INTO storephotoinfo VALUES(3,1,'storage/img/seitaiA_03.jpg',2);
 
 --   マッサージBの写真情報
 INSERT INTO storephotoinfo VALUES(4,2,'storage/img/seitaiB_01.jpg',0);
 INSERT INTO storephotoinfo VALUES(5,2,'storage/img/seitaiB_02.jpg',1);
-INSERT INTO storephotoinfo VALUES(6,2,'storage/img/seitaiB_03.jpg',1);
+INSERT INTO storephotoinfo VALUES(6,2,'storage/img/seitaiB_03.jpg',2);
 
 --   整体Cの写真情報
 INSERT INTO storephotoinfo VALUES(7,3,'storage/img/seitaiC_01.jpg',0);
 INSERT INTO storephotoinfo VALUES(8,3,'storage/img/seitaiC_02.jpg',1);
-INSERT INTO storephotoinfo VALUES(9,3,'storage/img/seitaiC_03.jpg',1);
+INSERT INTO storephotoinfo VALUES(9,3,'storage/img/seitaiC_03.jpg',2);
 
 --   マッサージDの写真情報
 INSERT INTO storephotoinfo VALUES(10,4,'storage/img/seitaiD_01.jpg',0);
 INSERT INTO storephotoinfo VALUES(11,4,'storage/img/seitaiD_02.jpg',1);
-INSERT INTO storephotoinfo VALUES(12,4,'storage/img/seitaiD_03.jpg',1);
+INSERT INTO storephotoinfo VALUES(12,4,'storage/img/seitaiD_03.jpg',2);
 
 /*  
 
