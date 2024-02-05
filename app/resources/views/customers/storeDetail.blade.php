@@ -38,6 +38,14 @@
 							<th>住所</th><td>{{$store->address}}</td>
 						</tr>
 						<tr>
+							<th>最寄り駅</th>
+							<td>
+							@foreach($store->stationinfo as $station)
+								{{$station->stationname}}/
+							@endforeach
+							</td>
+						</tr>
+						<tr>
 							<th>予算</th><td>{{$store->budget}}</td>
 						</tr>
 						<tr>
