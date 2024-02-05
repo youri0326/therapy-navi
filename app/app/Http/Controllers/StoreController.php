@@ -69,12 +69,8 @@ class StoreController extends Controller
         $storeid = $request->query('storeid');
         // 上記のstoreidの時の店舗情報をstoreinfoのテーブルから該当行を持ってくる
         // モデル名：where('列名', '=', 検索値)->get();
-        $store = storeinfo::where('storeid', '=', $storeid)->get();// 変数に代入
+        $store = storeinfo::with(['stationinfo', 'storephotoinfo','storemenuinfo'])->where('storeid', $storeid)->first();
         
-        if (!$store) {
-            // （暫定）店舗が見つからない場合の処理を追加404 エラーページを表示。
-            abort(404);
-        }
         return view('customers/storeDetail',[ // ひな形を指定
             'store' => $store
         ]);
