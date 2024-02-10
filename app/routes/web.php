@@ -50,6 +50,8 @@ Route::group(['middleware' => ['guest']], function() {
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/', [CustomerHomeController::class,'index'])->name('home');
 });
+// logout機能
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 /*
 顧客機能系
