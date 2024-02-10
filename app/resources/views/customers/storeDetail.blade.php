@@ -56,6 +56,7 @@
 						</tr>
 					</tbody>
 				</table>
+					<h3>メニュー一覧</h3>
 					<a href ="{{asset('/customers/storeMenu')}}?storeid={{$store->storeid}}">メニュー</a>
 				<div id="map" style="height:500px">
 				<script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=[APIキーをここに入力]&callback=initMap" async defer>
