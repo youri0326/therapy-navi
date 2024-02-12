@@ -15,7 +15,17 @@
         <header>
             <div class="header-container">
                 @if (Auth::check())
-                    <p>{{Auth::user()->customerinfo->name}}さん</p>
+                    <p>{{ Auth::user()->customerinfo->name }}さん</p>
+                    <p>
+                        <a href="{{route('customer.logout')}}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            ログアウト
+                        </a>
+                        <form id="logout-form" action="{{route('customer.logout')}}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </p>
                     <p><a href="{{asset('/customers/member/detail')}}">▶マイページ</a></p>
                 @else
                     <p><a href="{{route('customer.login')}}">ログイン</a></p>

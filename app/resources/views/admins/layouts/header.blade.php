@@ -16,16 +16,6 @@
             <div class="header-container">
                 @if (Auth::check())
                     <p>{{Auth::user()->storeinfo->storename}}</p>
-                    <p>
-                        <a href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            {{ Auth::user()->storeinfo->storename }} ログアウト
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </p>
                     <p><a href="{{route('admins.storeDetail')}}">▶店舗詳細</a></p>
                 @else
                     <p><a href="{{route('admin.login')}}">ログイン</a></p>

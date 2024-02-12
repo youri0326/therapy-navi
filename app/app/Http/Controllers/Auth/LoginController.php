@@ -100,7 +100,7 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function logout(Request $request)
+    public function customerLogout(Request $request)
     {
         Auth::logout();
 
