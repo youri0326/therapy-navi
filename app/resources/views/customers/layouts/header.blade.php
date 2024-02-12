@@ -17,14 +17,7 @@
                 @if (Auth::check())
                     <p>{{ Auth::user()->customerinfo->name }}さん</p>
                     <p>
-                        <a href="{{route('customer.logout')}}"
-                            onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            ログアウト
-                        </a>
-                        <form id="logout-form" action="{{route('customer.logout')}}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
+                        <a href="{{route('logout')}}">ログアウト</a>
                     </p>
                     <p><a href="{{asset('/customers/member/detail')}}">▶マイページ</a></p>
                 @else

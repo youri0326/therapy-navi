@@ -94,16 +94,4 @@ class LoginController extends Controller
         // }
         
     }
-    /**
-     * ログアウト処理を行う
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function customerLogout()
-    {
-        Auth::logout();
-
-        return redirect('/');
-    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 
 //顧客側のインポート
 use App\Http\Controllers\CustomerHomeController;
@@ -51,7 +52,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/', [CustomerHomeController::class,'index'])->name('home');
 });
 // logout機能
-Route::post('/customers/logout', [LoginController::class, 'customerLogout'])->name('customer.logout');
+Route::get('/customers/logout', [LogoutController::class, 'logout'])->name('logout');
 
 /*
 顧客機能系

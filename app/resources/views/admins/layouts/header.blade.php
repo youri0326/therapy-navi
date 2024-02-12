@@ -16,6 +16,9 @@
             <div class="header-container">
                 @if (Auth::check())
                     <p>{{Auth::user()->storeinfo->storename}}</p>
+                    <p>
+                        <a href="{{route('logout')}}">ログアウト</a>
+                    </p>
                     <p><a href="{{route('admins.storeDetail')}}">▶店舗詳細</a></p>
                 @else
                     <p><a href="{{route('admin.login')}}">ログイン</a></p>
