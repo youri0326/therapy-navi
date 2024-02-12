@@ -100,13 +100,9 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function customerLogout(Request $request)
+    public function customerLogout()
     {
         Auth::logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
 
         return redirect('/');
     }
