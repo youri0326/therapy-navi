@@ -56,17 +56,13 @@
 						</tr>
 					</tbody>
 				</table>
-					<h3>メニュー一覧</h3>
-					<a href ="{{asset('/customers/storeMenu')}}?storeid={{$store->storeid}}">メニュー</a>
-				<div id="map" style="height:500px">
-				<script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=[APIキーをここに入力]&callback=initMap" async defer>
-				</script>
+				<h3>メニュー一覧</h3>
+				<a href ="{{asset('/customers/storeMenu')}}?storeid={{$store->storeid}}">メニュー</a>
+			@else
+				<div class="research_title">
+					<h3>店舗情報が見つかりませんでした。</h3>
+					<a href="{{asset('/')}}">トップページ</a>
 				</div>
-				@else
-					<div class="research_title">
-						<h3>店舗情報が見つかりませんでした。</h3>
-						<a href="{{asset('/')}}">トップページ</a>
-					</div>
-				@endif
+			@endif
 			</div>
 			@endsection
