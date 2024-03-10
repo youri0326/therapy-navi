@@ -15,7 +15,10 @@
         <header>
             <div class="header-container">
                 @if (Auth::check())
-                    <p>{{Auth::user()->customerinfo->name}}さん</p>
+                    <p>{{ Auth::user()->customerinfo->name }}さん</p>
+                    <p>
+                        <a href="{{route('logout')}}">ログアウト</a>
+                    </p>
                     <p><a href="{{asset('/customers/member/detail')}}">▶マイページ</a></p>
                 @else
                     <p><a href="{{route('customer.login')}}">ログイン</a></p>
