@@ -378,5 +378,15 @@ class ReservationController extends Controller
             'storeList' => $storeList
         ]);
     }
+
+    public function reservationDetail() {
+        // IDはあとでフォームから取得するように変更する
+        $reserveid = 2;
+        $reservation = reserveinfo::with('storemenuinfo.storeinfo')->find($reserveid);
+        
+        return view('customers/reservationDetail',[
+            'reservation' => $reservation,
+        ]);
+    }
 }
 

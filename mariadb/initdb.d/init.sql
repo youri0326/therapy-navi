@@ -42,6 +42,12 @@ INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) 
 INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (5,'0005','$2a$08$Xo4HD.rcupoR1Mn13OVwMO2J7UtJYzNIHbDTsi0SdPBKbMHkT0TxK','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test5*/
 INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (6,'0006','$2a$08$YbPn5xgktUyqsKaawdBZh.onWW6QWPgq0XcjMMLWdvTo5YkoXHb72','youriyoshiike@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test6*/
 
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (7,'0007','$2a$08$//RcWDpC5c8e1UP.mKfpmeSeJNQlxBHTfLlktm7seRnaScaBscWbO','yskfinance456@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test7*/
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (8,'0008','$2a$08$N2IQG1EKxyS01aqExl87VOJAVVvLDshu10g/f2GyiRH9Dau/.2kC.','yskfinance456@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test8*/
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (9,'0009','$2a$08$Ugq908Is3IhzgcqUSGxsHeUh549Bo70ErvfAHTrx/zOF2V95T6eWa','yskfinance456@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test9*/
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (10,'0010','$2a$08$hn2tTl8YqMN8yoNmvLBFnOtP48JdHfrLhYhyAQ7cS7dEeRbg7GeI2','yskfinance456@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test10*/
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (11,'0011','$2a$08$nAAAiePdkYw49ybntJF4Z.dq2/6WYZx6PlzELICFMEDlBRDeP/S72','yskfinance456@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test11*/
+INSERT INTO userinfo (userid,loginid,password,email,phone,authority,login_date) VALUES (12,'0012','$2a$08$9r3a1xa5V0SEALo5PgrZF.H3Fwciuq6qzCeKr4zX38QO6TekFxqA.','yskfinance456@gmail.com','000-0000-0000',1,CURDATE()); /*パスワード：test12*/
 
 /*  
 
@@ -146,6 +152,13 @@ INSERT INTO storeinfo VALUES(2,3,'マッサージB','東京都 世田谷区 用�
 INSERT INTO storeinfo VALUES(3,4,'整体C','東京都 目黒区',8000,'','クレジットカード');
 INSERT INTO storeinfo VALUES(4,5,'マッサージD','東京都 目白',8000,'','クレジットカード');
 
+INSERT INTO storeinfo VALUES(5,6,'整体E','東京都 文京区',9000,'','クレジットカード');
+INSERT INTO storeinfo VALUES(6,7,'マッサージF','東京都 台東区',7000,'','クレジットカード');
+INSERT INTO storeinfo VALUES(7,8,'整体G','東京都 江東区',7000,'','クレジットカード');
+INSERT INTO storeinfo VALUES(8,9,'マッサージH','東京都 渋谷区',9000,'','クレジットカード');
+INSERT INTO storeinfo VALUES(9,10,'整体I','東京都 新宿区',8000,'','クレジットカード');
+INSERT INTO storeinfo VALUES(10,11,'マッサージJ','東京都 江戸川区',7000,'','クレジットカード');
+
 /*  
 
 店舗メニューテーブル関連
@@ -185,6 +198,35 @@ INSERT INTO storemenuinfo VALUES(10,4,'骨盤矯正30分','痛みの改善',5000
 INSERT INTO storemenuinfo VALUES(11,4,'骨盤矯正60分','痛みの改善',5000,60,1);
 INSERT INTO storemenuinfo VALUES(12,4,'全体マッサージ','痛みの改善',5000,60,1);
 
+--   整体Eのメニュー情報
+INSERT INTO storemenuinfo VALUES(13,5,'骨盤矯正30分','痛みの改善',5000,30,0);
+INSERT INTO storemenuinfo VALUES(14,5,'骨盤矯正60分','痛みの改善',5000,60,1);
+INSERT INTO storemenuinfo VALUES(15,5,'全体マッサージ','痛みの改善',5000,60,1);
+
+--   マッサージFのメニュー情報
+INSERT INTO storemenuinfo VALUES(16,6,'骨盤矯正30分','痛みの改善',5000,30,0);
+INSERT INTO storemenuinfo VALUES(17,6,'骨盤矯正60分','痛みの改善',5000,60,1);
+INSERT INTO storemenuinfo VALUES(18,6,'全体マッサージ','痛みの改善',5000,60,1);
+--   整体Gのメニュー情報
+INSERT INTO storemenuinfo VALUES(19,7,'骨盤矯正30分','痛みの改善',5000,30,0);
+INSERT INTO storemenuinfo VALUES(20,7,'骨盤矯正60分','痛みの改善',5000,60,1);
+INSERT INTO storemenuinfo VALUES(21,7,'全体マッサージ','痛みの改善',5000,60,1);
+
+--   マッサージHのメニュー情報
+INSERT INTO storemenuinfo VALUES(22,8,'骨盤矯正30分','痛みの改善',5000,30,0);
+INSERT INTO storemenuinfo VALUES(23,8,'骨盤矯正60分','痛みの改善',5000,60,1);
+INSERT INTO storemenuinfo VALUES(24,8,'全体マッサージ','痛みの改善',5000,60,1);
+
+--   整体Iのメニュー情報
+INSERT INTO storemenuinfo VALUES(25,9,'骨盤矯正30分','痛みの改善',5000,30,0);
+INSERT INTO storemenuinfo VALUES(26,9,'骨盤矯正60分','痛みの改善',5000,60,1);
+INSERT INTO storemenuinfo VALUES(27,9,'全体マッサージ','痛みの改善',5000,60,1);
+
+--   マッサージJのメニュー情報
+INSERT INTO storemenuinfo VALUES(28,10,'骨盤矯正30分','痛みの改善',5000,30,0);
+INSERT INTO storemenuinfo VALUES(29,10,'骨盤矯正60分','痛みの改善',5000,60,1);
+INSERT INTO storemenuinfo VALUES(30,10,'全体マッサージ','痛みの改善',5000,60,1);
+
 /*  
 
 店舗写真テーブル関連
@@ -221,6 +263,24 @@ INSERT INTO storephotoinfo VALUES(10,4,'storage/img/seitaiD_01.jpg',0);
 INSERT INTO storephotoinfo VALUES(11,4,'storage/img/seitaiD_02.jpg',1);
 INSERT INTO storephotoinfo VALUES(12,4,'storage/img/seitaiD_03.jpg',2);
 
+--   整体Eの写真情報
+INSERT INTO storephotoinfo VALUES(13,5,'storage/img/seitaiE_01.jpg',0);
+
+--   マッサージFの写真情報
+INSERT INTO storephotoinfo VALUES(14,6,'storage/img/massageF_01.jpg',0);
+
+--   整体Gの写真情報
+INSERT INTO storephotoinfo VALUES(15,7,'storage/img/seitaiG_01.jpg',0);
+
+--   マッサージHの写真情報
+INSERT INTO storephotoinfo VALUES(16,8,'storage/img/massageH_01.jpg',0);
+
+--   整体Iの写真情報
+INSERT INTO storephotoinfo VALUES(17,9,'storage/img/seitaiI_01.jpg',0);
+
+--   マッサージJの写真情報
+INSERT INTO storephotoinfo VALUES(18,10,'storage/img/massageJ_01.jpg',0);
+
 /*  
 
 店舗の最寄り駅テーブル関連
@@ -245,12 +305,32 @@ INSERT INTO stationinfo VALUES(2,1,'経堂駅','小田急線','徒歩10分');
 --   マッサージBの最寄り駅情報
 INSERT INTO stationinfo VALUES(3,2,'用賀駅','田園都市線','徒歩10分');
 INSERT INTO stationinfo VALUES(4,2,'二子玉川駅','田園都市線','バスで10分');
+
 --   整体Cの最寄り駅情報
 INSERT INTO stationinfo VALUES(5,3,'中目黒駅','東急東横線','徒歩10分');
 INSERT INTO stationinfo VALUES(6,3,'目黒駅','JR山手線','徒歩20分');
 
 --   マッサージDの最寄り駅情報
 INSERT INTO stationinfo VALUES(7,4,'目白駅','JR山手線','徒歩10分');
+
+--   整体Eの最寄り駅情報
+INSERT INTO stationinfo VALUES(8,5,'池袋駅','JR山手線','徒歩10分');
+
+--   マッサージFの最寄り駅情報
+INSERT INTO stationinfo VALUES(9,6,'板橋駅','JR埼京線','徒歩5分');
+
+--   整体Gの最寄り駅情報
+INSERT INTO stationinfo VALUE(10,7,'大山駅','東武東上線','徒歩10分');
+
+--   マッサージHの最寄り駅情報
+INSERT INTO stationinfo VALUE(11,8,'池上駅','東急池上線','徒歩10分');
+
+--   整体Iの最寄り駅情報
+INSERT INTO stationinfo VALUE(12,9,'五反田駅','JR山手線','徒歩5分');
+INSERT INTO stationinfo VALUE(13,9,'大崎広小路駅','東急池上線','徒歩5分');
+
+--   マッサージJの最寄り駅情報
+INSERT INTO stationinfo VALUE(14,10,'大井町駅','JR京浜東北線','徒歩10分');
 
 /*  
 
