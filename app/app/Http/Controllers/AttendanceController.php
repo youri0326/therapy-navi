@@ -51,7 +51,7 @@ class AttendanceController extends Controller
          //セッション・クッキーからログイン情報を元に、accountid⇒storeidを取得する
         // $storeid = セッションget的なものを記載するが、ログイン処理が終わってからにする
         //一旦仮でstoreid=3でテストする
-        $storeid = 3;
+        $storeid = 1;
         $staffid = $request->query('staffid');
         $month = $request->query('month');
         $year = $request->query('year');
@@ -74,27 +74,28 @@ class AttendanceController extends Controller
             ]);            
         }elseif(!empty($day)){
             $selectedDate = $carbonObj::create($year, $month, $day); 
+            // $store = storeinfo::firstWhere('storeid',$storeid);
             $store = $objStore->getStaffWorkingtimeByDate($storeid,$selectedDate);
             // 勤怠情報と一緒に遷移
             $hour =15;
 
-            $attendance = $store->staffinfo->first()->attendinfo->first();
-            $attDate = new DateTime($attendance->workingdate);
+            // $attendance = $store->staffinfo->first()->attendinfo->first();
+            // $attDate = new DateTime($attendance->workingdate);
 
-            $starttime = DateTime::createFromFormat('H:i:s', $attendance->starttime)->format('H');
-            $endtime = DateTime::createFromFormat('H:i:s', $attendance->endtime)->format('H');
-            $breakstart = DateTime::createFromFormat('H:i:s', $attendance->breakstart)->format('H');
-            $breakend = DateTime::createFromFormat('H:i:s', $attendance->breakend)->format('H');
+            // $starttime = DateTime::createFromFormat('H:i:s', $attendance->starttime)->format('H');
+            // $endtime = DateTime::createFromFormat('H:i:s', $attendance->endtime)->format('H');
+            // $breakstart = DateTime::createFromFormat('H:i:s', $attendance->breakstart)->format('H');
+            // $breakend = DateTime::createFromFormat('H:i:s', $attendance->breakend)->format('H');
 
-            $exisistence = $attDate->format('Y-m-d') == $selectedDate->format('Y-m-d') &&
-                     (int)$starttime <= $hour &&
-                     (int)$endtime > $hour &&
-                     ((int)$breakstart > $hour || (int)$breakend <= $hour);
+            // $exisistence = $attDate->format('Y-m-d') == $selectedDate->format('Y-m-d') &&
+            //          (int)$starttime <= $hour &&
+            //          (int)$endtime > $hour &&
+            //          ((int)$breakstart > $hour || (int)$breakend <= $hour);
 
             return view('/admins/attendanceDetailByDate',[
                 'selectedDate' => $selectedDate,
                 'store' => $store,
-                'attendance' => $exisistence,
+                // 'attendance' => $exisistence,
             ]);     
         }
 

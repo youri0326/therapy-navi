@@ -29,7 +29,7 @@ class staffinfo extends Model
 
     public function storeinfo() // 親テーブルの名前
     {
-        return $this->belongsTo('App\Models\storeinfo'); //親テーブルのパスを引数に指定する
+        return $this->belongsTo('App\Models\storeinfo', 'storeid', 'storeid'); //親テーブルのパスを引数に指定する
     }
 
     public function attendinfo() // 子テーブルの名前
