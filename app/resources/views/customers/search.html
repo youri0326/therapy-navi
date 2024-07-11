@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>セラピー　探しナビ</title>
+
+    <!-- サイトの説明 -->
+
+
+    <!-- <meta name="description" content=""> -->
+
+    <!-- Favicon -->
+    <link rel="icon" href="" sizes="any">
+    <!-- OGP -->
+    <meta property="og:url" content="https://(サイトのドメイン)/" /> <!-- ドメインを入力してください -->
+    <meta property="og:title" content="セラピー　探しナビ" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="https://(サイトのドメイン)/Ribe/img/ribe-ogp.jpg" /> <!-- ドメインを入力してください -->
+    <!-- X(Twitter) OGP -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="" />
+    <meta name="twitter:domain" content="" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:description" content="" />
+    <meta name="twitter:image" content="https://(サイトのドメイン)/" /> <!-- ドメインを入力してください -->
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;400;500;600;700&family=Noto+Serif+JP:wght@200;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+
+    <header class="header" id="header">
+        <div class="header_inner">
+            <a class="header_logo-link" href="">
+                <p>セラピー<span>探しナビ</span></p>
+            </a>
+            <nav class="header-nav">
+                <div class="header-nav-list md-none">
+                    <ul class="header-nav-list-items">
+                        <li class="header-nav-item">
+                            <a href="#" class="header-nav-item-link">ログイン</a>
+                        </li>
+                        <li class="header-nav-item">
+                            <a href="#" class="header-nav-item-link">登録</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="hamburger js-hamburger">
+                <div class="hamburger__container">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="drawer-menu js-drawer">
+                <a class="header_logo-link drawer-menu-logo" href="">
+                    <p>セラピー<span>探しナビ</span></p>
+                </a>
+                <div class="drawer-menu_inner">
+                    <ul class="drawer-menu-items">
+                        <li class="header-nav-item">
+                            <a href="#" class="header-nav-item-bottom-link">TOP・店舗検索</a>
+                        </li>
+                        <li class="header-nav-item">
+                            <a href="#" class="header-nav-item-bottom-link">よくある質問</a>
+                        </li>
+                        <li class="header-nav-item">
+                            <a href="#" class="header-nav-item-bottom-link">お問い合わせ</a>
+                        </li>
+                        <li class="header-nav-item">
+                            <a href="#" class="header-nav-item-bottom-link">運営情報</a>
+                        </li>
+                        
+                        <li class="drawer-menu-item">
+                            <a href="#contact" class="header-nav-item-link  drawer-menu-login">ログイン</a>
+                        </li>
+                        <li class="drawer-menu-item">
+                            <a href="#contact" class="header-nav-item-link  drawer-menu-register">登録</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <nav class="header-nav-list-items-bottom  md-none">
+            <ul class="header-nav-list-items">
+                <li class="header-nav-item">
+                    <a href="#" class="header-nav-item-bottom-link">TOP・店舗検索</a>
+                </li>
+                <li class="header-nav-item">
+                    <a href="#" class="header-nav-item-bottom-link">よくある質問</a>
+                </li>
+                <li class="header-nav-item">
+                    <a href="#" class="header-nav-item-bottom-link">お問い合わせ</a>
+                </li>
+                <li class="header-nav-item">
+                    <a href="#" class="header-nav-item-bottom-link">運営情報</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="search__ansewer inner">
+            <h1 class="search__answer__title">サロンを探す</h1>
+            <p class="search__answer__text">３件の検索結果</p>
+            <div class="search__answer__contents">
+                <div class="search__answer__content__box">
+                    <h2 class="search__answer__content__box__title">整体A</h2>
+                    <img src="./img/search_01.png" alt="">
+                    <div class="search__answer__content__text__box">
+                        <ul class="search__answer__content">
+                            <li class="search__answer__content__list">
+                                <p class="search__answer__content__list__title">アクセス</p>
+                                <p class="search__answer__content__list__text">小田急線　千歳船橋駅　徒歩10分　/　小田急線　経堂駅、徒歩10分
+                                </p>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li class="search__answer__content__list">
+                                <p class="search__answer__content__list__title">主なメニュー</p>
+                                <ul class="search__answer__content__list__text">
+                                    <li>・骨盤矯正30分：5000円</li>
+                                    <li>・骨盤矯正60分：5000円</li>
+                                    <li>・痛みの改善：5000円</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="search__answer__contents">
+                <div class="search__answer__content__box">
+                    <h2 class="search__answer__content__box__title">マッサージB</h2>
+                    <img src="./img/search_02.png" alt="">
+                    <div class="search__answer__content__text__box">
+                        <ul class="search__answer__content">
+                            <li class="search__answer__content__list">
+                                <p class="search__answer__content__list__title">アクセス</p>
+                                <p class="search__answer__content__list__text">田園都市線　用賀駅　徒歩10分　/　田園都市線　二子玉川駅、バスで10分
+                                </p>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li class="search__answer__content__list">
+                                <p class="search__answer__content__list__title">主なメニュー</p>
+                                <ul class="search__answer__content__list__text">
+                                    <li>・骨盤矯正30分：5000円</li>
+                                    <li>・骨盤矯正60分：5000円</li>
+                                    <li>・痛みの改善：5000円</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search__answer__contents">
+                <div class="search__answer__content__box">
+                    <h2 class="search__answer__content__box__title">整体C</h2>
+                    <img src="./img/search_03.png" alt="">
+                    <div class="search__answer__content__text__box">
+                        <ul class="search__answer__content">
+                            <li class="search__answer__content__list">
+                                <p class="search__answer__content__list__title">アクセス</p>
+                                <p class="search__answer__content__list__text">田園都市線　用賀駅　徒歩10分　/　田園都市線　二子玉川駅、バスで10分
+                                </p>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li class="search__answer__content__list">
+                                <p class="search__answer__content__list__title">主なメニュー</p>
+                                <ul class="search__answer__content__list__text">
+                                    <li>・骨盤矯正30分：5000円</li>
+                                    <li>・骨盤矯正60分：5000円</li>
+                                    <li>・痛みの改善：5000円</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </section>
+
+
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer__inner">
+            <nav class="footer__nav">
+                <ul class="footer__nav__list">
+                    <li class="footer__nav__link">
+                        <a href="">ホーム</a>
+                    </li>
+                    <li class="footer__nav__link">
+                        <a href="">よくある質問</a>
+                    </li>
+                    <li class="footer__nav__link">
+                        <a href="">お問い合わせ</a>
+                    </li>
+                    <li class="footer__nav__link">
+                        <a href="">サイトマップ</a>
+                    </li>
+                    <li class="footer__nav__link">
+                        <a href="">運営情報</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer_text_box">
+            <a class="footer_logo">セラピー<span>探しナビ</span></a>
+            <p class="copyright">Copyright (c) 20YY All Right Reserved</p>
+        </div>
+    </footer>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>

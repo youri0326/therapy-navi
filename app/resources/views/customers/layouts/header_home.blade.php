@@ -105,21 +105,4 @@
                 </div>
             </div>
             </div>
-            <nav class="header-nav-list-items-bottom  md-none">
-            <ul class="header-nav-list-items">
-                <li class="header-nav-item">
-                    <a href="#" class="header-nav-item-bottom-link">TOP・店舗検索</a>
-                </li>
-                <li class="header-nav-item">
-                    <a href="#" class="header-nav-item-bottom-link">よくある質問</a>
-                </li>
-                <li class="header-nav-item">
-                    <a href="#" class="header-nav-item-bottom-link">お問い合わせ</a>
-                </li>
-                <li class="header-nav-item">
-                    <a href="#" class="header-nav-item-bottom-link">運営情報</a>
-                </li>
-            </ul>
-            </nav>
-
         </header>

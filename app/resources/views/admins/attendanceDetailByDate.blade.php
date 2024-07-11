@@ -39,7 +39,7 @@ function getAttendanceStatus($staff, $selectedDate, $hour) {
 
 <body>
 
-    <h2>{{ $selectedDate->format('Y年m月d日') }}の勤怠情報{{$attendance}}</h2>
+    <h2>{{ $selectedDate->format('Y年m月d日') }}の勤怠情報</h2>
 
     <table>
 
