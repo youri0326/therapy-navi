@@ -95,6 +95,9 @@ Route::post('/customers/reservation/confirm', [ReservationController::class,'con
 //予約機能：予約登録完了
 Route::post('/customers/reservation/insert', [ReservationController::class,'storeReservation']);
 
+//予約機能：予約詳細確認
+Route::get('/customers/reservation/detail', [ReservationController::class,'reservationDetail']);
+
 /*
 管理者機能
 */
